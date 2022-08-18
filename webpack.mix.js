@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const mix  = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,3 +13,60 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js('bower_components/lobilist/lib/jquery/jquery.min.js', 'public/js')
+
+/*
+ |--------------------------------------------------------------------------
+ |Lobilist TODOLIST
+ |--------------------------------------------------------------------------
+ */
+mix.js('bower_components/lobilist/lib/jquery/jquery.ui.touch-punch-improved.js', 'public/js')
+mix.js('bower_components/lobilist/lib/bootstrap/js/bootstrap.min.js', 'public/js')
+mix.js('bower_components/lobilist/dist/lobilist.js', 'public/js')
+mix.js('bower_components/lobilist/lib/lobibox/js/lobibox.min.js', 'public/js')
+
+mix.js('bower_components/lobilist/demo/demo.js', 'public/js')
+mix.postCss('bower_components/lobilist/demo/demo.css', 'public/css')
+mix.postCss('bower_components/lobilist/dist/lobilist.css', 'public/css');
+mix.postCss('bower_components/lobilist/lib/lobibox/css/lobibox.min.css', 'public/css');
+
+
+
+/*
+ |--------------------------------------------------------------------------
+ |JsTree
+ |--------------------------------------------------------------------------
+ */
+
+mix.scripts([
+    'node_modules/jstree/dist/jstree.min.js',
+    // You can add more JS files here.
+
+], 'public/js/jstree.min.js')
+/*
+ |--------------------------------------------------------------------------
+ |HandleBars
+ |--------------------------------------------------------------------------
+*/
+mix.js('bower_components/handlebars/handlebars.js', 'public/js');
+ 
+ /*
+ |--------------------------------------------------------------------------
+ |SlimScroll
+ |--------------------------------------------------------------------------
+*/
+mix.js('bower_components/jquery-slimscroll/jquery.slimscroll.js', 'public/js');
+ 
+ /*
+ 
+ /*
+ |--------------------------------------------------------------------------
+ |Estilos propios y javascript por views
+ |--------------------------------------------------------------------------
+ */
+mix.js('resources/assets/js/home/index.js', 'public/js/home');
+mix.js('resources/assets/js/estructura/index.js', 'public/js/estructura');
+mix.js('resources/assets/js/estructura/form.js', 'public/js/estructura');
+mix.postCss('resources/assets/css/custom.css', 'public/css');
+mix.postCss('resources/assets/css/custom3.css', 'public/css');
+

@@ -43,9 +43,19 @@
                                 {{ trans('cruds.user.title') }}
                             </a>
                         </li>
+
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route("estructura.index") }}" class="nav-link {{ request()->is('estructura') || request()->is('estructura/*') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-building nav-icon">
+
+                        </i>
+                        {{ trans('cruds.estructura.title') }}
+                    </a>
+                </li>
             @endcan
+
             <li class="nav-item">
                 <a href="{{ route('auth.change_password') }}" class="nav-link">
                     <i class="nav-icon fas fa-fw fa-key">

@@ -1,0 +1,21 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/demo.css": "/css/demo.css",
+    "/css/lobilist.css": "/css/lobilist.css",
+    "/css/lobibox.min.css": "/css/lobibox.min.css",
+    "/css/custom.css": "/css/custom.css",
+    "/css/custom3.css": "/css/custom3.css",
+    "/js/bootstrap.min.js": "/js/bootstrap.min.js",
+    "/js/demo.js": "/js/demo.js",
+    "/js/estructura/form.js": "/js/estructura/form.js",
+    "/js/estructura/index.js": "/js/estructura/index.js",
+    "/js/handlebars.js": "/js/handlebars.js",
+    "/js/home/index.js": "/js/home/index.js",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/jquery.slimscroll.js": "/js/jquery.slimscroll.js",
+    "/js/jquery.ui.touch-punch-improved.js": "/js/jquery.ui.touch-punch-improved.js",
+    "/js/lobibox.min.js": "/js/lobibox.min.js",
+    "/js/lobilist.js": "/js/lobilist.js",
+    "/js/jstree.min.js": "/js/jstree.min.js"
+}
