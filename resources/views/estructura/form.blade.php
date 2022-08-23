@@ -36,10 +36,10 @@
 
     </script> --}}
     <style>
-
+.btn-sml { height: 2vh; } /* change the value according to your need. */
 
     </style>
-    <form class="form" id="formdatos" name="formdatos"></form>
+    <form class="form" id="formdatos" name="formdatos">
     <div class="card-body">
 
 

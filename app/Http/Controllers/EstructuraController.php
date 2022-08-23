@@ -33,18 +33,23 @@ class EstructuraController extends Controller
             ->addColumn('XLS', function ($row) {
 
                 if ($row->ListadoXLS == "SI") {
-                    return '<span class="badge badge-primary">SI</span>';
+                    return '<div class="text-center"><span class="badge badge-primary">SI</span></div>';
                 } else {
-                    return '<span class="badge badge-danger">NO</span>';
+                    return '<div class="text-center"><span class="badge badge-danger">NO</span></div>';
                 }
             })
 
             ->addColumn('action', function ($row) {
-                $btn = '<form action=' . route('eliminar_linea', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
+                $btn = '<form action=' . route('eliminar_linea', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="post">'
                 . csrf_field() . '
-         ' . method_field("DELETE") .
-                '<button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar esta  linea"><i class="fa fa-trash text-danger"></i></button>
-         </form>';
+         ' . method_field('delete') .
+
+                '<button class="btn btn-link btn-xs tooltipsC"  title="Eliminar esta  linea" type="submit" name="action" value="delete">
+    <i class="fa fa-trash text-danger"></i>
+</button>'
+         ;
+
+
                 return $btn;
             })
 

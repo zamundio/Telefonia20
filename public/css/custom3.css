@@ -1593,3 +1593,7 @@ tr.shown td.details-control {
     font-size: 10px;
     line-height: 1.33;
 }
+
+.fa-input {
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

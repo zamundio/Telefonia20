@@ -31,7 +31,6 @@ mix.postCss('bower_components/lobilist/dist/lobilist.css', 'public/css');
 mix.postCss('bower_components/lobilist/lib/lobibox/css/lobibox.min.css', 'public/css');
 
 
-
 /*
  |--------------------------------------------------------------------------
  |JsTree
@@ -49,8 +48,16 @@ mix.scripts([
  |--------------------------------------------------------------------------
 */
 mix.js('bower_components/handlebars/handlebars.js', 'public/js');
- 
- /*
+
+
+/*
+ |--------------------------------------------------------------------------
+ |SlimScroll
+ |--------------------------------------------------------------------------
+*/
+mix.js('node_modules/toastr/toastr.js', 'public/js');
+
+/*
  |--------------------------------------------------------------------------
  |SlimScroll
  |--------------------------------------------------------------------------
@@ -65,6 +72,7 @@ mix.js('bower_components/jquery-slimscroll/jquery.slimscroll.js', 'public/js');
  |--------------------------------------------------------------------------
  */
 mix.js('resources/assets/js/home/index.js', 'public/js/home');
+mix.copy('resources/assets/js/helper.js', 'public/js/helper.js');
 mix.js('resources/assets/js/estructura/index.js', 'public/js/estructura');
 mix.js('resources/assets/js/estructura/form.js', 'public/js/estructura');
 mix.postCss('resources/assets/css/custom.css', 'public/css');

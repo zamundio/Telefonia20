@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,8 +94,6 @@
 /***/ (function(module, exports) {
 
 $(function () {
-  console.log($cod);
-  console.log('TESTING');
   var linea;
   var $terminal;
   var $tableAmpl;
@@ -111,11 +109,11 @@ $(function () {
     fnInitComplete: function fnInitComplete() {
       rw = $table.row(0).data();
       nummovil = rw.id;
-      linea = rw.id;
-      DatatableHistoricoTerminales(nummovil);
-      DatatableTarjetas(nummovil);
-      DatatableAmpliaciones(nummovil);
-      DatatableTerminales(nummovil); // document.getElementById('Apellidos').value = nummovil
+      linea = rw.id; // DatatableHistoricoTerminales(nummovil);
+      // DatatableTarjetas(nummovil);
+      // DatatableAmpliaciones(nummovil);
+      // DatatableTerminales(nummovil);
+      // document.getElementById('Apellidos').value = nummovil
     },
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -177,6 +175,7 @@ $(function () {
     },
     buttons: [{
       text: 'Añadir Linea',
+      className: 'btn btn-primary btn-sm btn-rounded',
       action: function action(e, dt, node, config) {
         $(".print-error-msg").find("ul").html('');
         $(".print-error-msg").css('display', 'none');
@@ -188,6 +187,7 @@ $(function () {
     }, {
       text: '<i class="fas fa-sync"></i>',
       titleAttr: 'Refresh',
+      className: 'btn btn-info',
       action: function action(e, dt, node, config) {
         dt.clear().draw();
         dt.ajax.reload();
@@ -197,6 +197,7 @@ $(function () {
       text: 'Editar Linea',
       titleAttr: 'Editar Linea',
       enabled: false,
+      className: 'btn btn-success ',
       action: function action(e, dt, node, config) {
         $(".print-error-msg").find("ul").html('');
         $(".print-error-msg").css('display', 'none');
@@ -1153,18 +1154,19 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
   }).get();
   nummovil = tableData[1];
   linea = nummovil;
+  $('#TablaLineas tbody > tr').removeClass('markrow');
+  $(this).addClass('markrow');
   var table = $('#TablaLineas').DataTable();
   table.$("input[type=checkbox]").prop("checked", false);
-  $(this).find('input[type=checkbox]').prop('checked', true);
-  var url = "TarjetasDatatable?linea_usuario_id=".concat(nummovil);
-  $('.yajra-datatable-Tarjetas').DataTable().ajax.url(url).load();
-  $('.yajra-datatable-Tarjetas').DataTable().draw();
-  var url = "AmpliacionesDatatable?linea_usuario_id=".concat(nummovil);
-  $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
-  $('.yajra-datatable-Ampliaciones').DataTable().draw();
-  var url = "TerminalesDatatable?linea_usuario_id=".concat(nummovil);
-  $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
-  $('.yajra-datatable-Terminales').DataTable().draw();
+  $(this).find('input[type=checkbox]').prop('checked', true); // var url = `TarjetasDatatable?linea_usuario_id=${nummovil}`;
+  // $('.yajra-datatable-Tarjetas').DataTable().ajax.url(url).load();
+  // $('.yajra-datatable-Tarjetas').DataTable().draw();
+  // var url = `AmpliacionesDatatable?linea_usuario_id=${nummovil}`;
+  // $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
+  // $('.yajra-datatable-Ampliaciones').DataTable().draw();
+  // var url = `TerminalesDatatable?linea_usuario_id=${nummovil}`;
+  // $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
+  // $('.yajra-datatable-Terminales').DataTable().draw();
 });
 $('#TablaTarjetas tbody').on('click', 'tr', function () {
   var tableData = $(this).children("td").map(function () {
@@ -1265,10 +1267,10 @@ function ajaxRequest(form) {
     success: function success(respuesta) {
       if (respuesta.mensaje == "ok") {
         form.parents('tr').remove();
-        Biblioteca.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
+        Helper.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
       } else {
         ;
-        Biblioteca.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
+        Helper.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
       }
     },
     error: function error() {}
@@ -1277,7 +1279,7 @@ function ajaxRequest(form) {
 
 /***/ }),
 
-/***/ 11:
+/***/ 12:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/estructura/form.js ***!
   \******************************************************/

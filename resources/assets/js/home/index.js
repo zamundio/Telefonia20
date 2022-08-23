@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
 
 
@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     function weather(lat, long) {
         var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
-        $.getJSON(URL, function (data) {
+        $.getJSON(URL, function(data) {
             display(data);
         });
     }
@@ -103,11 +103,11 @@ $(document).ready(function () {
         },
         "serverSide": false,
         "processing": false,
-        success: function (result) {
+        success: function(result) {
 
             if (result.errors) {
 
-                $.each(result.errors, function (key, value) {
+                $.each(result.errors, function(key, value) {
 
                     console.log(' errores') + value;
                 });
@@ -115,7 +115,7 @@ $(document).ready(function () {
                 console.log('sin errores');
             }
         },
-        error: function (data) {
+        error: function(data) {
             // Something went wrong
             // HERE you can handle asynchronously the response
 
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
                       return moment(value).format('DD-MM-YYYY hh:mm');
                   } */
-                render: function (value) {
+                render: function(value) {
                     return moment(value).format('DD-MM-YYYY hh:mm');
                 }
 
@@ -220,113 +220,114 @@ $(document).ready(function () {
 
 
 
- });
+});
 
- function ManageItemlist(it, metodo) {
-
-
-
-
-     var fecha = Object.values(it)[3];
-
-
-     var titulo = it.title;
-     var descripcion = it.description;
-     var userid = userlogged;
-     var urlmetodo = null;
-     var tipo = null;
-
-     switch (metodo) {
-         case "update":
-             urlmetodo = itemlistupdate_url + "/" + it.id;
-             tipo = "POST";
-             break;
-         case "add":
-             urlmetodo = itemlistadd_url;
-             tipo = "GET";
-             break;
-         case "delete":
-             urlmetodo = itemlistdelete_url + "/" + it.id;
-             tipo = "get";
-             break;
-     }
-     $.ajax({
-         type: tipo,
-         url: urlmetodo,
-         headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         },
-         data: {
-             "userid": userid,
-             "fecha": fecha,
-             "descripcion": descripcion,
-             "titulo": titulo
-         },
-         error: function (data, error) {
-
-             // console.log(" Can't do because: " + data + error);
-         },
-         success: function (data) {
-             // console.log("Control:", data);
-
-         }
-     });
-
- };
- $(function () {
+function ManageItemlist(it, metodo) {
 
 
 
 
-             $.ajaxSetup({
-                 headers: {
-                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                 }
-             });
+    var fecha = Object.values(it)[3];
+
+
+    var titulo = it.title;
+    var descripcion = it.description;
+    var userid = userlogged;
+    var urlmetodo = null;
+    var tipo = null;
+
+    switch (metodo) {
+        case "update":
+            urlmetodo = itemlistupdate_url + "/" + it.id;
+            tipo = "POST";
+            break;
+        case "add":
+            urlmetodo = itemlistadd_url;
+            tipo = "GET";
+            break;
+        case "delete":
+            urlmetodo = itemlistdelete_url + "/" + it.id;
+            tipo = "get";
+            break;
+    }
+    $.ajax({
+        type: tipo,
+        url: urlmetodo,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            "userid": userid,
+            "fecha": fecha,
+            "descripcion": descripcion,
+            "titulo": titulo
+        },
+        error: function(data, error) {
+
+            // console.log(" Can't do because: " + data + error);
+        },
+        success: function(data) {
+            // console.log("Control:", data);
+
+        }
+    });
+
+};
+
+$(function() {
 
 
 
-             $.ajax({
-                 type: "get",
-                 url: "",
-                 contentType: false,
-                 processData: false,
 
-                 error: function (data, error) {
-                     console.log(data);
-                     // alert(" Can't do because: " + data);
-                 },
-                 success: function (data) {
-                     console.log("Control:", data);
-                     Object.assign(data, {
-                         afterItemUpdate: function (list, object) {
-                             ManageItemlist(object, "update")
-                         }
-                     });
-                     Object.assign(data, {
-                         afterItemAdd: function (list, object) {
-                             ManageItemlist(object, "add")
-                         }
-                     });
-                     Object.assign(data, {
-                         afterItemDelete: function (list, object) {
-                             ManageItemlist(object, "delete")
-                         }
-                     });
-                     $('#todo-lists-basic-demo').lobiList(data);
-                     var $lobilist = $('#todo-lists-basic-demo').data('lobiList');
-                     //$lobilist.$lists
-                     var $dueDateInput = $lobilist.$el.find('form [name=dueDate]');
-                     $dueDateInput[0]['autocomplete'] = "off";
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
 
 
-                    $dueDateInput.datepicker({
-                         format: "dd/mm/yyyy",
-                         language: "es"
-                     });
 
-                 }
-             });
+    $.ajax({
+        type: "get",
+        url: "",
+        contentType: false,
+        processData: false,
+
+        error: function(data, error) {
+            console.log(data);
+            // alert(" Can't do because: " + data);
+        },
+        success: function(data) {
+            console.log("Control:", data);
+            Object.assign(data, {
+                afterItemUpdate: function(list, object) {
+                    ManageItemlist(object, "update")
+                }
+            });
+            Object.assign(data, {
+                afterItemAdd: function(list, object) {
+                    ManageItemlist(object, "add")
+                }
+            });
+            Object.assign(data, {
+                afterItemDelete: function(list, object) {
+                    ManageItemlist(object, "delete")
+                }
+            });
+            $('#todo-lists-basic-demo').lobiList(data);
+            var $lobilist = $('#todo-lists-basic-demo').data('lobiList');
+            //$lobilist.$lists
+            var $dueDateInput = $lobilist.$el.find('form [name=dueDate]');
+            $dueDateInput[0]['autocomplete'] = "off";
+
+
+            $dueDateInput.datepicker({
+                format: "dd/mm/yyyy",
+                language: "es"
+            });
+
+        }
+    });
 
 
 });

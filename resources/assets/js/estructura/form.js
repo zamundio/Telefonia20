@@ -1,7 +1,6 @@
 $(function() {
 
-    console.log($cod);
-    console.log('TESTING');
+
     var linea;
     var $terminal;
     var $tableAmpl;
@@ -20,10 +19,10 @@ $(function() {
             nummovil = rw.id;
             linea = rw.id;
 
-            DatatableHistoricoTerminales(nummovil);
-            DatatableTarjetas(nummovil);
-            DatatableAmpliaciones(nummovil);
-            DatatableTerminales(nummovil);
+            // DatatableHistoricoTerminales(nummovil);
+            // DatatableTarjetas(nummovil);
+            // DatatableAmpliaciones(nummovil);
+            // DatatableTerminales(nummovil);
 
             // document.getElementById('Apellidos').value = nummovil
         },
@@ -95,6 +94,7 @@ $(function() {
         },
         buttons: [{
                 text: 'Añadir Linea',
+                className: 'btn btn-primary btn-sm btn-rounded',
                 action: function(e, dt, node, config) {
 
                     $(".print-error-msg").find("ul").html('');
@@ -109,6 +109,7 @@ $(function() {
 
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
+                className: 'btn btn-info',
                 action: function(e, dt, node, config) {
 
 
@@ -122,6 +123,7 @@ $(function() {
                 text: 'Editar Linea',
                 titleAttr: 'Editar Linea',
                 enabled: false,
+                className: 'btn btn-success ',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
@@ -158,7 +160,8 @@ $(function() {
         ],
         columns: [{
                 data: 'Checkbox',
-                name: 'Checkbox'
+                name: 'Checkbox',
+
             },
             {
                 data: 'id',
@@ -1372,21 +1375,23 @@ $('#TablaLineas tbody').on('click', 'tr', function() {
 
     nummovil = tableData[1];
     linea = nummovil;
+    $('#TablaLineas tbody > tr').removeClass('markrow');
+    $(this).addClass('markrow');
     var table = $('#TablaLineas').DataTable();
     table.$("input[type=checkbox]").prop("checked", false);
 
 
     $(this).find('input[type=checkbox]').prop('checked', true);
 
-    var url = `TarjetasDatatable?linea_usuario_id=${nummovil}`;
-    $('.yajra-datatable-Tarjetas').DataTable().ajax.url(url).load();
-    $('.yajra-datatable-Tarjetas').DataTable().draw();
-    var url = `AmpliacionesDatatable?linea_usuario_id=${nummovil}`;
-    $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
-    $('.yajra-datatable-Ampliaciones').DataTable().draw();
-    var url = `TerminalesDatatable?linea_usuario_id=${nummovil}`;
-    $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
-    $('.yajra-datatable-Terminales').DataTable().draw();
+    // var url = `TarjetasDatatable?linea_usuario_id=${nummovil}`;
+    // $('.yajra-datatable-Tarjetas').DataTable().ajax.url(url).load();
+    // $('.yajra-datatable-Tarjetas').DataTable().draw();
+    // var url = `AmpliacionesDatatable?linea_usuario_id=${nummovil}`;
+    // $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
+    // $('.yajra-datatable-Ampliaciones').DataTable().draw();
+    // var url = `TerminalesDatatable?linea_usuario_id=${nummovil}`;
+    // $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
+    // $('.yajra-datatable-Terminales').DataTable().draw();
 
 });
 
@@ -1530,10 +1535,11 @@ function ajaxRequest(form) {
         success: function(respuesta) {
             if (respuesta.mensaje == "ok") {
                 form.parents('tr').remove();
-                Biblioteca.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
+
+                Helper.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
 
             } else {;
-                Biblioteca.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
+                Helper.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
 
             }
 
