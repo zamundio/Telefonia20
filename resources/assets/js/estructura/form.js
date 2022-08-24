@@ -1,6 +1,10 @@
 $(function() {
+    $(document).popover({
+        selector: '[data-toggle=hover]',
+        html: true,
+        trigger: 'hover'
 
-
+    });
     var linea;
     var $terminal;
     var $tableAmpl;
@@ -188,8 +192,12 @@ $(function() {
 
 
 
+    // $(document).popover({
+    //     selector: '[data-toggle=hover]',
+    //     html: true,
+    //     trigger: 'hover'
 
-
+    // });
 
 
 });
@@ -1484,12 +1492,7 @@ $('#TablaAmpliaciones').on('init.dt', function(evt, settings) {
         $(settings.nTableWrapper).find('.dataTables_paginate, .dataTables_length, .dataTables_info').hide();
     }
 })
-$(document).popover({
-    selector: '[data-toggle=hover]',
-    html: true,
-    trigger: 'hover'
 
-});
 
 
 

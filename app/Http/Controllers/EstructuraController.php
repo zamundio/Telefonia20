@@ -44,7 +44,7 @@ class EstructuraController extends Controller
                 . csrf_field() . '
          ' . method_field('delete') .
 
-                '<button class="btn btn-link btn-xs tooltipsC"  title="Eliminar esta  linea" type="submit" name="action" value="delete">
+                '<button class="btn btn-link btn-xs" data-toggle="hover" title="Info" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
     <i class="fa fa-trash text-danger"></i>
 </button>'
          ;

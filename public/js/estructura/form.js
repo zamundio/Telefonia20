@@ -94,6 +94,11 @@
 /***/ (function(module, exports) {
 
 $(function () {
+  $(document).popover({
+    selector: '[data-toggle=hover]',
+    html: true,
+    trigger: 'hover'
+  });
   var linea;
   var $terminal;
   var $tableAmpl;
@@ -242,7 +247,11 @@ $(function () {
       orderable: true,
       searchable: true
     }]
-  });
+  }); // $(document).popover({
+  //     selector: '[data-toggle=hover]',
+  //     html: true,
+  //     trigger: 'hover'
+  // });
 });
 /********Se cargan las tarjetas en el evento fnInitComplete de Las Lineas******************************** */
 
@@ -1225,11 +1234,6 @@ $('#TablaAmpliaciones').on('init.dt', function (evt, settings) {
     // console.log(settings.fnRecordsTotal());
     $(settings.nTableWrapper).find('.dataTables_paginate, .dataTables_length, .dataTables_info').hide();
   }
-});
-$(document).popover({
-  selector: '[data-toggle=hover]',
-  html: true,
-  trigger: 'hover'
 });
 $('.datpick').datetimepicker({
   todayHighlight: true,

@@ -1,5 +1,6 @@
 $(document).ready(function() {
- 
+
+
     var $cod = null;
     var isTreeOpen = true;
     $("#shollallnodes").on("click", function() {
