@@ -36973,6 +36973,39 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/css/bootstrap-multiselect.min.css":
+/*!************************************************************!*\
+  !*** ./resources/assets/css/bootstrap-multiselect.min.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/css/custom.css":
 /*!*****************************************!*\
   !*** ./resources/assets/css/custom.css ***!
@@ -37078,9 +37111,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ./bower_components/lobilist/demo/demo.css ./bower_components/lobilist/dist/lobilist.css ./bower_components/lobilist/lib/lobibox/css/lobibox.min.css ./resources/assets/css/custom.css ./resources/assets/css/custom3.css ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ./bower_components/lobilist/demo/demo.css ./bower_components/lobilist/dist/lobilist.css ./bower_components/lobilist/lib/lobibox/css/lobibox.min.css ./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css ./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css ./resources/assets/css/custom.css ./resources/assets/css/custom3.css ./resources/assets/css/bootstrap-multiselect.min.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37089,8 +37122,11 @@ __webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/sass/app
 __webpack_require__(/*! /home/vagrant/code/telefonia20/bower_components/lobilist/demo/demo.css */"./bower_components/lobilist/demo/demo.css");
 __webpack_require__(/*! /home/vagrant/code/telefonia20/bower_components/lobilist/dist/lobilist.css */"./bower_components/lobilist/dist/lobilist.css");
 __webpack_require__(/*! /home/vagrant/code/telefonia20/bower_components/lobilist/lib/lobibox/css/lobibox.min.css */"./bower_components/lobilist/lib/lobibox/css/lobibox.min.css");
+__webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css */"./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css");
+__webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css */"./resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css");
 __webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/css/custom.css */"./resources/assets/css/custom.css");
-module.exports = __webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/css/custom3.css */"./resources/assets/css/custom3.css");
+__webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/css/custom3.css */"./resources/assets/css/custom3.css");
+module.exports = __webpack_require__(/*! /home/vagrant/code/telefonia20/resources/assets/css/bootstrap-multiselect.min.css */"./resources/assets/css/bootstrap-multiselect.min.css");
 
 
 /***/ })

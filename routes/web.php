@@ -1,4 +1,7 @@
 <?php
+
+use App\Http\Controllers\MaestrasController;
+
 Route::redirect('/', 'admin/home');
 
 Auth::routes(['register' => false]);
@@ -19,7 +22,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 Route::get('ajaxFillStructTree', 'AjaxController@ajaxFillStrucTree')->name('ajaxFillStructTree.get');
 Route::get('ajaxGetNodeInfoStructTree', 'AjaxController@ajaxGetNodeInfoStructTree')->name('ajaxGetNodeInfoStructTree');
 Route::get('estructura', 'TreeEstructuraController@index')->name('estructura.index');
-
+Route::get('checkcc', 'MaestrasController@CheckCC')->name('checkcc');
+Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');
+Route::get('CentrosdeCoste','MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');

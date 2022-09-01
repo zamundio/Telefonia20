@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ env('APP_NAME', 'Tel Menarini 2.0') }}</title>
+  <title>{{ env('APP_NAME', 'Telf Menarini 2.0') }}</title>
 
   {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -29,10 +29,22 @@
   <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/@coreui/coreui@2.1.16/dist/css/coreui.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<!-- Bootstrap Datepicker -->
+<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker/css/bootstrap-datepicker3.css") }}" />
+<link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css") }}" />
+
+    <link href="{{ asset('css/parsley.css') }}" rel="stylesheet" />
   <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
   <link href="{{ asset('css/custom3.css') }}" rel="stylesheet" />
+
   <!--Toast style -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 
@@ -45,8 +57,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-      <span class="navbar-brand-full">{{ env('APP_NAME', 'Telefonia Menarini 2.0') }}</span>
-      <span class="navbar-brand-minimized">{{ env('APP_NAME', 'Telefonia Menarini 2.0') }}</span>
+      <span class="navbar-brand-full">{{ env('APP_NAME', 'Telf Menarini 2.0') }}</span>
+      <span class="navbar-brand-minimized">{{ env('APP_NAME', 'Telf Menarini 2.0') }}</span>
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
       <span class="navbar-toggler-icon"></span>
@@ -140,22 +152,42 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script> --}}
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> --}}
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+ {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script> --}}
+
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-
+datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+ <script src="{{ asset("js/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js") }}"></script>
+
+  <script src="{{ asset('js/es.js') }}"></script>
   <script src="{{ asset('js/helper.js') }}"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('js/jstree.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
 
+  <script src="{{ asset('js/jquery.inputmask.min.js') }}"></script>
+
 
   <script>
     $(function () {
+        window.Parsley.setLocale('es');
       let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
       let csvButtonTrans = '{{ trans('global.datatables.csv') }}'
       let excelButtonTrans = '{{ trans('global.datatables.excel') }}'

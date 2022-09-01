@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Telefonia Menarini 2.0',
+    'name' => 'Telf Menarini 2.0',
 
     /*
     |--------------------------------------------------------------------------

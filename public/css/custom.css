@@ -115,11 +115,15 @@ table.dataTable thead .sorting_desc {
     background-color: #94b5e7 !important;
 }
 
-.fa-thumbs-down{
-color: red;
-
+.fa-thumbs-down {
+    color: red;
 }
+
 .Abrev {
     font-weight: bolder;
 }
 
+.modal-dialog {
+    width: 600px;
+    height: 600px !important;
+}

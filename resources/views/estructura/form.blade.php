@@ -286,6 +286,7 @@
 
 
         </div>
+
         {{-- @include('estructura.modales_abreviados.ShowRed')
 
         @include('estructura.modales_tarjetas.Nuevo')

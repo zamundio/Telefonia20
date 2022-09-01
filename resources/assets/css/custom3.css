@@ -1597,3 +1597,21 @@ tr.shown td.details-control {
 .fa-input {
     font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.col-sm-3half, .col-sm-8half {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-3half, .col-sm-8half {
+        float: left;
+    }
+    .col-sm-3half {
+        width: 22.16666667%;
+    }
+    .col-sm-8half {
+        width: 50.83333333%;
+    }
+}

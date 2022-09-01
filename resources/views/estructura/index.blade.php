@@ -16,6 +16,13 @@
 
                         <div class="card-header">
                             <h3 class="card-title">Estructura</h3>
+
+                             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#CrearCC">
+                                Crear CC
+                             </button>
+<button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#AñadirpersonalCC">
+    Añadir Personal
+</button>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -24,13 +31,13 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="busqueda_tree" autocomplete="off" autoplaceholder="Buscar..">
                                     <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button">
+                                        <button class="btn btn-secondary" type="button" >
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </div>
                                 </div>
                                 <br>
-                                <div id="tree-container" class="demo" style="width:100px;">
+                                <div id="tree-container" class="demo" style="width:80px;">
                                 </div>
                             </div>
                         </form>
@@ -55,16 +62,14 @@
                     </div>
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->
+@include('estructura.modales.CrearCC')
+@include('estructura.modales.AñadirPersonalCC')
     </form>
 
 @endcan
 @endsection
 
 @section('scripts')
-
-{{-- <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js" type="text/javascript"></script> --}}
-{{-- <script src="{{ asset('js/jquery.slimscroll.js') }}"></script> --}}
-
 
 
 <script src="{{ asset('js/estructura/index.js') }}"></script>

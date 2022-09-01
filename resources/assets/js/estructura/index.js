@@ -1,27 +1,112 @@
 $(document).ready(function() {
 
 
-    var $cod = null;
-    var isTreeOpen = true;
-    $("#shollallnodes").on("click", function() {
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true,
+        language: 'es',
+        todayBtn: true,
+        todayHighlight: true,
+        toggleActive: true,
+        weekStart: 1
 
-        if (isTreeOpen) {
-            $("#tree-container").jstree('close_all');
-            document.getElementById('shollallnodes').innerHTML = "Abrir";
-        } else {
-            $("#tree-container").jstree('open_all');
-            document.getElementById('shollallnodes').innerHTML = "Cerrar";
-        }
-        isTreeOpen = !isTreeOpen;
     });
 
-    $("#formdatos").toggle(true);
 
-    $('#tree-container').slimScroll({
-        height: '640px',
-    })
 
-    //plugins para la busqueda en el arbol
+    window.Parsley.addValidator('cc', {
+        validateString: function(value) {
+            return $.ajax({
+                "url": 'checkcc',
+                "type": "get",
+                "data": {
+                    "emp_cost_center": value
+                },
+                async: false,
+                success: function(response) {
+                    1
+                    if (response.valid === true) {
+
+                        return true;
+                    } else {
+
+                        return false;
+                    }
+                }
+            });
+        },
+        messages: {
+            es: 'El CC ya existe',
+
+        }
+    });
+
+
+
+    document.getElementById('añadir').disabled = false;
+    /** Carga del Datatable **/
+    var table = $('#CentrosdeCoste').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+
+        ajax: "CentrosdeCoste",
+
+
+        "pageLength": 15,
+        retrieve: true,
+        paging: true,
+        searching: true,
+        bAutoWidth: false,
+        fixedColumns: true,
+
+        buttons: [],
+
+
+        columnDefs: [{
+                "width": "5px",
+                "targets": [0]
+            },
+            {
+                "width": "50%",
+                "targets": [1]
+            },
+            {
+                "width": "50%",
+                "targets": [1]
+            },
+
+
+        ],
+        columns: [{
+                data: 'EMP_COST_CENTER',
+                name: 'EMP_COST_CENTER'
+            },
+            {
+                data: 'COST_CENTER_DESC',
+                name: 'COST_CENTER_DESC'
+            },
+            {
+                data: 'action',
+                name: 'action'
+            }
+        ],
+
+        "initComplete": function(settings, json) {
+            $(".container").css("display", "block");
+            table.columns.adjust();
+            table.draw();
+
+        },
+
+
+
+
+    });
+
+    var $cod = null;
+
+    /** Plugin para la busqueda en el arbol **/
     $('#tree-container').jstree({
 
         plugins: ['search', 'changed', 'state'],
@@ -54,11 +139,63 @@ $(document).ready(function() {
 
 
 
-    })
+    });
+    $("#tree-container").jstree('open_all');
 
 
 });
 
+
+// ! ||--------------------------------------------------------------------------------||
+// ! ||                             // Funciones del Jstree                            ||
+// ! ||--------------------------------------------------------------------------------||
+
+var to = false;
+
+//funcion que busca en el arbol al introducir un caracter(es) en el textbox
+$('#busqueda_tree').keyup(function() {
+    $("#tree-container").jstree('close_all');
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    } else {
+        if (to) {
+            clearTimeout(to);
+        }
+        to = setTimeout(function() {
+            var v = $('#busqueda_tree').val();
+
+            $('#tree-container').jstree(true).search(v);
+        }, 250);
+    }
+});
+$('busqueda_tree').keypress(function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    }
+});
+
+var isTreeOpen = true;
+$("#shollallnodes").on("click", function() {
+
+    if (isTreeOpen) {
+        $("#tree-container").jstree('close_all');
+        document.getElementById('shollallnodes').innerHTML = "Abrir";
+    } else {
+        $("#tree-container").jstree('open_all');
+        document.getElementById('shollallnodes').innerHTML = "Cerrar";
+    }
+    isTreeOpen = !isTreeOpen;
+});
+
+$("#formdatos").toggle(true);
+
+$('#tree-container').slimScroll({
+    height: '800px',
+})
+
+$('#tree-container').on('ready.jstree', function() {
+    $("#tree-container").jstree('open_all');
+});
 
 $("#tree-container").on("click.jstree", function(e, data) {
     event.preventDefault();
@@ -66,7 +203,7 @@ $("#tree-container").on("click.jstree", function(e, data) {
 
 
 
-    //recupera la informacion de la ficha del delegado
+    /**recupera la informacion de la ficha del delegado **/
 
     $cod = $CurrentNode[0];
 
@@ -96,25 +233,120 @@ $("#tree-container").on("click.jstree", function(e, data) {
 
 
 });
-var to = false;
 
-//funcion que busca en el arbol al introducir un caracter(es) en el textbox
-$('#busqueda_tree').keyup(function() {
-    if (event.keyCode == 13) {
-        event.preventDefault();
-    } else {
-        if (to) {
-            clearTimeout(to);
-        }
-        to = setTimeout(function() {
-            var v = $('#busqueda_tree').val();
+// ! ||--------------------------------------------------------------------------------||
+// ! ||                              Fin Funciones JStree                              ||
+// ! ||--------------------------------------------------------------------------------||
 
-            $('#tree-container').jstree(true).search(v);
-        }, 250);
-    }
+$('#añadir').on('click', function() {
+
+    document.getElementById('añadir').disabled = true
+
+    $("#CentrosdeCoste").append('<tr><td><input type="text" name="EMP_CODE" id="cc_codigo" autocomplete="off" class="form-control" data-parsley-pattern="[0-9]{4}" data-parsley-pattern-message="El CC son 4 digitos" required data-parsley-type="digits" data-parsley-trigger="change" data-parsley-cc=""/></td><td><input type="text" id="cc_desc" autocomplete="off" name="COST_CENTER_DESC" data-parsley-trigger="change" data-parsley-pattern="^[a-zA-Z ]+$" class="form-control"/></td><td><input type="submit" id="submit_crea_cc" class="btn btn-default btn btn-default validate" addProduct"></button></td></tr>');
+
+    $("añadir").attr("disabled", true).delay(2000).attr("disabled", false);
+
+
 });
-$('busqueda_tree').keypress(function(event) {
-    if (event.keyCode == 13) {
-        event.preventDefault();
+
+$("#CrearCC").on("hide.bs.modal", function() {
+    document.getElementById('añadir').disabled = false
+
+});
+
+
+
+
+$('#CrearCC_form').submit(function(event) {
+    event.preventDefault();
+    $desc = $('#cc_desc').val();
+
+    $codigo = $('#cc_codigo').val();
+
+    if ($('#CrearCC_form').parsley().isValid()) {
+
+        $cc_codigo = document.getElementById("cc_codigo").value;
+        $cc_desc = document.getElementById("cc_desc").value;
+
+        $.ajax({
+            url: 'guardarcc',
+            type: 'POST',
+            data: {
+                EMP_CODE: 'CC_' + $cc_codigo,
+                EMP_COST_CENTER: $cc_codigo,
+                COST_CENTER_DESC: $cc_desc
+
+
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function() {
+                $('#submit_crea_cc').attr('disabled', 'disabled');
+                $('#submit_crea_cc').val('Enviando...');
+            },
+            success: function(data) {
+                // $('#CrearCC')[0].reset();
+                $('#CrearCC').parsley().reset();
+                $('#submit_crea_cc').attr('disabled', false);
+                $('#submit_crea_cc').val('Enviar');
+
+                if ($.isEmptyObject(data.error)) {
+                    // $('#CrearCC')[0].reset();
+                    $('#tree-container').jstree("destroy");
+                    $('#tree-container').jstree({
+
+                        plugins: ['search', 'changed', 'state'],
+                        'state': {
+                            'key': 'id',
+                            'events': 'activate_node.jstree',
+                            'opened': true,
+                        },
+                        search: {
+                            "case_insensitive": true,
+                            "show_only_matches": true
+                        },
+                        'core': {
+
+                            'data': {
+                                type: "get",
+                                url: load_urlTree,
+                                contentType: "json",
+                                success: function(data) {
+                                    data.d;
+                                    $(data).each(function() {
+                                        return {
+                                            "id": this.id
+                                        };
+                                    });
+                                }
+                            },
+
+
+                        }
+
+
+
+                    }).bind("loaded.jstree", function(event, data) {
+                        $(this).jstree("open_all");
+                    });;
+
+
+                    $('.jstree').jstree(true).select_node(cc_codigo);
+
+
+                    $('#CrearCC').parsley().reset();
+                    $('#CrearCC').modal('hide')
+
+                    Helper.notificaciones('Cenro de Coste Agregado con Exito', 'Telefonia', 'success');
+
+                } else {
+                    printErrorMsg(data.error);
+                }
+            }
+        });
+    } else {
+        console.log('mal');
     }
+
 });

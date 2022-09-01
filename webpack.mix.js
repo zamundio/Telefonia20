@@ -52,20 +52,33 @@ mix.js('bower_components/handlebars/handlebars.js', 'public/js');
 
 /*
  |--------------------------------------------------------------------------
- |SlimScroll
+ |Toast
  |--------------------------------------------------------------------------
 */
 mix.js('node_modules/toastr/toastr.js', 'public/js');
-
 /*
+ |--------------------------------------------------------------------------
+ |Boostrap Timepicker
+ |--------------------------------------------------------------------------
+*/
+mix.js('resources/assets/bootstrap-datepicker/js/bootstrap-datepicker.js', 'public/js/bootstrap-datepicker/js')
+mix.js('resources/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js', 'public/js/bootstrap-datepicker/locales')
+mix.postCss('resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css','public/css/bootstrap-datepicker/css');
+mix.postCss('resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css','public/css/bootstrap-datepicker/css');
+ /*
  |--------------------------------------------------------------------------
  |SlimScroll
  |--------------------------------------------------------------------------
 */
 mix.js('bower_components/jquery-slimscroll/jquery.slimscroll.js', 'public/js');
  
- /*
- 
+  /*
+ |--------------------------------------------------------------------------
+ |InputMask
+ |--------------------------------------------------------------------------
+*/
+mix.js('node_modules/inputmask/dist/jquery.inputmask.min.js', 'public/js');
+
  /*
  |--------------------------------------------------------------------------
  |Estilos propios y javascript por views
@@ -77,4 +90,5 @@ mix.js('resources/assets/js/estructura/index.js', 'public/js/estructura');
 mix.js('resources/assets/js/estructura/form.js', 'public/js/estructura');
 mix.postCss('resources/assets/css/custom.css', 'public/css');
 mix.postCss('resources/assets/css/custom3.css', 'public/css');
+mix.postCss('resources/assets/css/bootstrap-multiselect.min.css','public/css');
 

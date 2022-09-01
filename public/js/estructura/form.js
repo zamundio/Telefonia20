@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1283,7 +1283,7 @@ function ajaxRequest(form) {
 
 /***/ }),
 
-/***/ 12:
+/***/ 15:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/estructura/form.js ***!
   \******************************************************/

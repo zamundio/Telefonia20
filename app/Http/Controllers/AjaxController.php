@@ -7,10 +7,11 @@ namespace App\Http\Controllers;
 
 
 
+use App\Estructura;
+use App\CentrosCoste;
 use App\TreeEstructura;
 use Illuminate\Http\Request;
 use App\Http\Models\Todolist;
-use App\Estructura;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Response;
@@ -127,7 +128,8 @@ class AjaxController extends Controller
 
             $estructuras = Estructura::findOrFail($request["id"]);
 
-            $view = View::make('estructura.form')->with('estructuras', $estructuras);
+
+            $view = View::make('estructura.form')->with(compact('estructuras'));
             $sections = $view->render();
 
             return json_encode($sections);

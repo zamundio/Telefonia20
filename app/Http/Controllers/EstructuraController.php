@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Estructura;
+use App\CentrosCoste;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class EstructuraController extends Controller
 {
@@ -19,9 +20,9 @@ class EstructuraController extends Controller
     {
         // can('estructura-lmsa');
         $estructuras = Estructura::first();
-        // return view("estructura.index", );
 
-        return view("estructura.index", compact('estructuras'));
+        $comboCC=CentrosCoste::orderby('EMP_COST_CENTER', 'asc')->select('EMP_COST_CENTER', 'COST_CENTER_DESC')->get();
+        return view("estructura.index", compact('estructuras','comboCC'));
     }
     public function ShowLinea(request $request)
     {
@@ -44,7 +45,7 @@ class EstructuraController extends Controller
                 . csrf_field() . '
          ' . method_field('delete') .
 
-                '<button class="btn btn-link btn-xs" data-toggle="hover" title="Info" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
+                '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
     <i class="fa fa-trash text-danger"></i>
 </button>'
          ;
