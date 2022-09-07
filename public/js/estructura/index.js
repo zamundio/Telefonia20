@@ -103,6 +103,38 @@ $(document).ready(function () {
     toggleActive: true,
     weekStart: 1
   });
+  window.Parsley.addValidator('dni', {
+    validateString: function validateString(value) {
+      var numero, letr, letra;
+      var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+      dni = value.toUpperCase();
+
+      if (expresion_regular_dni.test(dni) === true) {
+        numero = dni.substr(0, dni.length - 1);
+        numero = numero.replace('X', 0);
+        numero = numero.replace('Y', 1);
+        numero = numero.replace('Z', 2);
+        letr = dni.substr(dni.length - 1, 1);
+        numero = numero % 23;
+        letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+        letra = letra.substring(numero, numero + 1);
+
+        if (letra != letr) {
+          //alert('Dni erroneo, la letra del NIF no se corresponde');
+          return false;
+        } else {
+          //alert('Dni correcto');
+          return true;
+        }
+      } else {
+        //alert('Dni erroneo, formato no válido');
+        return false;
+      }
+    },
+    messages: {
+      es: 'DNI o NIE incorrecto'
+    }
+  });
   window.Parsley.addValidator('cc', {
     validateString: function validateString(value) {
       return $.ajax({
@@ -125,6 +157,30 @@ $(document).ready(function () {
     },
     messages: {
       es: 'El CC ya existe'
+    }
+  });
+  window.Parsley.addValidator('pextra', {
+    validateString: function validateString(value) {
+      return $.ajax({
+        "url": 'checkpe',
+        "type": "get",
+        "data": {
+          "emp_code": value
+        },
+        async: false,
+        success: function success(response) {
+          1;
+
+          if (response.valid === true) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      });
+    },
+    messages: {
+      es: 'El codigo ya existe'
     }
   });
   document.getElementById('añadir').disabled = false;
@@ -199,6 +255,14 @@ $(document).ready(function () {
     }
   });
   $("#tree-container").jstree('open_all');
+});
+$('#AñadirpersonalCC').on('reset', function (e) {
+  $("#selectDel").val('default').selectpicker("refresh");
+  $('#AñadirpersonalCC_form').parsley().reset();
+});
+$('#AñadirpersonalCC').on('hidden.bs.modal', function (e) {
+  $(this).find("input type='text'").val('').end();
+  $("#selectDel").val('default').selectpicker("refresh");
 }); // ! ||--------------------------------------------------------------------------------||
 // ! ||                             // Funciones del Jstree                            ||
 // ! ||--------------------------------------------------------------------------------||
@@ -280,6 +344,80 @@ $('#añadir').on('click', function () {
 });
 $("#CrearCC").on("hide.bs.modal", function () {
   document.getElementById('añadir').disabled = false;
+});
+$('#AñadirpersonalCC_form').on('submit', function (e) {
+  if ($('#AñadirpersonalCC_form').parsley().isValid()) {
+    $emp_code = document.getElementById("EMP_CODE").value; // $hire_date = moment(document.getElementById("HIRE_DATE").value).format('YYYYMMDD');
+
+    e.preventDefault(); // console.log(HIRE_DATE);
+
+    var datastring = $("#AñadirpersonalCC_form").serialize();
+    $.ajax({
+      url: "submit_form_añadirpersonal",
+      type: "POST",
+      data: datastring,
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      beforeSend: function beforeSend() {
+        $('#submit').attr('disabled', 'disabled');
+        $('#submit').val('Enviando...');
+      },
+      success: function success(data) {
+        // $('#CrearCC')[0].reset();
+        $('#AñadirpersonalCC_form').parsley().reset();
+        $('#submit').attr('disabled', false);
+        $('#submit').val('Enviar');
+
+        if ($.isEmptyObject(data.error)) {
+          // $('#CrearCC')[0].reset();
+          $('#tree-container').jstree("destroy");
+          $('#tree-container').jstree({
+            plugins: ['search', 'changed', 'state'],
+            'state': {
+              'key': 'id',
+              'events': 'activate_node.jstree',
+              'opened': true
+            },
+            search: {
+              "case_insensitive": true,
+              "show_only_matches": true
+            },
+            'core': {
+              'data': {
+                type: "get",
+                url: load_urlTree,
+                contentType: "json",
+                success: function success(data) {
+                  data.d;
+                  $(data).each(function () {
+                    return {
+                      "id": this.id
+                    };
+                  });
+                }
+              }
+            }
+          }).bind("loaded.jstree", function (event, data) {
+            $(this).jstree("open_all");
+          });
+          ; // $('.jstree').jstree(true).select_node($emp_code);
+
+          $('#AñadirpersonalCC_form').parsley().reset();
+          $('#AñadirpersonalCC').modal('hide');
+          Helper.notificaciones('Personal Agregado con Exito', 'Telefonia', 'success');
+        } else {
+          printErrorMsg(data.error);
+        }
+      },
+      error: function error(data) {
+        /*  $('#nameErrorMsg').text(response.responseJSON.errors.name);
+         $('#emailErrorMsg').text(response.responseJSON.errors.email);
+         $('#mobileErrorMsg').text(response.responseJSON.errors.mobile);
+         $('#messageErrorMsg').text(response.responseJSON.errors.message); */
+      }
+    });
+  }
 });
 $('#CrearCC_form').submit(function (event) {
   event.preventDefault();

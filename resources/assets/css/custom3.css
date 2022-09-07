@@ -1597,7 +1597,10 @@ tr.shown td.details-control {
 .fa-input {
     font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.col-sm-3half, .col-sm-8half {
+
+.col-sm-3-Email,
+.col-sm-8-Email,
+.col-sm-3-DNI {
     position: relative;
     min-height: 1px;
     padding-right: 15px;
@@ -1605,13 +1608,18 @@ tr.shown td.details-control {
 }
 
 @media (min-width: 768px) {
-    .col-sm-3half, .col-sm-8half {
+    .col-sm-3-Email,
+    .col-sm-8-Email,
+    .col-sm-3-DNI {
         float: left;
     }
-    .col-sm-3half {
-        width: 22.16666667%;
+    .col-sm-3-Email {
+        width: 18.16666667%;
     }
-    .col-sm-8half {
+    .col-sm-3-DNI {
+        width: 11.16666667%;
+    }
+    .col-sm-8-Email {
         width: 50.83333333%;
     }
 }

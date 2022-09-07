@@ -19,53 +19,53 @@
 
 
                         <div class="form-row">
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-1">
                                 <label for="Codigo">Codigo</label>
 
-                                <input type="text" class="form-control" id="Codigo" name="Codigo" placeholder="">
+                                <input type="text" class="form-control" id="EMP_CODE" name="EMP_CODE" autocomplete="off" placeholder="" data-parsley-pattern="[0-9]{4}" data-parsley-pattern-message="El CC son 4 digitos" required data-parsley-type="alphanum" data-parsley-trigger="change" data-parsley-pextra="">
 
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Nombre">Nombre</label>
-                                <input type="text" class="form-control" id="Nombre" placeholder="" value="">
+                                <input type="text" class="form-control" id="FIRST_NAME" name="FIRST_NAME" autocomplete="off"  placeholder="" value="">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="Apellidos">Apellidos</label>
-                                <input type="text" class="form-control" id="Apellidos" name="Apellidos" placeholder="" value="">
+                                <input type="text" class="form-control" id="LAST_NAME" name="LAST_NAME" autocomplete="off" placeholder="" value="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-3-DNI">
                                 <label for="fechaalta">Fecha Alta</label>
 
-                                <input id="fechaalta" data-inputmask="'mask':  '99/99/9999'" name="fechaalta" type="text"  class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
+                                <input id="HIRE_DATE" data-inputmask="'mask':  '99/99/9999'" name="HIRE_DATE" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
                             </div>
 
                             <div class="form-group col-sm-3-DNI">
                                 <label for="fechaalta">Fecha Baja</label>
-                                <input type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy"  autocomplete="off" name="fechabaja" id="fechabaja">
+                                <input type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" name="ACTUAL_LEAVE_DATE" id="ACTUAL_LEAVE_DATE">
                             </div>
 
                             <div class="form-group col-sm-3-DNI">
                                 <label for="dni">DNI</label>
-                                <input type="text" class="form-control" id="dni" value="">
+                                <input type="text" class="form-control" id="EMP_GLOBAL_CODE" data-parsley-type="alphanum" data-parsley-dni="" data-parsley-trigger="change" autocomplete="off" value="">
                             </div>
                             <div class="form-group  col-sm-3-Email">
                                 <label for="direccion">Email</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="Email" value="">
+                                    <input type="text" class="form-control" name="EMAIL" id="EMAIL" data-parsley-type="email" autocomplete="off" value="">
                                 </div>
                             </div>
 
                             <div class="form-group  col-sm-3half">
                                 <label for="telefono">Teléfono</label>
-                                <input type="text" class="form-control" style="width: 100px;" id="telefono" value="">
+                                <input type="text" class="form-control" style="width: 100px;" id="PHONE" name="PHONE" autocomplete="off"  value="">
                             </div>
 
                             <div class="form-group  col-sm-3-Email">
                                 <label for="selectDel">CC</label>
-                                <select id="selectDel" name="selectDel" data-live-search="true" class="form-control selectpicker" title="Seleccione Centro de Coste..." data-width="240px">
+                                <select id="selectDel" name="EMP_COST_CENTER" id="EMP_COST_CENTER" data-live-search="true" data-parsley-required="true" autocomplete="off" class="form-control selectpicker" title="Seleccione Centro de Coste..." data-width="240px">
 
                                     @foreach($comboCC as $cc)
 
@@ -95,36 +95,36 @@
                         <div class="form-group col-lg-3">
                             <label for="direccion">Dirección</label>
                             <div class="input-group">
-                                <input type="text" class="form-control  " id="direccion" value="">
+                                <input type="text" class="form-control  " id="HOME_ADDRESS" name="HOME_ADDRESS" value="">
 
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
 
                         <div class="form-group col-md-2">
                             <label for="poblacion">Poblacion</label>
-                            <input type="text" class="form-control" id="poblacion" value="">
+                            <input type="text" class="form-control" id="HOME_CITY" name="HOME_CITY" value="">
                         </div>
                         <div class="form-group col-md-1">
                             <label for="cp">CP</label>
-                            <input type="text" class="form-control" id="cp" value="">
+                            <input type="text" class="form-control" id="HOME_POSTAL_CODE" data-parsley-pattern='^(^([0-9]{5,5})|^)$' data-parsley-trigger="change" data-parsley-pattern-message="Cp Incorrecto" name="HOME_POSTAL_CODE" value="">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="provincia">Provincia</label>
-                            <input type="text" class="form-control" id="provincia" value="">
+                            <input type="text" class="form-control" id="HOME_STATE_CODE" name="HOME_STATE_CODE" value="">
                         </div>
 
 
                         <div class="form-group col-md-2">
                             <label for="abrev">Linea</label>
-                            <input type="text" class="form-control" id="linea" value="">
+                            <input type="text" class="form-control" id="POSITION_TITLE" name="POSITION_TITLE"  value="">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="zona">Equipo</label>
-                            <input type="text" class="form-control" id="zona" value="">
+                            <input type="text" class="form-control" id="SUBAREA2" name=" SUBAREA2" value="">
                         </div>
                         <div class="form-group col-md-2 ">
                             <label for="wp">Workplace</label>
-                            <input type="text" class="form-control" style="width: 190px;" id="wp" value="">
+                            <input type="text" class="form-control" style="width: 190px;" id="SUBAREA3" name=" SUBAREA3" value="">
                         </div>
 
 
@@ -134,7 +134,8 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+@include('includes.botones_crear_modales')
     {{-- <input type="submit" class="btn btn-default"></button> --}}
 
 </div>
@@ -143,5 +144,7 @@
 </form>
 </div>
 <script type="text/javascript">
+  $formname='AñadirPersonal';
+
 
 </script>

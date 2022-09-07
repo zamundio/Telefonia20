@@ -23,8 +23,10 @@ Route::get('ajaxFillStructTree', 'AjaxController@ajaxFillStrucTree')->name('ajax
 Route::get('ajaxGetNodeInfoStructTree', 'AjaxController@ajaxGetNodeInfoStructTree')->name('ajaxGetNodeInfoStructTree');
 Route::get('estructura', 'TreeEstructuraController@index')->name('estructura.index');
 Route::get('checkcc', 'MaestrasController@CheckCC')->name('checkcc');
+Route::get('checkpe', 'PersonalExtraController@CheckPE')->name('checkpe');
 Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');
 Route::get('CentrosdeCoste','MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');
+Route::post('submit_form_añadirpersonal','PersonalExtraController@store')->name('guardarpersonal');

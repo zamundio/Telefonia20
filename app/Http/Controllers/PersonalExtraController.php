@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Estructura;
+use App\personalextra;
 use Illuminate\Http\Request;
+use MPijierro\Identity\Identity;
+use Illuminate\Support\Facades\Log;
+
 
 class PersonalExtraController extends Controller
 {
@@ -34,7 +39,20 @@ class PersonalExtraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+
+
+
+            $pe = new personalextra($request->toArray());
+            $pe->save();
+
+            return response()->json(['success' => 'CC disponible']);
+
+
+
+
+        };
     }
 
     /**
@@ -81,4 +99,20 @@ class PersonalExtraController extends Controller
     {
         //
     }
+
+    public function  CheckPE(request $request)
+    {
+        if ($request->ajax()) {
+
+            $pe = personalextra::find($request->emp_code);
+            $odi= Estructura::find($request->emp_code);
+            if ($pe|| $odi) {
+                abort(404);
+            } else {
+
+                return response()->json(['success' => 'No existe']);
+            }
+        }
+    }
+
 }

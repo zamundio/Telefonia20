@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2bc80c2c012c5c4c510a809d8e5e54d",
+    "content-hash": "3f9da850f22472f84fdfa0f735db0f4f",
     "packages": [
         {
             "name": "brick/math",
@@ -835,6 +835,38 @@
                 "source": "https://github.com/fideloper/TrustedProxy/tree/4.4.2"
             },
             "time": "2022-02-09T13:33:34+00:00"
+        },
+        {
+            "name": "globalcitizen/php-iban",
+            "version": "v2.7.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/globalcitizen/php-iban.git",
+                "reference": "4c0fc54877948ac667c0ab29c2d1afbe47705599"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/globalcitizen/php-iban/zipball/4c0fc54877948ac667c0ab29c2d1afbe47705599",
+                "reference": "4c0fc54877948ac667c0ab29c2d1afbe47705599",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "oophp-iban.php",
+                    "php-iban.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-only"
+            ],
+            "description": "php-iban is a library for parsing and validating IBAN (and IIBAN) bank account information.",
+            "support": {
+                "issues": "https://github.com/globalcitizen/php-iban/issues",
+                "source": "https://github.com/globalcitizen/php-iban/tree/v2.7.5"
+            },
+            "time": "2020-05-03T19:46:35+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1971,6 +2003,49 @@
                 }
             ],
             "time": "2022-06-09T08:59:12+00:00"
+        },
+        {
+            "name": "mpijierro/identity",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpijierro/identity.git",
+                "reference": "b10c83b9d193d886ff0517e71bf13b285e353a28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpijierro/identity/zipball/b10c83b9d193d886ff0517e71bf13b285e353a28",
+                "reference": "b10c83b9d193d886ff0517e71bf13b285e353a28",
+                "shasum": ""
+            },
+            "require": {
+                "globalcitizen/php-iban": "^2.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MPijierro\\Identity\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Manu Pijierro",
+                    "email": "mpijierro@gmail.com"
+                }
+            ],
+            "description": "Check identity number as NIF, CIF, NIE...",
+            "support": {
+                "issues": "https://github.com/mpijierro/identity/issues",
+                "source": "https://github.com/mpijierro/identity/tree/1.1.0"
+            },
+            "time": "2019-07-24T13:33:45+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -5766,6 +5841,71 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "beyondcode/laravel-dump-server",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beyondcode/laravel-dump-server.git",
+                "reference": "33a19c632655c1d4f16c0bc67ce6ba0504116b8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beyondcode/laravel-dump-server/zipball/33a19c632655c1d4f16c0bc67ce6ba0504116b8a",
+                "reference": "33a19c632655c1d4f16c0bc67ce6ba0504116b8a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0",
+                "illuminate/http": "5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0",
+                "php": ">=7.2.5",
+                "symfony/var-dumper": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.0",
+                "phpunit/phpunit": "^7.0|^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BeyondCode\\DumpServer\\DumpServerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "BeyondCode\\DumpServer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Pociot",
+                    "email": "marcel@beyondco.de",
+                    "homepage": "https://beyondco.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Symfony Var-Dump Server for Laravel",
+            "homepage": "https://github.com/beyondcode/laravel-dump-server",
+            "keywords": [
+                "beyondcode",
+                "laravel-dump-server"
+            ],
+            "support": {
+                "issues": "https://github.com/beyondcode/laravel-dump-server/issues",
+                "source": "https://github.com/beyondcode/laravel-dump-server/tree/1.8.0"
+            },
+            "time": "2022-02-12T12:37:34+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.4.1",
