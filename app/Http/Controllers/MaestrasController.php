@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CentrosCoste;
-use Illuminate\Http\Request;
+use App\CentroCosteExtra;
 
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -74,7 +75,7 @@ if ($request->ajax()) {
         }
 
 
-        $cc = new CentrosCoste($requestData);
+        $cc = new CentroCosteExtra($requestData);
         $cc->save();
     }
 

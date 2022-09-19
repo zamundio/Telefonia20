@@ -115,8 +115,8 @@ $(function () {
       rw = $table.row(0).data();
       nummovil = rw.id;
       linea = rw.id; // DatatableHistoricoTerminales(nummovil);
-      // DatatableTarjetas(nummovil);
-      // DatatableAmpliaciones(nummovil);
+
+      DatatableTarjetas(nummovil); // DatatableAmpliaciones(nummovil);
       // DatatableTerminales(nummovil);
       // document.getElementById('Apellidos').value = nummovil
     },
@@ -256,6 +256,7 @@ $(function () {
 /********Se cargan las tarjetas en el evento fnInitComplete de Las Lineas******************************** */
 
 function DatatableTarjetas(numm) {
+  console.log('test');
   $table = $('.yajra-datatable-Tarjetas').DataTable({
     fnInitComplete: function fnInitComplete() {
       $("[data-toggle='tooltip']").tooltip();
@@ -338,6 +339,7 @@ function DatatableTarjetas(numm) {
     },
     buttons: [{
       text: 'Añadir Tarjeta',
+      className: 'btn btn-primary btn-sm btn-rounded',
       action: function action(e, dt, node, config) {
         $(".print-error-msg").find("ul").html('');
         $(".print-error-msg").css('display', 'none');
@@ -352,6 +354,7 @@ function DatatableTarjetas(numm) {
     }, {
       text: '<i class="fas fa-sync"></i>',
       titleAttr: 'Refresh',
+      className: 'btn btn-info',
       action: function action(e, dt, node, config) {
         dt.clear().draw();
         dt.ajax.reload();
@@ -359,6 +362,7 @@ function DatatableTarjetas(numm) {
     }, {
       text: 'Editar Tarjeta',
       titleAttr: 'Editar Tarjeta',
+      className: 'btn btn-success ',
       action: function action(e, dt, node, config) {
         $(".print-error-msg").find("ul").html('');
         $(".print-error-msg").css('display', 'none');
@@ -1235,32 +1239,35 @@ $('#TablaAmpliaciones').on('init.dt', function (evt, settings) {
     $(settings.nTableWrapper).find('.dataTables_paginate, .dataTables_length, .dataTables_info').hide();
   }
 });
-$('.datpick').datetimepicker({
-  todayHighlight: true,
-  todayBtn: "linked",
-  language: "es",
-  autoclose: true,
-  format: {
-    toDisplay: function toDisplay(date, format, language) {
-      var date = new Date(date),
-          month = '' + (date.getMonth() + 1),
-          day = '' + date.getDate(),
-          year = date.getFullYear();
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-      return [day, month, year].join('/');
-    },
-    toValue: function toValue(date, format, language) {
-      var date = new Date(date),
-          month = '' + (date.getMonth() + 1),
-          day = '' + date.getDate(),
-          year = date.getFullYear();
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-      return [year, month, day].join('-');
+/* $('.datpick').datetimepicker({
+
+    todayHighlight: true,
+    todayBtn: "linked",
+    language: "es",
+    autoclose: true,
+    format: {
+        toDisplay: function(date, format, language) {
+            var date = new Date(date),
+                month = '' + (date.getMonth() + 1),
+                day = '' + date.getDate(),
+                year = date.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+            return [day, month, year].join('/');
+        },
+        toValue: function(date, format, language) {
+            var date = new Date(date),
+                month = '' + (date.getMonth() + 1),
+                day = '' + date.getDate(),
+                year = date.getFullYear();
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+            return [year, month, day].join('-');
+        }
     }
-  }
 });
+ */
 
 function ajaxRequest(form) {
   $check = "";

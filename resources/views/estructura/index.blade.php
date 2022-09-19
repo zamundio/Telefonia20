@@ -17,12 +17,13 @@
                         <div class="card-header">
                             <h3 class="card-title">Estructura</h3>
 
-                             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#CrearCC">
+                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#CrearCC">
                                 Crear CC
-                             </button>
-<button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#AñadirpersonalCC">
-    Añadir Personal
-</button>
+                            </button>
+                            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#AñadirpersonalCC">
+                                Añadir Personal
+                            </button>
+                            <button class="btn btn-primary" name='refrescar' id='refrescar'><span class="glyphicon glyphicon-refresh"></span> Refrescar</button>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -31,7 +32,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="busqueda_tree" autocomplete="off" autoplaceholder="Buscar..">
                                     <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button" >
+                                        <button class="btn btn-secondary" type="button">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </div>
@@ -41,6 +42,13 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="card-footer text-center">
+
+
+                            <a href="{{ URL::route('ExportFacturacion') }}" class="tn btn-primary btn-sm float-left mr-1"> XLS Facturación</a>
+                            <a href="{{ URL::route('ExportListadoSede') }}" class="tn btn-success btn-sm float-left  mr-1"> XLS  Sede</a>
+                             <a href="{{ URL::route('ExportListadoRed') }}" class="tn btn-warning btn-sm float-left  mr-1"> XLS Red</a>
+                        </div>
                     </div>
                 </div>
 
@@ -62,8 +70,10 @@
                     </div>
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->
-@include('estructura.modales.CrearCC')
-@include('estructura.modales.AñadirPersonalCC')
+
+                @include('estructura.modales.CrearCC')
+                @include('estructura.modales.AñadirPersonalCC')
+
     </form>
 
 @endcan

@@ -1,16 +1,16 @@
 <?php
 
+use App\Estructura;
 use App\CentrosCoste;
 use App\personalextra;
+use App\ListadoFacturacion;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-
-
-              $cc = personalextra::select('LAST_NAME', 'EMP_CODE')->get();
-
+$estructuras = Estructura::findOrFail("0938");
 
 
 
-            r
+
+
 

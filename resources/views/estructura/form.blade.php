@@ -226,6 +226,7 @@
                     </tfoot>
                 </table>
             </div>
+            >
             <div class="col-md-8">
                 <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-Terminales" id="TablaTerminales">
                     <thead>
@@ -286,6 +287,8 @@
 
 
         </div>
+@include('estructura.modales.linea.Nuevo')
+@include('estructura.modales.linea.Editar')
 
         {{-- @include('estructura.modales_abreviados.ShowRed')
 

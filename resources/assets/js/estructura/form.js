@@ -24,7 +24,7 @@ $(function() {
             linea = rw.id;
 
             // DatatableHistoricoTerminales(nummovil);
-            // DatatableTarjetas(nummovil);
+            DatatableTarjetas(nummovil);
             // DatatableAmpliaciones(nummovil);
             // DatatableTerminales(nummovil);
 
@@ -206,7 +206,7 @@ $(function() {
 
 /********Se cargan las tarjetas en el evento fnInitComplete de Las Lineas******************************** */
 function DatatableTarjetas(numm) {
-
+    console.log('test');
 
     $table = $('.yajra-datatable-Tarjetas').DataTable({
         fnInitComplete: function() {
@@ -307,6 +307,7 @@ function DatatableTarjetas(numm) {
         },
         buttons: [{
                 text: 'Añadir Tarjeta',
+                className: 'btn btn-primary btn-sm btn-rounded',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
@@ -323,6 +324,7 @@ function DatatableTarjetas(numm) {
 
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
+                className: 'btn btn-info',
                 action: function(e, dt, node, config) {
 
 
@@ -335,6 +337,7 @@ function DatatableTarjetas(numm) {
 
                 text: 'Editar Tarjeta',
                 titleAttr: 'Editar Tarjeta',
+                className: 'btn btn-success ',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
@@ -1497,7 +1500,7 @@ $('#TablaAmpliaciones').on('init.dt', function(evt, settings) {
 
 
 
-$('.datpick').datetimepicker({
+/* $('.datpick').datetimepicker({
 
     todayHighlight: true,
     todayBtn: "linked",
@@ -1525,7 +1528,7 @@ $('.datpick').datetimepicker({
         }
     }
 });
-
+ */
 
 
 

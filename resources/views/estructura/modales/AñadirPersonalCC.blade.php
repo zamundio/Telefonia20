@@ -32,7 +32,7 @@
 
                             <div class="form-group col-md-6">
                                 <label for="Apellidos">Apellidos</label>
-                                <input type="text" class="form-control" id="LAST_NAME" name="LAST_NAME" autocomplete="off" placeholder="" value="">
+                                <input type="text" class="form-control" id="LAST_NAME" name="LAST_NAME" autocomplete="off"   placeholder="" value="">
                             </div>
                         </div>
                         <div class="form-row">

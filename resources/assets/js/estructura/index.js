@@ -217,13 +217,15 @@ $('#AñadirpersonalCC').on('reset', function(e) {
 
     $("#selectDel").val('default').selectpicker("refresh");
     $('#AñadirpersonalCC_form').parsley().reset();
+    $('#submit').attr('disabled', false);
+    $('#submit').val('Enviar');
 });
 
 $('#AñadirpersonalCC').on('hidden.bs.modal', function(e) {
-    $(this)
-        .find("input type='text'")
-        .val('')
-        .end()
+    // $(this)
+    //     .find("input type='text'")
+    //     .val('')
+    //     .end()
 
 
     $("#selectDel").val('default').selectpicker("refresh");
@@ -278,6 +280,11 @@ $("#formdatos").toggle(true);
 $('#tree-container').slimScroll({
     height: '800px',
 })
+
+$('#refrescar').on('click', function(event) {
+    event.preventDefault(); // To prevent following the link (optional)
+    $("#tree-container").jstree('refresh');
+});
 
 $('#tree-container').on('ready.jstree', function() {
     $("#tree-container").jstree('open_all');

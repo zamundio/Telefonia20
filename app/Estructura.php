@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estructura extends Model
 {
     use HasFactory;
-    protected $table = "personal";
+    protected $table = "union_personal_listados_facturacion";
     protected $casts = [
         'EMP_CODE' => 'string',
     ];
