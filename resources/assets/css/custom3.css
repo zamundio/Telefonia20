@@ -1619,7 +1619,16 @@ tr.shown td.details-control {
     .col-sm-3-DNI {
         width: 11.16666667%;
     }
+    .col-sm-3-fecha {
+        width: 22.16666667%;
+    }
     .col-sm-8-Email {
         width: 50.83333333%;
     }
+}
+
+#wrap {
+    width: 450px;
+    height: 400px;
+    overflow: auto;
 }

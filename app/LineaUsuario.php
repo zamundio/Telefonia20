@@ -15,7 +15,7 @@ class LineaUsuario extends Model
     protected $casts = [
         'cod_emp' => 'string',
     ];
-    protected $fillable = ['id', 'cod_emp', 'Observaciones', 'ListadoXLS'];
+    protected $fillable = ['id', 'cod_emp', 'Observaciones', 'ListadoXLS','Principal'];
 
     public function Linea()
     {
@@ -25,11 +25,11 @@ class LineaUsuario extends Model
     {
         return $this->hasMany(Tarjeta::class)->orderBy('Principal', 'desc');
     }
-  /*   public function ampliaciones()
+   public function ampliaciones()
     {
         return $this->hasMany(AmpliacionesGB::class)->orderBy('FECHA', 'desc');
     }
-    public function terminal_usuario()
+   /*  public function terminal_usuario()
     {
         return $this->belongsToMany(TerminalMovil::class, 'terminales_usuarios_actual')
             ->withPivot('f_cambio_alta', 'Motivo', 'Observaciones', 'Actual', 'Devuelve_Anterior')->orderby('f_cambio_alta', 'desc');

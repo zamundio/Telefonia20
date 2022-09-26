@@ -16,16 +16,19 @@ class LineaUsuarioController extends Controller
         if ($request->ajax()) {
             $linea = LineaUsuario::find($id);
 
-            // if (
-            //     $linea->tarjetas()->exists()
-            //     || $linea->ampliaciones()->exists() || $linea->terminal_usuario()->exists()
-            // ) {
-            //     return response()->json(['mensaje' => 'Resource cannot be deleted due to existence of related resources.']);
-            // } else {
 
-            //     LineaUsuario::find($id)->delete();
-            // }
+            LineaUsuario::find($id)->delete();
 
+          /*   if (
+                $linea->tarjetas()->exists()
+                || $linea->ampliaciones()->exists() || $linea->terminal_usuario()->exists()
+            ) {
+                return response()->json(['mensaje' => 'Resource cannot be deleted due to existence of related resources.']);
+            } else {
+
+                LineaUsuario::find($id)->delete();
+            }
+ */
 
 
             return response()->json(['mensaje' => 'ok']);
@@ -91,5 +94,14 @@ class LineaUsuarioController extends Controller
 
         $linea = new LineaUsuario($requestData);
         $parent->lineas()->save($linea);
+    }
+    public function editar(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            $linea = LineaUsuario::findOrFail($id);
+            return response()->json($linea);
+        } else {
+            abort(404);
+        }
     }
 }

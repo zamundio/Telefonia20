@@ -9,10 +9,7 @@ $(function() {
     var $terminal;
     var $tableAmpl;
     var $lineadatos;
-    // $('.datepicker').datepicker({
-    //     language: "es",
-    //     autoclose: true
-    // });
+
     /*   Datatable Lineas *********************************************/
 
     $tarjetas_usuario_id = "";
@@ -104,7 +101,7 @@ $(function() {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $modal = $('#LineaModal_Nuevo');
-                    $modal.find('form')[0].reset();
+                    // $modal.find('form')[0].reset();
                     $('#linea_nuevo_form').parsley().reset();
                     $("#LineaModal_Nuevo").modal("show");
                 },
@@ -176,6 +173,10 @@ $(function() {
                 name: 'Observaciones'
             },
             {
+                data: 'Principal',
+                name: 'Principal'
+            },
+            {
                 data: 'XLS',
                 name: 'XLS'
             },
@@ -206,7 +207,7 @@ $(function() {
 
 /********Se cargan las tarjetas en el evento fnInitComplete de Las Lineas******************************** */
 function DatatableTarjetas(numm) {
-    console.log('test');
+
 
     $table = $('.yajra-datatable-Tarjetas').DataTable({
         fnInitComplete: function() {
@@ -311,7 +312,7 @@ function DatatableTarjetas(numm) {
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
-                    $('#tarjetas_nuevo_form')[0].reset();
+                    // $('#tarjetas_nuevo_form')[0].reset();
                     $('#tarjetas_nuevo_form').parsley().reset();
                     $('#submit_crear_tarj').attr('disabled', false);
                     $('#submit_crear_tarj').val('Enviar');
@@ -1530,6 +1531,35 @@ $('#TablaAmpliaciones').on('init.dt', function(evt, settings) {
 });
  */
 
+/********Se recargan todas las datatables al cambiar de linea******************************** */
+
+$('#TablaLineas tbody').on('click', 'tr', function() {
+
+
+    var tableData = $(this).children("td").map(function() {
+        return $(this).text();
+    }).get();
+
+    nummovil = tableData[1];
+    linea = nummovil;
+    var table = $('#TablaLineas').DataTable();
+    table.$("input[type=checkbox]").prop("checked", false);
+
+
+    $(this).find('input[type=checkbox]').prop('checked', true);
+
+    var url = `TarjetasDatatable?linea_usuario_id=${nummovil}`;
+    $('.yajra-datatable-Tarjetas').DataTable().ajax.url(url).load();
+    $('.yajra-datatable-Tarjetas').DataTable().draw();
+    // var url = `AmpliacionesDatatable?linea_usuario_id=${nummovil}`;
+    // $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
+    // $('.yajra-datatable-Ampliaciones').DataTable().draw();
+    // var url = `TerminalesDatatable?linea_usuario_id=${nummovil}`;
+    // $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
+    // $('.yajra-datatable-Terminales').DataTable().draw();
+
+});
+
 
 
 function ajaxRequest(form) {
@@ -1542,10 +1572,10 @@ function ajaxRequest(form) {
             if (respuesta.mensaje == "ok") {
                 form.parents('tr').remove();
 
-                Helper.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
+                HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
 
             } else {;
-                Helper.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
+                HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
 
             }
 

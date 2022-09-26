@@ -1,4 +1,4 @@
-var Helper = function() {
+var HelperNotificaciones = function() {
     return {
 
         notificaciones: function(mensaje, titulo, tipo) {
@@ -30,4 +30,19 @@ var Helper = function() {
             }
         },
     }
+
+}()
+
+var HelperPrintMsg = function() {
+    return {
+
+        printErrorMsg: function(msg) {
+            $(".print-error-msg").find("ul").html('');
+            $(".print-error-msg").css('display', 'block');
+            $.each(msg, function(key, value) {
+                $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+            });
+        },
+    }
+
 }()

@@ -13,6 +13,7 @@ class Tarjeta extends Model
     protected $casts = [
         'id' => 'string',
     ];
+    protected $guarded = ['ID_KEY'];
     public function Linea()
     {
         return $this->belongsTo(LineaUsuario::class);

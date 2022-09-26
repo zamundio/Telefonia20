@@ -39,6 +39,14 @@ class EstructuraController extends Controller
                     return '<div class="text-center"><span class="badge badge-danger">NO</span></div>';
                 }
             })
+            ->addColumn('Principal', function ($row) {
+
+                if ($row->Principal == 1) {
+                    return '<span class="badge badge-primary">SI</span>';
+                } else {
+                    return '<span class="badge badge-danger">NO</span>';
+                }
+            })
 
             ->addColumn('action', function ($row) {
                 $btn = '<form action=' . route('eliminar_linea', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="post">'
@@ -54,7 +62,7 @@ class EstructuraController extends Controller
                 return $btn;
             })
 
-            ->rawColumns(['XLS', 'action'])
+            ->rawColumns(['XLS','Principal', 'action'])
             ->make(true);
     }
 }

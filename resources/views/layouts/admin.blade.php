@@ -44,6 +44,8 @@
     <link href="{{ asset('css/parsley.css') }}" rel="stylesheet" />
   <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
   <link href="{{ asset('css/custom3.css') }}" rel="stylesheet" />
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 
   <!--Toast style -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
@@ -177,7 +179,11 @@ datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
  <script src="{{ asset("js/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js") }}"></script>
 
   <script src="{{ asset('js/es.js') }}"></script>
-  <script src="{{ asset('js/helper.js') }}"></script>
+
+
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="{{ asset('js/helper.js') }}"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('js/jstree.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>

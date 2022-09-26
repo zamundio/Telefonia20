@@ -37,17 +37,18 @@
                                         </button>
                                     </div>
                                 </div>
-                                <br>
-                                <div id="tree-container" class="demo" style="width:80px;">
-                                </div>
+
+                                    <div id="tree-container" class="demo" style="max-width: 430px;">
+                                    </div>
+
                             </div>
                         </form>
                         <div class="card-footer text-center">
 
 
                             <a href="{{ URL::route('ExportFacturacion') }}" class="tn btn-primary btn-sm float-left mr-1"> XLS Facturación</a>
-                            <a href="{{ URL::route('ExportListadoSede') }}" class="tn btn-success btn-sm float-left  mr-1"> XLS  Sede</a>
-                             <a href="{{ URL::route('ExportListadoRed') }}" class="tn btn-warning btn-sm float-left  mr-1"> XLS Red</a>
+                            <a href="{{ URL::route('ExportListadoSede') }}" class="tn btn-success btn-sm float-left  mr-1"> XLS Sede</a>
+                            <a href="{{ URL::route('ExportListadoRed') }}" class="tn btn-warning btn-sm float-left  mr-1"> XLS Red</a>
                         </div>
                     </div>
                 </div>

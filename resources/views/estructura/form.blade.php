@@ -163,6 +163,7 @@
                         <th width="5px"></th>
                         <th width="5px">Numero Movil</th>
                         <th width="10px">Observaciones</th>
+                        <th width="5px">Princ</th>
                         <th width="5px">XLS</th>
                         <th width="10px"></th>
                         </tr>
@@ -226,7 +227,7 @@
                     </tfoot>
                 </table>
             </div>
-            >
+
             <div class="col-md-8">
                 <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-Terminales" id="TablaTerminales">
                     <thead>
@@ -289,10 +290,11 @@
         </div>
 @include('estructura.modales.linea.Nuevo')
 @include('estructura.modales.linea.Editar')
+@include('estructura.modales.tarjetas.Nuevo')
 
         {{-- @include('estructura.modales_abreviados.ShowRed')
 
-        @include('estructura.modales_tarjetas.Nuevo')
+
         @include('estructura.modales_tarjetas.Editar')
         @include('estructura.modales_linea.Nuevo')
         @include('estructura.modales_linea.Editar')

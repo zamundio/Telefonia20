@@ -33,6 +33,10 @@
                         <input type="checkbox" class="form-check-input" id="LXLS_nuevo">
                         <label class="form-check-label ml-2" for="LXLS_nuevo"><strong> XLS </strong></label>
                     </div>
+                     <div class="form-check  ml-2">
+                         <input type="checkbox" class="form-check-input" id="Princ_nuevo">
+                         <label class="form-check-label ml-2" for="Princ_nuevo"><strong> Telefono Principal </strong></label>
+                     </div>
 
                     {{-- <div class="form-group">
                         <strong>XLS:</strong>
@@ -42,7 +46,7 @@
                     </div>
 
                     <div class="form-group">
-                        @include('includes.boton-form-crear-modal-linea')
+                        @include('includes.botones_crear_modales')
                     </div>
                 </form>
 
@@ -68,6 +72,7 @@
         $table = $('.yajra-datatable-Lineas').DataTable();
         Check = document.getElementById("LXLS_nuevo").checked;
 
+
         var num_movil = $("input[name='num_mo_nuevo']").val();
         var obs = document.getElementById("Observ_nuevo").value;
 
@@ -78,6 +83,14 @@
             XLS = "NO";
 
         }
+
+if ( document.getElementById("Princ_nuevo").checked) {
+Principal =1;
+
+} else {
+Principal =0;
+
+}
 
         if ($('#linea_nuevo_form').parsley().isValid()) {
             event.preventDefault();
@@ -90,7 +103,8 @@
                     id: num_movil,
                     Observaciones: obs,
                     ListadoXLS: XLS,
-                    Check: Check
+                    Check: Check,
+                    Principal:Principal
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -100,20 +114,20 @@
                     $('#submit_crea_linea').val('Enviando...');
                 },
                 success: function (data) {
-                    $('#linea_nuevo_form')[0].reset();
+                    // $('#linea_nuevo_form')[0].reset();
                     $('#linea_nuevo_form').parsley().reset();
                     $('#submit_crea_linea').attr('disabled', false);
                     $('#submit_crea_linea').val('Enviar');
 
                     if ($.isEmptyObject(data.error)) {
-                        $('#linea_nuevo_form')[0].reset();
+                        // $('#linea_nuevo_form')[0].reset();
                         $('#linea_nuevo_form').parsley().reset();
                         $('#LineaModal_Nuevo').modal('hide')
                         $table.ajax.reload();
-                        helper.notificaciones('Linea Agregada con Exito', 'Telefonia', 'success');
+                        HelperNotificaciones.notificaciones('Linea Agregada con Exito', 'Telefonia', 'success');
 
                     } else {
-                        printErrorMsg(data.error);
+                       HelperPrintMsg.printErrorMsg(data.error);
                     }
                 }
             });

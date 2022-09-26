@@ -28,11 +28,18 @@ Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');
+Route::get('lineas/{id}/editar', 'LineaUsuarioController@editar')->name('editar_linea');
 Route::post('lineas', 'LineaUsuarioController@guardar')->name('GuardarLinea');
-Route::get('CentrosdeCoste','MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');
-Route::post('submit_form_añadirpersonal','PersonalExtraController@store')->name('guardarpersonal');
+
+
 route::get('TarjetasDatatable', 'LineaUsuarioController@ShowTarjetas')->name('TarjetasDatatable');
 
+
+
+Route::get('CentrosdeCoste','MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');
+Route::post('submit_form_añadirpersonal','PersonalExtraController@store')->name('guardarpersonal');
+
+Route::post('tarjetasusuarios/{id}', 'TarjetaLineaController@guardar')->name('crear_tarjetalinea');
 Route::delete('tarjetasusuarios/{id}/eliminar', 'TarjetaLineaController@eliminar')->name('eliminar_tarjeta');
 
 
