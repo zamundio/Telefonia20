@@ -429,10 +429,10 @@ $('#AñadirpersonalCC_form').on('submit', function(e) {
 
                     $('#AñadirpersonalCC').modal('hide')
 
-                    Helper.notificaciones('Personal Agregado con Exito', 'Telefonia', 'success');
+                    HelperNotificaciones.notificaciones('Personal Agregado con Exito', 'Telefonia', 'success');
 
                 } else {
-                    printErrorMsg(data.error);
+                    HelperPrintMsg.printErrorMsg(data.error);
                 }
             },
             error: function(data) {
@@ -528,10 +528,10 @@ $('#CrearCC_form').submit(function(event) {
                     $('#CrearCC').parsley().reset();
                     $('#CrearCC').modal('hide')
 
-                    Helper.notificaciones('Cenro de Coste Agregado con Exito', 'Telefonia', 'success');
+                    HelperNotificaciones.notificaciones('Cenro de Coste Agregado con Exito', 'Telefonia', 'success');
 
                 } else {
-                    printErrorMsg(data.error);
+                    HelperPrintMsg.printErrorMsg(data.error);
                 }
             }
         });

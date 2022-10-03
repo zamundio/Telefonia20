@@ -16,6 +16,7 @@
     "/js/estructura/form.js": "/js/estructura/form.js",
     "/js/estructura/index.js": "/js/estructura/index.js",
     "/js/handlebars.js": "/js/handlebars.js",
+    "/js/handlebars.min-v4.7.7.js": "/js/handlebars.min-v4.7.7.js",
     "/js/home/index.js": "/js/home/index.js",
     "/js/jquery.inputmask.min.js": "/js/jquery.inputmask.min.js",
     "/js/jquery.min.js": "/js/jquery.min.js",

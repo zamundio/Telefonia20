@@ -19,22 +19,31 @@
 
                 <form id="linea_editar_form" data-parsley-validate="">
                     @csrf
-                    <div class="form-group  ml-2">
+                    <div class="form-group  col-sm-6-Email">
                         <label>Numero movil:</label>
                         <input type="tel" name="num_mo_editar" id="num_mo_editar" disabled class="form-control" disabledvalue="">
                         <input type="hidden" name="num_mo_editar_original_text" id="num_mo_editar_original_text" data-parsley-ui-enabled="false">
                     </div>
-
+                    <div class="form-group  col-sm-3-abrev">
+                        <label for="abrev_nuevo"> Abreviado </label>
+                        <input type="text" class="form-control" name="abrev_editar" id="abrev_editar" autocomplete="off" data-parsley-type="digits" data-parsley-pattern="\d{4}" data-parsley-trigger="change">
+                        <input type="hidden" name="abrev_editar_original_text" id="abrev_editar_original_text" data-parsley-ui-enabled="false">
+                    </div>
 
                     <div class="form-group  ml-2">
                         <label>Observaciones:</label>
                         <textarea class="form-control" name="Observ_editar" id="Observ_editar" cols="40" rows="3"></textarea>
                         <input type="hidden" name="Observ_editar_original_text" id="Observ_editar_original_text" data-parsley-ui-enabled="false">
                     </div>
-
                     <div class="form-check  ml-2">
-                        <input type="checkbox" class="form-check-input" name="LXLS_editar" id="LXLS_editar">
-                        <label class="form-check-label ml-2" for="LXLS_editar"><strong> XLS </strong></label>
+                        <input type="checkbox" id="toggle-principal_editar" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
+                        <label class="form-check-label ml-2" for="toggle-principal_editar"><strong> Telefono Principal </strong></label>
+                           <input type="hidden" name="Princ_editar_original_text" id="Princ_editar_original_text" data-parsley-ui-enabled="false">
+                    </div>
+                        <div class="form-group"></div>
+                    <div class="form-check  ml-2">
+                        <input type="checkbox" id="toggle-LXLS_editar" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
+                        <label class="form-check-label ml-2" for="toggle-LXLS_editar"><strong> XLS </strong></label>
                         <input type="hidden" name="LXLS_editar_original_text" id="LXLS_editar_original_text" data-parsley-ui-enabled="false">
                     </div>
 
@@ -54,30 +63,50 @@
     $("#LineaModal_Editar").submit(function (e) {
 
         $table = $('.yajra-datatable-Lineas').DataTable();
-        Check = document.getElementById("LXLS_editar").checked;
+
+        abrev = document.getElementById("abrev_editar").value;
+
+      abrevAnt= document.getElementById("abrev_editar_original_text").value;
+
+
 
         var num_movil = $("input[name='num_mo_editar']").val();
         var obs = document.getElementById("Observ_editar").value;
 
-        if (document.getElementById("LXLS_editar").checked) {
-            XLS = "SI";
+         if (document.getElementById("toggle-principal_editar").checked) {
+         principal = 1;
 
-        } else {
-            XLS = "NO";
-        }
+         } else {
+         principal = 0;
+
+         }
+
+         fecha_Act = $('#fecha_tarj').val();
+
+
+
+
+         if (document.getElementById("toggle-LXLS_editar").checked) {
+         XLS = 1;
+
+         } else {
+         XLS = 0;
+
+         }
 
         if ($('#linea_editar_form').parsley().isValid()) {
             event.preventDefault();
 
             $.ajax({
-                url: 'lineas',
+                url: 'lineas/'+abrevAnt,
                 type: 'PUT',
                 data: {
                     cod_emp: $cod,
                     id: nummovil,
                     Observaciones: obs,
+                    Abreviado: abrev,
                     ListadoXLS: XLS,
-                    Check: Check
+                    Principal:principal
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -97,10 +126,10 @@
                         $('#linea_editar_form').parsley().reset();
                         $('#LineaModal_Editar').modal('hide')
                         $table.ajax.reload();
-                        Biblioteca.notificaciones('Linea Actualizada con Exito', 'Telefonia', 'success');
+                        HelperNotificaciones.notificaciones('Linea Actualizada con Exito', 'Telefonia', 'success');
 
                     } else {
-                        printErrorMsg(data.error);
+                        HelperPrintMsg.printErrorMsg(data.error);
                     }
                 }
             });
@@ -125,5 +154,9 @@
 
 
     });
+     $('#toggle-principal_tarj').change(function () {
+     // $('#toggle-termactual_hide').html( $(this).prop('checked'))
+     $("input[id=principal]").val($(this).prop('checked'));
+     });
 
 </script>

@@ -33,7 +33,7 @@ class EstructuraController extends Controller
             ->addIndexColumn()
             ->addColumn('XLS', function ($row) {
 
-                if ($row->ListadoXLS == "SI") {
+                if ($row->ListadoXLS == 1) {
                     return '<div class="text-center"><span class="badge badge-primary">SI</span></div>';
                 } else {
                     return '<div class="text-center"><span class="badge badge-danger">NO</span></div>';

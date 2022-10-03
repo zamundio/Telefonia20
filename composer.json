@@ -14,6 +14,7 @@
         "laravelcollective/html": "^6.0",
         "maatwebsite/excel": "^3.1",
         "mpijierro/identity": "^1.1",
+        "proai/laravel-handlebars": " ^1.11",
         "spatie/laravel-permission": "^3.0",
         "yajra/laravel-datatables-oracle": "^9.19"
     },

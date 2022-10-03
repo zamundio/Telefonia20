@@ -183,10 +183,13 @@ datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-    <script src="{{ asset('js/helper.js') }}"></script>
+
+  <script src="{{ asset('js/helper.js') }}"></script>
   <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
   <script src="{{ asset('js/jstree.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
+
+
 
   <script src="{{ asset('js/jquery.inputmask.min.js') }}"></script>
 

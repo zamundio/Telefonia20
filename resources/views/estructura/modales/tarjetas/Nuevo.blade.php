@@ -36,10 +36,7 @@
                     <input type="hidden" id="principal" name="principal">
                     <input type="hidden" id="solodatos" name="solodatos">
                     <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label for="abrev_tarj"> Abreviado </label>
-                            <input type="text" class="form-control" id="abrev_tarj" autocomplete="off" data-parsley-type="digits" data-parsley-pattern="\d{4}" data-parsley-trigger="change">
-                        </div>
+
                         <div class="form-group col-md-8">
                             <label for="imei_tarj"> Num SIM </label>
                             <input type="text" class="form-control" id="imei_tarj" autocomplete="off" data-inputmask="'mask': '9999-999999999999-9'" data-parsley-pattern="^([0-9]+(-[0-9]+)+)$" data-inputmask-alias="numsim" data-inputmask-inputformat="9999-999999999999-9" data-inputmask-placeholder="____-____________-_" data-parsley-required="true" data-parsley-trigger="change">
@@ -71,7 +68,7 @@
                         <div class="form-group col-sm-3-fecha">
                             <label for="fechaalta">Fecha</label>
 
-                            <input id="fecha" data-inputmask="'mask':  '99/99/9999'" name="fecha" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
+                            <input id="fecha_tarj" data-inputmask="'mask':  '99/99/9999'" name="fecha_tarj" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
                         </div>
                     </div>
                     <div class="form-group col-sm-12">
@@ -90,7 +87,7 @@
 <div class="modal-footer">
 
     @include('includes.botones_crear_modales')
-    {{-- <input type="submit" class="btn btn-default"></button> --}}
+
 
 </div>
                 </form>
@@ -110,7 +107,7 @@
   language: 'es',
   todayBtn: true,
   todayHighlight: true,
-  toggleActive: true,
+  toggleActive: false,
   weekStart: 1
 
   });
@@ -144,7 +141,7 @@
 
         }
 
-        fecha_Act = $('#fecha_asig_tarj').val();
+        fecha_Act = $('#fecha_tarj').val();
 
         obs = $('#obs_tarj').val();
 
@@ -165,7 +162,7 @@
                 type: 'POST',
                 data: {
                     linea_usuario_id: nummovil,
-                    Abrev: abrev,
+
                     id: numsim,
                     Observaciones: obs,
                     PIN: pin,
@@ -180,21 +177,23 @@
                 },
                 dataType: "json",
                 beforeSend: function () {
-                    $('#submit_crear_tarj').attr('disabled', 'disabled');
-                    $('#submit_crear_tarj').val('Enviando...');
+                    $('#submit').attr('disabled', 'disabled');
+                    $('#submit').val('Enviando...');
                 },
                 success: function (data) {
-                    // $('#tarjetas_nuevo_form')[0].reset();
+                      $('#tarjetas_nuevo_form')[0].reset();
                     $('#tarjetas_nuevo_form').parsley().reset();
-                    $('#submit_crear_tarj').attr('disabled', false);
-                    $('#submit_crear_tarj').val('Enviar');
+                    $('#submit').attr('disabled', false);
+                    $('#submit').val('Enviar');
                     if ($.isEmptyObject(data.error)) {
-                        // $('#tarjetas_nuevo_form')[0].reset();
+                        $('#tarjetas_nuevo_form')[0].reset();
                         $('#tarjetas_nuevo_form').parsley().reset();
+
 
                         $('#TarjetaLineaModal_Nuevo').modal('hide');
                         HelperNotificaciones.notificaciones('Tarjeta Agregado con exito', 'Telefonia', 'success');
-                        DatatableTarjetas(nummovil);
+                          $table.ajax.reload();
+                        // DatatableTarjetas(nummovil);
 
                     } else {
                         HelperPrintMsg.printErrorMsg(data.error);
@@ -207,9 +206,9 @@
             });
         }
     });
-    $(' .btn-cancel-tarj').click(function (event) {
-        console.log("cucu");
-        // $('#tarjetas_nuevo_form')[0].reset();
+    $(' .btn-cancel').click(function (event) {
+
+        $('#tarjetas_nuevo_form')[0].reset();
         $('#tarjetas_nuevo_form').parsley().reset();
 
         $('#toggle-principal_tarj').bootstrapToggle('on');
@@ -220,13 +219,22 @@
     $('#toggle-principal_tarj').change(function () {
         // $('#toggle-termactual_hide').html( $(this).prop('checked'))
         $("input[id=principal]").val($(this).prop('checked'));
+         if ($(this).is(":checked")) {
+         $("#toggle-solodatos_tarj").bootstrapToggle('off');
+         }
+
 
     })
 
     $('#toggle-solodatos_tarj').change(function () {
         // $('#toggle-devant_hide').html( $(this).prop('checked'))
         $("input[id=solodatos]").val($(this).prop('checked'));
+         if ($(this).is(":checked")) {
+         $("#toggle-principal_tarj").bootstrapToggle('off');
+         }
 
     })
+
+
 
 </script>

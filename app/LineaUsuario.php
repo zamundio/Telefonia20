@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Tarjeta;
+use App\TerminalMovil;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,7 +16,7 @@ class LineaUsuario extends Model
     protected $casts = [
         'cod_emp' => 'string',
     ];
-    protected $fillable = ['id', 'cod_emp', 'Observaciones', 'ListadoXLS','Principal'];
+    protected $fillable = ['id', 'cod_emp','Abreviado', 'Observaciones', 'ListadoXLS','Principal'];
 
     public function Linea()
     {
@@ -29,15 +30,15 @@ class LineaUsuario extends Model
     {
         return $this->hasMany(AmpliacionesGB::class)->orderBy('FECHA', 'desc');
     }
-   /*  public function terminal_usuario()
+    public function terminal_usuario()
     {
         return $this->belongsToMany(TerminalMovil::class, 'terminales_usuarios_actual')
-            ->withPivot('f_cambio_alta', 'Motivo', 'Observaciones', 'Actual', 'Devuelve_Anterior')->orderby('f_cambio_alta', 'desc');
+            ->withPivot('f_cambio_alta', 'Observaciones', 'Actual')->orderby('f_cambio_alta', 'desc');
     }
     public function terminal_usuario_historico()
     {
         return $this->belongsToMany(TerminalMovil::class, 'lineas_historico_terminales')
             ->withPivot('f_cambio_alta', 'f_baja', 'Motivo', 'Observaciones')->orderby('f_baja', 'desc');
-    } */
+    }
 
 }

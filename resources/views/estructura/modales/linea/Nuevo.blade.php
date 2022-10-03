@@ -1,4 +1,3 @@
-
 <div id="LineaModal_Nuevo" class="modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -19,9 +18,13 @@
 
                 <form id="linea_nuevo_form" data-parsley-validate>
                     @csrf
-                    <div class="form-group  ml-2">
+                    <div class="form-group  col-sm-6-Email">
                         <label>Numero movil:</label>
-                        <input type="tel" name="num_mo_nuevo" id="num_mo_nuevo" autocomplete="off" class="form-control" data-parsley-pattern="^(\d\d\d\d\d\d\d\d\d)$" data-parsley-pattern-message="El telefono debe ser de 9 digitos, sin espacios" required data-parsley-type="digits" data-parsley-trigger="change" data-parsley-minlength="9" data-parsley-maxlength="9" value="">
+                        <input type="text" name="num_mo_nuevo" id="num_mo_nuevo" autocomplete="off" class="form-control" data-parsley-pattern="^(\d\d\d\d\d\d\d\d\d)$" data-parsley-pattern-message="El telefono debe ser de 9 digitos, sin espacios" required data-parsley-type="digits" data-parsley-trigger="change" data-parsley-minlength="9" data-parsley-maxlength="9" value="">
+                    </div>
+                    <div class="form-group col-sm-3-abrev">
+                        <label for="abrev_nuevo"> Abreviado </label>
+                        <input type="text" class="form-control" name="abrev_nuevo" id="abrev_nuevo" autocomplete="off" data-parsley-type="digits" data-parsley-pattern="\d{4}" data-parsley-trigger="change">
                     </div>
                     {{-- <p class="errorContent text-center alert alert-danger hidden"></p> --}}
 
@@ -29,14 +32,20 @@
                         <label>Observaciones:</label>
                         <textarea class="form-control" name="Observ_nuevo" id="Observ_nuevo" cols="40" rows="3"></textarea>
                     </div>
-                    <div class="form-check  ml-2">
-                        <input type="checkbox" class="form-check-input" id="LXLS_nuevo">
-                        <label class="form-check-label ml-2" for="LXLS_nuevo"><strong> XLS </strong></label>
-                    </div>
-                     <div class="form-check  ml-2">
-                         <input type="checkbox" class="form-check-input" id="Princ_nuevo">
-                         <label class="form-check-label ml-2" for="Princ_nuevo"><strong> Telefono Principal </strong></label>
-                     </div>
+                       </div>
+                       <div class="form-check  ml-2">
+                           <input type="checkbox" id="toggle-princ_nuevo" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
+                           <label class="form-check-label ml-2" for="toggle-princ_nuevo"><strong> Telefono Principal </strong></label>
+                           <input type="hidden" name="toggle-princ_nuevo_text" id="Ptoggle-princ_nuevo_text" data-parsley-ui-enabled="false">
+                       </div>
+                       <div class="form-group"></div>
+                       <div class="form-check  ml-2">
+                           <input type="checkbox" id="toggle-LXLS_nuevo" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
+                           <label class="form-check-label ml-2" for="toggle-LXLS_nuevo"><strong> XLS </strong></label>
+                           <input type="hidden" name="LXLS_nuevo_original_text" id="LXLS_nuevo_original_text" data-parsley-ui-enabled="false">
+                       </div>
+
+
 
                     {{-- <div class="form-group">
                         <strong>XLS:</strong>
@@ -70,27 +79,34 @@
 
 
         $table = $('.yajra-datatable-Lineas').DataTable();
-        Check = document.getElementById("LXLS_nuevo").checked;
+
+
+        abrev =$("input[name='abrev_nuevo']").val();
 
 
         var num_movil = $("input[name='num_mo_nuevo']").val();
         var obs = document.getElementById("Observ_nuevo").value;
 
-        if (document.getElementById("LXLS_nuevo").checked) {
-            XLS = "SI";
+         if (document.getElementById("toggle-princ_nuevo").checked) {
+         principal = 1;
 
-        } else {
-            XLS = "NO";
+         } else {
+         principal = 0;
 
-        }
+         }
 
-if ( document.getElementById("Princ_nuevo").checked) {
-Principal =1;
 
-} else {
-Principal =0;
 
-}
+
+
+
+         if (document.getElementById("toggle-LXLS_nuevo").checked) {
+         XLS = 1;
+
+         } else {
+         XLS = 0;
+
+         }
 
         if ($('#linea_nuevo_form').parsley().isValid()) {
             event.preventDefault();
@@ -102,16 +118,17 @@ Principal =0;
                     cod_emp: $cod,
                     id: num_movil,
                     Observaciones: obs,
+                    Abreviado:abrev,
                     ListadoXLS: XLS,
-                    Check: Check,
-                    Principal:Principal
+
+                    Principal: principal
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 beforeSend: function () {
-                    $('#submit_crea_linea').attr('disabled', 'disabled');
-                    $('#submit_crea_linea').val('Enviando...');
+                    $('#submit').attr('disabled', 'disabled');
+                    $('#submit').val('Enviando...');
                 },
                 success: function (data) {
                     // $('#linea_nuevo_form')[0].reset();
@@ -127,7 +144,7 @@ Principal =0;
                         HelperNotificaciones.notificaciones('Linea Agregada con Exito', 'Telefonia', 'success');
 
                     } else {
-                       HelperPrintMsg.printErrorMsg(data.error);
+                        HelperPrintMsg.printErrorMsg(data.error);
                     }
                 }
             });

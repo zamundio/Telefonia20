@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -415,9 +415,9 @@ $('#AñadirpersonalCC_form').on('submit', function (e) {
 
           $('#AñadirpersonalCC_form').parsley().reset();
           $('#AñadirpersonalCC').modal('hide');
-          Helper.notificaciones('Personal Agregado con Exito', 'Telefonia', 'success');
+          HelperNotificaciones.notificaciones('Personal Agregado con Exito', 'Telefonia', 'success');
         } else {
-          printErrorMsg(data.error);
+          HelperPrintMsg.printErrorMsg(data.error);
         }
       },
       error: function error(data) {
@@ -494,9 +494,9 @@ $('#CrearCC_form').submit(function (event) {
           $('.jstree').jstree(true).select_node(cc_codigo);
           $('#CrearCC').parsley().reset();
           $('#CrearCC').modal('hide');
-          Helper.notificaciones('Cenro de Coste Agregado con Exito', 'Telefonia', 'success');
+          HelperNotificaciones.notificaciones('Cenro de Coste Agregado con Exito', 'Telefonia', 'success');
         } else {
-          printErrorMsg(data.error);
+          HelperPrintMsg.printErrorMsg(data.error);
         }
       }
     });
@@ -507,7 +507,7 @@ $('#CrearCC_form').submit(function (event) {
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /*!*******************************************************!*\
   !*** multi ./resources/assets/js/estructura/index.js ***!
   \*******************************************************/

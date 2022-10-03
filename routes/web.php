@@ -30,18 +30,49 @@ Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDat
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');
 Route::get('lineas/{id}/editar', 'LineaUsuarioController@editar')->name('editar_linea');
 Route::post('lineas', 'LineaUsuarioController@guardar')->name('GuardarLinea');
+Route::put('lineas/{abrev}', 'LineaUsuarioController@actualizar')->name('ActualizarLinea');
+
+Route::get('CentrosdeCoste', 'MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');
+Route::post('submit_form_añadirpersonal', 'PersonalExtraController@store')->name('guardarpersonal');
+
+
+Route::get('AmpliacionesDatatable', 'LineaUsuarioController@ShowAmpliaciones')->name('AmpliacionesDatatable');
+Route::get('ampliaciongb/crear', 'AmpliacionesGBController@crear')->name('AñadirAmpliacion');
+Route::delete('ampliaciongb/{id}/eliminar', 'AmpliacionesGBController@eliminar')->name('eliminar_ampliacion');
+Route::get('ampliaciongb/{id}/editar', 'AmpliacionesGBController@editar')->name('editar_ampliacion');
+Route::put('ampliaciongb/{id}', 'AmpliacionesGBController@actualizar')->name('actualizar_ampliacion');
+
+Route::get('TerminalesDatatable', 'LineaUsuarioController@ShowTerminalesUser')->name('TerminalesDatatable');
+Route::post('terminalesusuarios/crear', 'TerminalesUserController@crear')->name('GuardarTerminalesUsuarios');
+Route::put('terminalesusuarios/{id}/ActEstado', 'TerminalesUserController@actestado')->name('ActEstado_terminalusuario');
+Route::get('terminalesusuarios/{id}/editar', 'TerminalesUserController@editar')->name('editar_terminalusuario');
+Route::put('terminalesusuariosEstado/{estado}', 'TerminalesUserController@actualizarEstado')->name('actualizar_terminalusuarioEstado');
+Route::put('terminalesusuarios/{id}', 'TerminalesUserController@actualizar')->name('actualizar_terminalusuario');
+/*RUTAS Estructura -Modal Terminales*/
+Route::get('fillTerminalesPool', 'TerminalesMovilController@GetPoolterminales')->name('fillTerminalesPool');
+Route::get('GetPoolFilteredSel/{id?}', 'TerminalesMovilController@GetPoolFilteredSel')->name('GetPoolFilteredSel');
+Route::get('GetPoolModelos', 'TerminalesMovilController@GetPoolModelos')->name('GetPoolModelos');
+/*RUTAS Terminales*/
+route::get('modelosterminales', 'ModelosTerminalesController@index')->name('modelosterminales');
+Route::get('terminales/crear', 'ModelosTerminalesController@crear')->name('crear_terminal');
+Route::post('terminales', 'ModelosTerminalesController@guardar')->name('guardar_terminal');
+Route::get('terminales/{id}/editar', 'ModelosTerminalesController@editar')->name('editar_terminal');
+Route::put('terminales/{id}', 'ModelosTerminalesController@actualizar')->name('actualizar_terminal');
+Route::get('terminales/resumen', 'ResumenTerminalesController@resumen')->name('resumen_terminales');
+Route::get('ajax-sesion', 'ResumenTerminalesController@GetTablaEstado')->name('resumen_getEstado');
+Route::get('inventarioterminalesuser/{id}', 'inventarioterminaluserController@index')->name('terminales-user-table');
+route::get('terminales_user', 'TerminalesUsersDatatableController@index')->name('terminales_user');
 
 
 route::get('TarjetasDatatable', 'LineaUsuarioController@ShowTarjetas')->name('TarjetasDatatable');
-
-
-
-Route::get('CentrosdeCoste','MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');
-Route::post('submit_form_añadirpersonal','PersonalExtraController@store')->name('guardarpersonal');
-
 Route::post('tarjetasusuarios/{id}', 'TarjetaLineaController@guardar')->name('crear_tarjetalinea');
+Route::get('tarjetasusuarios/{id}/editar', 'TarjetaLineaController@editar')->name('editar_tarjeta');
+Route::put('tarjetasusuarios/{id}', 'TarjetaLineaController@actualizar')->name('actualizar_tarjeta');
 Route::delete('tarjetasusuarios/{id}/eliminar', 'TarjetaLineaController@eliminar')->name('eliminar_tarjeta');
 
+
+/* Maestras*/
+Route::get('GetPlanGB', 'MaestrasController@PlanGBindex')->name('GetPlanGB');
 
 Route::get('ExportFacturacion', 'ListadosController@exportfacturacion')->name('ExportFacturacion');
 Route::get('ExportListadoSede', 'ListadosController@exportListadoSede')->name('ExportListadoSede');

@@ -86,6 +86,7 @@
 <script src="{{ asset('js/estructura/index.js') }}"></script>
 
 
+
 <script>
     var load_urlTree = "{{ route('ajaxFillStructTree.get') }}";
 

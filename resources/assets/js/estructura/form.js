@@ -1,4 +1,6 @@
 $(function() {
+    $table_tarjetas = "";
+    $table_terminales = "";
     $(document).popover({
         selector: '[data-toggle=hover]',
         html: true,
@@ -22,8 +24,8 @@ $(function() {
 
             // DatatableHistoricoTerminales(nummovil);
             DatatableTarjetas(nummovil);
-            // DatatableAmpliaciones(nummovil);
-            // DatatableTerminales(nummovil);
+            DatatableAmpliaciones(nummovil);
+            DatatableTerminales(nummovil);
 
             // document.getElementById('Apellidos').value = nummovil
         },
@@ -60,7 +62,7 @@ $(function() {
                 "targets": [1]
             },
             {
-                "width": "20%",
+                "width": "15%",
                 "targets": [2]
             },
             {
@@ -103,6 +105,8 @@ $(function() {
                     $modal = $('#LineaModal_Nuevo');
                     // $modal.find('form')[0].reset();
                     $('#linea_nuevo_form').parsley().reset();
+                    $('#toggle-LXLS_nuevo').bootstrapToggle('on');
+                    $('#toggle-princ_nuevo').bootstrapToggle('on');
                     $("#LineaModal_Nuevo").modal("show");
                 },
 
@@ -137,12 +141,26 @@ $(function() {
                             document.querySelector('#num_mo_editar_original_text').value = data.id;
                             document.querySelector('#Observ_editar').value = data.Observaciones;
                             document.querySelector('#Observ_editar_original_text').value = data.Observaciones;
-                            if (data.ListadoXLS == "SI") {
-                                document.querySelector('#LXLS_editar').checked = true;
+                            document.querySelector('#abrev_editar').value = data.Abreviado;
+                            document.querySelector('#abrev_editar_original_text').value = data.Abreviado;
+                            if (data.ListadoXLS == "1") {
+                                // document.querySelector('#LXLS_editar').checked = true;
+
+                                $('#toggle-LXLS_editar').bootstrapToggle('on');
                             } else {
-                                document.querySelector('#LXLS_editar').checked = false;
+                                // document.querySelector('#LXLS_editar').checked = false;
+                                $('#toggle-LXLS_editar').bootstrapToggle('off');
                             }
-                            document.querySelector('#LXLS_editar_original_text').value = data.ListadoXLS;
+                            document.querySelector('#Princ_editar_original_text').value = data.ListadoXLS;
+                            if (data.Principal == "1") {
+                                // document.querySelector('#Princ_editar').checked = true;
+
+                                $('#toggle-principal_editar').bootstrapToggle('on');
+                            } else {
+                                // document.querySelector('#Princ_editar').checked = false;
+                                $('#toggle-principal_editar').bootstrapToggle('off');
+                            }
+                            document.querySelector('#Princ_editar_original_text').value = data.Principal;
                             $("#LineaModal_Editar").modal("show");
                         },
                         error: function() {
@@ -165,13 +183,28 @@ $(function() {
 
             },
             {
+                "data": 'Observaciones',
+                "render": function(data, type, full, meta) {
+                    if (data != '' &&
+                        data != null) {
+                        $ob = "<a class='btn btn-primary btn-circle ' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
+                        $obpop = "<a class='btn btn-primary btn-circle' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
+                        return $obpop;
+                    } else {
+                        return "";
+                    }
+
+                }
+            }, {
+                data: 'Abreviado',
+                name: 'Abreviado'
+            },
+
+            {
                 data: 'id',
                 name: 'num_movil'
             },
-            {
-                data: 'Observaciones',
-                name: 'Observaciones'
-            },
+
             {
                 data: 'Principal',
                 name: 'Principal'
@@ -209,10 +242,10 @@ $(function() {
 function DatatableTarjetas(numm) {
 
 
-    $table = $('.yajra-datatable-Tarjetas').DataTable({
+    $table_tarjetas = $('.yajra-datatable-Tarjetas').DataTable({
         fnInitComplete: function() {
             $("[data-toggle='tooltip']").tooltip();
-            rw = $table.row('#TablaTerminales tbody tr:eq(0)').data();
+            rw = $table_tarjetas.row('#TablaTerminales tbody tr:eq(0)').data();
 
 
         },
@@ -251,16 +284,20 @@ function DatatableTarjetas(numm) {
                 "targets": [1],
 
             },
+            // {
+            //     "width": "3%",
+            //     "targets": [2]
+            // },
             {
-                "width": "3%",
+                "width": "25%",
                 "targets": [2]
             },
             {
-                "width": "25%",
+                "width": "1%",
                 "targets": [3]
             },
             {
-                "width": "1%",
+                "width": "2%",
                 "targets": [4]
             },
             {
@@ -268,7 +305,7 @@ function DatatableTarjetas(numm) {
                 "targets": [5]
             },
             {
-                "width": "2%",
+                "width": "1%",
                 "targets": [6]
             },
             {
@@ -278,10 +315,6 @@ function DatatableTarjetas(numm) {
             {
                 "width": "1%",
                 "targets": [8]
-            },
-            {
-                "width": "1%",
-                "targets": [9]
             },
 
         ],
@@ -348,7 +381,7 @@ function DatatableTarjetas(numm) {
                         type: 'get',
 
                         success: function(data) {
-                            document.querySelector('#abrev_tarj_editar').value = data.Abrev;
+
                             document.querySelector('#imei_tarj_editar').value = data.id;
                             document.querySelector('#pin_tarj_editar').value = data.PIN;
                             document.querySelector('#puk_tarj_editar').value = data.PUK;
@@ -363,7 +396,7 @@ function DatatableTarjetas(numm) {
                             } else {
                                 $('#toggle-solodatos_tarj_editar').bootstrapToggle('off');
                             }
-                            document.querySelector('#fecha_asig_tarj_editar').value = data.Fecha_Activacion;
+                            document.querySelector('#fecha').value = data.Fecha_Activacion;
                             document.querySelector('#obs_tarj_editar').value = data.Observaciones;
                             $("#TarjetaLineaModal_Editar").modal("show");
                         },
@@ -399,10 +432,10 @@ function DatatableTarjetas(numm) {
 
                 }
             },
-            {
-                data: 'Abrev',
-                name: 'Abrev'
-            },
+            // {
+            //     data: 'Abrev',
+            //     name: 'Abrev'
+            // },
             {
                 data: 'id',
                 name: 'num_sim'
@@ -447,6 +480,9 @@ function DatatableAmpliaciones(numm) {
 
 
     $table = $('.yajra-datatable-Ampliaciones').DataTable({
+        scrollY: '150px',
+        scrollCollapse: true,
+        paging: false,
         "drawCallback": function(settings) {
 
             var hasRows = this.api().rows().data().length > 0;
@@ -490,33 +526,33 @@ function DatatableAmpliaciones(numm) {
         },
 
 
-        footerCallback: function(row, data, start, end, display) {
-            var api = this.api(),
-                data;
+        // footerCallback: function(row, data, start, end, display) {
+        //     var api = this.api(),
+        //         data;
 
-            // converting to interger to find total
-            var intVal = function(i) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '') * 1 :
-                    typeof i === 'number' ?
-                    i : 0;
-            };
+        //     // converting to interger to find total
+        //     var intVal = function(i) {
+        //         return typeof i === 'string' ?
+        //             i.replace(/[\$,]/g, '') * 1 :
+        //             typeof i === 'number' ?
+        //             i : 0;
+        //     };
 
-            // computing column Total of the complete result
-            var monTotal = api
-                .column(3)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-            // console.log(monTotal);
-            $(api.column(0).footer()).html('');
-            $(api.column(1).footer()).html('');
-            $(api.column(2).footer()).html('Total');
-            $(api.column(3).footer()).html(monTotal + " €");
-            $(api.column(4).footer()).html('');
-            $(api.column(5).footer()).html(' ');
-        },
+        //     // computing column Total of the complete result
+        //     var monTotal = api
+        //         .column(3)
+        //         .data()
+        //         .reduce(function(a, b) {
+        //             return intVal(a) + intVal(b);
+        //         }, 0);
+        //     // console.log(monTotal);
+        //     $(api.column(0).footer()).html('');
+        //     $(api.column(1).footer()).html('');
+        //     $(api.column(2).footer()).html('Total');
+        //     $(api.column(3).footer()).html(monTotal + " €");
+        //     $(api.column(4).footer()).html('');
+        //     $(api.column(5).footer()).html(' ');
+        // },
 
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -555,11 +591,8 @@ function DatatableAmpliaciones(numm) {
             }, {
                 "width": "15%",
                 "targets": [4]
-            },
-            {
-                "width": "15%",
-                "targets": [5]
             }
+
 
         ],
         fixedColumns: true,
@@ -585,6 +618,7 @@ function DatatableAmpliaciones(numm) {
         },
         buttons: [{
                 text: 'Añadir Ampliación',
+                className: 'btn btn-primary btn-sm btn-rounded',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
@@ -601,6 +635,7 @@ function DatatableAmpliaciones(numm) {
 
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
+                className: 'btn btn-info',
                 action: function(e, dt, node, config) {
 
 
@@ -613,6 +648,7 @@ function DatatableAmpliaciones(numm) {
 
                 text: 'Editar Ampliación',
                 titleAttr: 'Editar Ampliación',
+                className: 'btn btn-success ',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
@@ -670,10 +706,10 @@ function DatatableAmpliaciones(numm) {
             {
                 data: 'plan',
                 name: 'Plan'
-            }, {
-                data: 'precio',
-                name: 'Coste'
-            },
+            }, //{
+            //     data: 'precio',
+            //     name: 'Coste'
+            // },
             {
                 "data": 'Observaciones',
                 "render": function(data, type, full, meta) {
@@ -707,7 +743,7 @@ function DatatableAmpliaciones(numm) {
 function DatatableTerminales(numm) {
 
 
-    $table = $('.yajra-datatable-Terminales').DataTable({
+    $table_terminales = $('.yajra-datatable-Terminales').DataTable({
 
         "drawCallback": function(settings) {
 
@@ -768,7 +804,7 @@ function DatatableTerminales(numm) {
                 }
             },
             {
-                "width": "40%",
+                "width": "10%",
                 "targets": [1]
             },
             {
@@ -787,23 +823,16 @@ function DatatableTerminales(numm) {
                     }
                 },
             },
-            {
-                "width": "25%",
-                "targets": [4],
 
-            },
             {
-                "width": "20%",
+                "width": "40%",
                 "targets": [4]
             },
             {
                 "width": "25%",
                 "targets": [5]
             },
-            {
-                "width": "10%",
-                "targets": [6]
-            },
+
 
 
         ],
@@ -830,12 +859,14 @@ function DatatableTerminales(numm) {
         },
         buttons: [{
                 text: 'Añadir Terminal',
+                className: 'btn btn-primary btn-sm btn-rounded',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $('#terminales_nuevo_form')[0].reset();
                     $('#terminales_nuevo_form').parsley().reset();
-
+                    $('#toggle-termactual_nuevo').bootstrapToggle('on');
+                    $('#toggle-devant_nuevo').bootstrapToggle('on');
                     $('#HiddenFields').hide();
                     $('#HiddenFields2').hide();
                     $('#HiddenFields2').hide();
@@ -880,6 +911,7 @@ function DatatableTerminales(numm) {
 
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
+                className: 'btn btn-info',
                 action: function(e, dt, node, config) {
 
 
@@ -892,6 +924,7 @@ function DatatableTerminales(numm) {
 
                 text: 'Editar Terminal',
                 titleAttr: 'Editar Terminal',
+                className: 'btn btn-success ',
                 action: function(e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
@@ -950,6 +983,7 @@ function DatatableTerminales(numm) {
 
             }, {
                 text: 'Reasignar Terminal',
+                className: 'btn btn-warning ',
                 action: function(e, dt, node, config) {
                     $('#TerminalModal_Estado').parsley().reset();
                     $('#submit_estado_term').val('Enviar')
@@ -1049,6 +1083,56 @@ function DatatableTerminales(numm) {
 
                 },
 
+            }, {
+                text: '<span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-danger"></span>Crear Terminal</a>',
+                className: 'btn icon-btn btn-outline-danger',
+
+                action: function(e, dt, node, config) {
+                    $(".print-error-msg").find("ul").html('');
+                    $(".print-error-msg").css('display', 'none');
+                    $('#terminales_nuevo_form')[0].reset();
+                    $('#terminales_nuevo_form').parsley().reset();
+
+                    $('#HiddenFields').hide();
+                    $('#HiddenFields2').hide();
+                    $('#HiddenFields2').hide();
+                    $("#type").html("");
+                    $("#type").select2();
+                    $("#type").select2({
+                        // Activamos la opcion "Tags" del plugin
+                        width: 'resolve',
+                        language: "es",
+                        ajax: {
+                            dataType: 'json',
+                            url: 'GetPoolModelos',
+                            delay: 250,
+                            processResults: function(data) {
+
+                                return {
+
+                                    results: $.map(data, function(item) {
+
+                                        return {
+                                            text: item.Terminal,
+                                            id: item.id
+                                        }
+                                    })
+                                };
+                            },
+                            cache: true
+                                // processResults: function (data, page) {
+
+                            //     return {
+                            //         results: data
+                            //     };
+                            // },
+                        }
+                    });
+                    $('#subtype').select2();
+
+                    $("#TerminalUser_Nuevo").modal("show");
+                },
+
             }
 
         ],
@@ -1076,10 +1160,7 @@ function DatatableTerminales(numm) {
                 name: 'pivot.f_cambio_alta'
             },
 
-            {
-                data: 'pivot.Motivo',
-                name: 'pivot.Motivo'
-            },
+
             {
                 data: 'pivot.Observaciones',
                 name: 'pivot.Observaciones'
@@ -1088,10 +1169,7 @@ function DatatableTerminales(numm) {
                 data: 'Actual',
                 name: 'Actual'
             },
-            {
-                data: 'Devuelve Anterior',
-                name: 'Devuelve Anterior'
-            }
+
 
 
         ],
@@ -1365,13 +1443,7 @@ $("#TablaTarjetas").on('submit', '.form-eliminar', function() {
 
 
 
-function printErrorMsg(msg) {
-    $(".print-error-msg").find("ul").html('');
-    $(".print-error-msg").css('display', 'block');
-    $.each(msg, function(key, value) {
-        $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-    });
-}
+
 
 
 
@@ -1385,7 +1457,7 @@ $('#TablaLineas tbody').on('click', 'tr', function() {
         return $(this).text();
     }).get();
 
-    nummovil = tableData[1];
+    nummovil = tableData[3];
     linea = nummovil;
     $('#TablaLineas tbody > tr').removeClass('markrow');
     $(this).addClass('markrow');
@@ -1540,7 +1612,7 @@ $('#TablaLineas tbody').on('click', 'tr', function() {
         return $(this).text();
     }).get();
 
-    nummovil = tableData[1];
+    nummovil = tableData[3];
     linea = nummovil;
     var table = $('#TablaLineas').DataTable();
     table.$("input[type=checkbox]").prop("checked", false);

@@ -1576,12 +1576,12 @@ textarea.parsley-error:focus {
 }
 
 td.details-control {
-    background: url('/public/images/details_open.png') no-repeat center center;
+    background: url('/images/details_open.png') no-repeat center center;
     cursor: pointer;
 }
 
 tr.shown td.details-control {
-    background: url('/public/images/details_close.png') no-repeat center center;
+    background: url('/images/details_close.png') no-repeat center center;
     cursor: pointer;
 }
 
@@ -1608,8 +1608,6 @@ tr.shown td.details-control {
 }
 
 @media (min-width: 768px) {
-    .col-sm-3-Email,
-    .col-sm-8-Email,
     .col-sm-3-DNI {
         float: left;
     }
@@ -1621,14 +1619,35 @@ tr.shown td.details-control {
     }
     .col-sm-3-fecha {
         width: 22.16666667%;
+        margin-left: 10px;
+    }
+    .col-sm-3-abrev {
+        width: 14.16666667%;
+        margin-left: 10px;
     }
     .col-sm-8-Email {
         width: 50.83333333%;
+        margin-left: 10px;
+    }
+    .col-sm-8-select2 {
+        width: 120.83333333%;
+        margin-left: 10px;
+    }
+    .col-sm-6-Email {
+        width: 23.83333333%;
+        margin-left: 10px;
     }
 }
 
-#wrap {
-    width: 450px;
-    height: 400px;
-    overflow: auto;
+.btn-glyphicon {
+    padding: 8px;
+    background: #f6f6f6;
+    margin-right: 4px;
+    color: #000000;
+}
+
+.icon-btn {
+    padding: 1px 15px 3px 2px;
+    border-radius: 50px;
+    /* create gap between buttons for display, you can remove this*/
 }

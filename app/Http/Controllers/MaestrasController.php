@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\PlanGB;
 use App\CentrosCoste;
-use App\CentroCosteExtra;
 
+use App\CentroCosteExtra;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -78,6 +79,31 @@ if ($request->ajax()) {
         $cc = new CentroCosteExtra($requestData);
         $cc->save();
     }
+public function PlanGBindex(Request $request)
+    {
+
+
+
+
+        $data = [];
+
+
+
+        $search = $request->q;
+        $data = PlanGB::select("Id", "GB")->where('GB', 'LIKE', "%$search%")->get();
+
+
+
+        return response()->json($data);
+
+
+
+
+
+
+
+    }
+
 
 }
 
