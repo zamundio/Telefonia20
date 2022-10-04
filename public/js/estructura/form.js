@@ -844,7 +844,9 @@ function DatatableTerminales(numm) {
           "url": 'terminalesusuarios/' + $terminal + '/editar',
           type: 'get',
           success: function success(data) {
-            if (typeof data.term['Nserie'] === 'undefined' || data.term['N erie'] === null) {
+            console.log(data.term['Nserie']);
+
+            if (typeof data.term['Nserie'] === 'undefined' || data.term['Nserie'] === null) {
               document.querySelector('#ns_terminal').innerHTML = "";
             } else {
               document.querySelector('#ns_terminal').innerHTML = "N Serie:   " + data.term['Nserie'];
@@ -856,13 +858,10 @@ function DatatableTerminales(numm) {
               document.querySelector('#imei_terminal').innerHTML = "IMEI:   " + data.term.IMEI;
             }
 
-            document.querySelector('#modelo_terminal').innerHTML = $modelo;
-            document.querySelector('#motivo_editar').value = data.Motivo;
-            document.querySelector('#motivo_editar_original_text').value = data.Motivo;
+            document.querySelector('#modelo_terminal').innerHTML = "Modelo:   " + $modelo;
             document.querySelector('#Observ_term_editar').value = data.Observaciones;
             document.querySelector('#Observ_term_editar_original_text').value = data.Observaciones;
             document.querySelector('#toggle-termactual_editar_original_text').value = data.Actual;
-            document.querySelector('#toggle-devant_editar_original_text').value = data.Devuelve_Anterior;
 
             if (data.Actual == "1") {
               $('#toggle-termactual_editar').bootstrapToggle('on');
@@ -938,23 +937,14 @@ function DatatableTerminales(numm) {
             }
 
             document.querySelector('#modelo_terminal_estado').innerHTML = $modelo;
-            document.querySelector('#motivo_estado').value = data.Motivo;
-            document.querySelector('#motivo_editar_original_text').value = data.Motivo;
             document.querySelector('#Observ_term_estado').value = data.Observaciones;
             document.querySelector('#Observ_term_editar_original_text').value = data.Observaciones;
             document.querySelector('#toggle-termactual_editar_original_text').value = data.Actual;
-            document.querySelector('#toggle-devant_editar_original_text').value = data.Devuelve_Anterior;
 
             if (data.Actual == "1") {
               $('#termactual_estado').bootstrapToggle('on');
             } else {
               $('#termactual_estado').bootstrapToggle('off');
-            }
-
-            if (data.Devuelve_Anterior == "1") {
-              $('#devant_estado').bootstrapToggle('on');
-            } else {
-              $('#devant_estado').bootstrapToggle('off');
             }
 
             $('#TerminalModal_Estado').modal("show");
@@ -1002,7 +992,7 @@ function DatatableTerminales(numm) {
           }
         });
         $('#subtype').select2();
-        $("#TerminalUser_Nuevo").modal("show");
+        $("#Terminal_User_Modal_Crear").modal("show");
       }
     }],
     // order: [

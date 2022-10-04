@@ -26,7 +26,7 @@
                         <label for="type" class="col-sm-6 control-label">Modelo</label>
                         <div class=" col-sm-8-select2">
                             <select name="type" id="type" class="form-control select2-hidden-accessible" data-width="160%" data-parsley-required="true" data-parsley-trigger="change">
-                                <option>-- Terminal --</option>
+                                <option>-- Modelo --</option>
                             </select>
                         </div>
                     </div>
@@ -183,10 +183,11 @@
             this.$element.attr('name'));
     });
     /********Boton Submit del Modal Agregar Terminal **************/
-    $(' .btn-submit-term').click(function (event) {
+   $('#TerminalUser_Nuevo').submit(function (e) {
 
-        terminal_movil_id = $('#subtype').val();
-        Motivo = $('#motivo').val();
+        // terminal_movil_id = $(("input[id=subtype]").val();
+       var terminal_movil_id =$('#type').find(':selected').val();
+       console.log(terminal_movil_id);
         obs = $('#obs').val();
         termactual = $("input[id=termactual]").val();
         if (termactual == "false") {
@@ -212,10 +213,10 @@
                 data: {
                     linea_usuario_id: nummovil,
                     terminal_movil_id: terminal_movil_id,
-                    Motivo: Motivo,
+
                     Observaciones: obs,
-                    Actual: term,
-                    Devuelve_Anterior: ant
+                    Actual: term
+
 
                 },
                 headers: {
@@ -235,8 +236,10 @@
                         $('#terminales_nuevo_form')[0].reset();
                         $('#terminales_nuevo_form').parsley().reset();
                         $('#TerminalUser_Nuevo').modal('hide')
+                               $table_terminales.ajax.reload();
+
                         HelperNotificaciones.notificaciones('Terminal Agregado con exito', 'Telefonia', 'success');
-                        DatatableTerminales(nummovil);
+                        // DatatableTerminales(nummovil);
 
                     } else {
                         HelperPrintMsg.printErrorMsg(data.error);
@@ -276,5 +279,6 @@
         $('#terminales_nuevo_form').parsley().reset();
         $('.select2-hidden-accessible').val(1).trigger('change.select2');
     });
+
 </script>
 

@@ -287,6 +287,9 @@
 
 </div>
 @include('estructura.modales.terminales.Nuevo')
+@include('estructura.modales.terminales.Editar')
+@include('estructura.modales.terminales.Estado')
+@include('estructura.modales.terminales.Crear')
 @include('estructura.modales.linea.Nuevo')
 @include('estructura.modales.linea.Editar')
 @include('estructura.modales.tarjetas.Nuevo')

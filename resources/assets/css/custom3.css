@@ -1633,6 +1633,10 @@ tr.shown td.details-control {
         width: 120.83333333%;
         margin-left: 10px;
     }
+    .col-sm-6-select2 {
+        width: 100.83333333%;
+        margin-left: 10px;
+    }
     .col-sm-6-Email {
         width: 23.83333333%;
         margin-left: 10px;

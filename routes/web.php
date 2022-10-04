@@ -48,6 +48,7 @@ Route::put('terminalesusuarios/{id}/ActEstado', 'TerminalesUserController@actest
 Route::get('terminalesusuarios/{id}/editar', 'TerminalesUserController@editar')->name('editar_terminalusuario');
 Route::put('terminalesusuariosEstado/{estado}', 'TerminalesUserController@actualizarEstado')->name('actualizar_terminalusuarioEstado');
 Route::put('terminalesusuarios/{id}', 'TerminalesUserController@actualizar')->name('actualizar_terminalusuario');
+Route::get('GetEstadosTerminales', 'MaestrasController@Estadoterminales')->name('GetEstadosTerminales');
 /*RUTAS Estructura -Modal Terminales*/
 Route::get('fillTerminalesPool', 'TerminalesMovilController@GetPoolterminales')->name('fillTerminalesPool');
 Route::get('GetPoolFilteredSel/{id?}', 'TerminalesMovilController@GetPoolFilteredSel')->name('GetPoolFilteredSel');
@@ -55,6 +56,7 @@ Route::get('GetPoolModelos', 'TerminalesMovilController@GetPoolModelos')->name('
 /*RUTAS Terminales*/
 route::get('modelosterminales', 'ModelosTerminalesController@index')->name('modelosterminales');
 Route::get('terminales/crear', 'ModelosTerminalesController@crear')->name('crear_terminal');
+
 Route::post('terminales', 'ModelosTerminalesController@guardar')->name('guardar_terminal');
 Route::get('terminales/{id}/editar', 'ModelosTerminalesController@editar')->name('editar_terminal');
 Route::put('terminales/{id}', 'ModelosTerminalesController@actualizar')->name('actualizar_terminal');
@@ -62,7 +64,8 @@ Route::get('terminales/resumen', 'ResumenTerminalesController@resumen')->name('r
 Route::get('ajax-sesion', 'ResumenTerminalesController@GetTablaEstado')->name('resumen_getEstado');
 Route::get('inventarioterminalesuser/{id}', 'inventarioterminaluserController@index')->name('terminales-user-table');
 route::get('terminales_user', 'TerminalesUsersDatatableController@index')->name('terminales_user');
-
+Route::put('CrearTerminal', 'MaestrasController@CrearTerminal')->name('CrearTerminal');
+Route::put('EditarTerminal/{id?}', 'MaestrasController@EditarTerminal')->name('EditarTerminal');
 
 route::get('TarjetasDatatable', 'LineaUsuarioController@ShowTarjetas')->name('TarjetasDatatable');
 Route::post('tarjetasusuarios/{id}', 'TarjetaLineaController@guardar')->name('crear_tarjetalinea');

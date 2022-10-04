@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\PlanGB;
-use App\CentrosCoste;
+use App\EstadoStock;
 
+use App\CentrosCoste;
+use App\TerminalMovil;
 use App\CentroCosteExtra;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -104,7 +106,53 @@ public function PlanGBindex(Request $request)
 
     }
 
+    public function Estadoterminales(Request $request)
+    {
 
+
+        // if ($request->ajax()) {
+
+        $data = [];
+
+
+
+        $search = $request->q;
+        $data = EstadoStock::select("Id", "Estado")->where('Estado', 'LIKE', "%$search%")->get();
+
+
+
+        return response()->json($data);
+
+    }
+
+    public function CrearTerminal(request $request)
+    {
+        if ($request->ajax()) {
+            $validator = Validator::make($request->all(), [
+
+                'Nserie' => 'nullable|unique:maestra_terminales',
+                'IMEI' => 'nullable|unique:maestra_terminales'
+            ], [
+
+                ' Nserie.unique' => 'El Numero de Serie ya está en uso',
+                ' IMEI.unique' => 'El IMEI ya está en uso'
+
+            ]);
+
+            $requestData = $request->all();
+
+
+            if ($validator->fails()) {
+
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
+
+
+            $terminalmovil = new TerminalMovil($requestData);
+            $terminalmovil->save();
+            return response()->json(['mensaje' => 'ok']);
+        };
+    }
 }
 
 

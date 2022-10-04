@@ -18,7 +18,7 @@ class TerminalMovil extends Model
     public function linea_usuario()
     {
         return $this->belongsToMany(LineaUsuario::class, 'terminales_usuarios_actual')
-            ->withPivot('f_cambio_alta',  'Motivo', 'Observaciones', 'Actual', 'Devuelve_Anterior');
+            ->withPivot('f_cambio_alta', 'Observaciones', 'Actual');
     }
 
     public function modelo()
@@ -34,6 +34,6 @@ class TerminalMovil extends Model
     public function linea_usuario_historico()
     {
         return $this->belongsToMany(LineaUsuario::class, 'lineas_historico_terminales')
-            ->withPivot('f_cambio_alta', 'f_baja', 'Motivo', 'Observaciones');
+            ->withPivot('f_cambio_alta', 'f_baja', 'Observaciones');
     }
 }
