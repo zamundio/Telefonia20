@@ -96,6 +96,7 @@
 $(function () {
   $table_tarjetas = "";
   $table_terminales = "";
+  $table_historico = "";
   $(document).popover({
     selector: '[data-toggle=hover]',
     html: true,
@@ -112,8 +113,8 @@ $(function () {
     fnInitComplete: function fnInitComplete() {
       rw = $table.row(0).data();
       nummovil = rw.id;
-      linea = rw.id; // DatatableHistoricoTerminales(nummovil);
-
+      linea = rw.id;
+      DatatableHistoricoTerminales(nummovil);
       DatatableTarjetas(nummovil);
       DatatableAmpliaciones(nummovil);
       DatatableTerminales(nummovil); // document.getElementById('Apellidos').value = nummovil
@@ -1026,49 +1027,56 @@ function DatatableTerminales(numm) {
 ;
 
 function DatatableHistoricoTerminales(numm) {
-  $table = $('.yajra-datatable-HistTerminales').DataTable({
+  $table_historico = $('.yajra-datatable-HistTerminales').DataTable({
     InitComplete: function InitComplete() {
       $("[data-toggle='tooltip']").tooltip();
     },
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
     },
+    buttons: [{}],
     columnDefs: [{
-      "width": "40%",
+      "width": "5%",
       "targets": [0]
     }, {
-      "width": "40%",
+      "width": "30%",
       "targets": [1]
     }, {
-      "width": "40%",
+      "width": "15%",
       "targets": [2]
     }, {
       "width": "15%",
-      "targets": [3],
-      render: function render(d) {
-        moment.locale('es-ES');
-
-        if (d != null) {
-          return moment(d).format('DD/MM/YYYY', 'es');
-        } else {
-          return '';
-        }
-      }
+      "targets": [3]
     }, {
-      "width": "25%",
-      "targets": [4],
-      render: function render(d) {
-        moment.locale('es-ES');
-
-        if (d != null) {
-          return moment(d).format('DD/MM/YYYY', 'es');
-        } else {
-          return '';
-        }
-      }
+      "width": "15%",
+      "targets": [4]
     }, {
-      "width": "20%",
+      "width": "15%",
       "targets": [5]
+    }, {
+      "width": "40%",
+      "targets": [6],
+      render: function render(d) {
+        moment.locale('es-ES');
+
+        if (d != null) {
+          return moment(d).format('DD/MM/YYYY', 'es');
+        } else {
+          return '';
+        }
+      }
+    }, {
+      "width": "40%",
+      "targets": [7],
+      render: function render(d) {
+        moment.locale('es-ES');
+
+        if (d != null) {
+          return moment(d).format('DD/MM/YYYY', 'es');
+        } else {
+          return '';
+        }
+      }
     }],
     fixedColumns: true,
     select: {
@@ -1085,11 +1093,22 @@ function DatatableHistoricoTerminales(numm) {
     bDestroy: true,
     bautoWidth: false,
     "ajax": {
-      "url": 'TerminalesHistDatatable?linea_usuario_id=' + numm,
+      "url": 'TerminalesHistDatatable?id=' + numm,
       "type": "get"
     },
     order: [[3, "desc"]],
     columns: [{
+      "data": 'Observaciones',
+      "render": function render(data, type, full, meta) {
+        if (data != "" & data != null) {
+          $ob = "<a class='btn btn-primary btn-circle ' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
+          $obpop = "<a class='btn btn-primary btn-circle' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
+          return $obpop;
+        } else {
+          return "";
+        }
+      }
+    }, {
       data: 'Modelo',
       name: 'Modelo'
     }, {
@@ -1099,17 +1118,17 @@ function DatatableHistoricoTerminales(numm) {
       data: 'IMEI',
       name: 'IMEI'
     }, {
-      data: 'pivot.f_cambio_alta',
-      name: 'pivot.f_cambio_alta'
+      data: 'estadoant',
+      name: 'estadoant'
     }, {
-      data: 'pivot.f_baja',
-      name: 'pivot.f_baja'
+      data: 'estadoact',
+      name: 'estadoact'
     }, {
-      data: 'pivot.Motivo',
-      name: 'pivot.Motivo'
+      data: 'fechaasig',
+      name: 'fechaasig'
     }, {
-      data: 'pivot.Observaciones',
-      name: 'pivot.Observaciones'
+      data: 'fechacambio',
+      name: 'fechacambio'
     }]
   });
 }
@@ -1274,6 +1293,8 @@ $('#TablaTerminales tbody').on('click', 'tr', function () {
   }).get();
   var table = $('#TablaTerminales').DataTable();
   $terminal = table.row(this).data().id;
+  $modelo = table.row(this).data().Modelo;
+  console.log($modelo);
   var table = $('#TablaTerminales').DataTable();
   table.$("input[type=checkbox]").prop("checked", false);
   $(this).find('input[type=checkbox]').prop('checked', true);
@@ -1336,12 +1357,13 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
   $(this).find('input[type=checkbox]').prop('checked', true);
   var url = "TarjetasDatatable?linea_usuario_id=".concat(nummovil);
   $('.yajra-datatable-Tarjetas').DataTable().ajax.url(url).load();
-  $('.yajra-datatable-Tarjetas').DataTable().draw(); // var url = `AmpliacionesDatatable?linea_usuario_id=${nummovil}`;
-  // $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
-  // $('.yajra-datatable-Ampliaciones').DataTable().draw();
-  // var url = `TerminalesDatatable?linea_usuario_id=${nummovil}`;
-  // $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
-  // $('.yajra-datatable-Terminales').DataTable().draw();
+  $('.yajra-datatable-Tarjetas').DataTable().draw();
+  var url = "AmpliacionesDatatable?linea_usuario_id=".concat(nummovil);
+  $('.yajra-datatable-Ampliaciones').DataTable().ajax.url(url).load();
+  $('.yajra-datatable-Ampliaciones').DataTable().draw();
+  var url = "TerminalesDatatable?linea_usuario_id=".concat(nummovil);
+  $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
+  $('.yajra-datatable-Terminales').DataTable().draw();
 });
 
 function ajaxRequest(form) {

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\HistoricoTerminalesUsers;
 use App\TerminalMovil;
 use App\TerminalesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\HistoricoTerminalesUserController;
 
 class TerminalesUserController extends Controller
 {
-    public function crear(Request $request)
+    public function AsignarTerminal(Request $request)
     {
 
 
@@ -17,9 +19,14 @@ class TerminalesUserController extends Controller
         $request->request->add(['f_cambio_alta' => Carbon::now()]);
         $requestData = $request->all();
 
+
+
+
         $linea = new TerminalesUsers($requestData);
         $linea->save();
+
         $terminal = TerminalMovil::findorFail($request->terminal_movil_id);
+
         if ($terminal) {
 
             $terminal->Estado = "1";
@@ -29,13 +36,19 @@ class TerminalesUserController extends Controller
         return response()->json(['success' => 'terminal Agregado']);
     }
 
+
+
+
+
     public function actestado(request $request, $id)
     {
 
         if ($request->ajax()) {
             TerminalesUsers::where('terminal_movil_id', $id)->delete();
-            $historicoterminal = new HistoricoTerminales();
-            $historicoterminal->fill($request->except('Estado'));
+            $historicoterminal = new HistoricoTerminalesUsers($request->toarray());
+
+
+            // $historicoterminal->fill($request->except('Estado'));
             $historicoterminal->save();
 
             $terminal = TerminalMovil::findorfail($id);

@@ -29,11 +29,13 @@ class TerminalesMovilController extends Controller
 
         $term = $request->id ?: '';
 
+
         $terminal = TerminalMovil::with('modelo', 'chkestado')->where('IdTerminal', '=', $term)->where('Estado', '=', 2)->get()->pluck('IMEI', 'id');
         $valid_tags = [];
 
         foreach ($terminal as $id => $Terminal) {
             $valid_tags[] = ['id' => $id, 'text' => $Terminal];
+
         }
         return response()->json($valid_tags);
 

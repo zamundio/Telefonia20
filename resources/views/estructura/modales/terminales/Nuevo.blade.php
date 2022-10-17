@@ -22,18 +22,18 @@
 
                     <input type="hidden" id="termactual" name="termactual">
                     <input type="hidden" id="devant" name="devant">
-                    <div class="form-group col-sm-6">
-                        <label for="type" class="col-sm-6 control-label">Modelo</label>
-                        <div class=" col-sm-8-select2">
+                    <div class="form-group col-sm-9">
+                        <label for="type" class="col-sm-3 control-label">Modelo</label>
+                        <div class=" col-sm-6-select2">
                             <select name="type" id="type" class="form-control select2-hidden-accessible" data-width="160%" data-parsley-required="true" data-parsley-trigger="change">
                                 <option>-- Modelo --</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group col-sm-6">
-                        <label for="subtype" class="col-sm-6 control-label">Terminal</label>
-                        <div class=" col-sm-8-select2">
-                            <select name="subtype" id="subtype" class="form-control select2-hidden-accessible" data-width="120%" data-parsley-required="true" data-parsley-trigger="change">
+                    <div class="form-group col-sm-9">
+                        <label for="subtype" class="col-sm-3 control-label">Terminal</label>
+                        <div class=" col-sm-6-select2">
+                            <select name="subtype" id="subtype" class="form-control col-sm-8-select2 select2-hidden-accessible" data-width="120%" data-parsley-required="true" data-parsley-trigger="change">
                                 <option>-- Terminal --</option>
                             </select>
                         </div>
@@ -59,6 +59,8 @@
 
                     <div class="form-group col-sm-9">
                         @include('includes.botones_crear_modales')
+                        {{-- <input type="submit" class="btn btn-success  btn-submit-term" name="submit_crear_term" id="submit_crear_term" value="Enviar">
+                        <input type="reset" name="reset_crear_term" id="reset_crear_term" class="btn btn-danger btn-cancel-term" data-validate="false" /> --}}
                     </div>
                 </form>
 
@@ -70,9 +72,9 @@
 
 
 <script>
-    var Select2Cascade = (function (window, $) {
+    var Select2CascadeNuevo = (function (window, $) {
 
-        function Select2Cascade(parent, child, url, select2Options) {
+        function Select2CascadeNuevo(parent, child, url, select2Options) {
             var afterActions = [];
             var options = select2Options || {};
 
@@ -101,22 +103,20 @@
                             newOptions += '<option value="' + items[id]["id"] + '">' + items[id]["text"] + '</option>';
                         }
 
-                        child.select2('destroy').html(newOptions).prop("disabled", false)
-                            .select2(options);
-                    } else {
-                        child.select2('destroy').html(newOptions).prop("disabled", true)
-                            .select2(options);
 
+
+                        child.select2('destroy').html(newOptions).prop("disabled", false).select2(options);
+                    } else {
+                        child.select2('destroy').html(newOptions).prop("disabled", true).select2(options);
                     }
+
                     afterActions.forEach(function (callback) {
                         callback(parent, child, items);
                     });
                 });
             });
         }
-
-        return Select2Cascade;
-
+        return Select2CascadeNuevo;
     })(window, $);
 
     $(document).ready(function () {
@@ -126,7 +126,7 @@
 
         $('#HiddenFields').hide();
         $('#HiddenFields2').hide();
-        $('#HiddenFields2').hide();
+
         $('#type').select2({
             placeholder: "Please select an skill",
             allowClear: true,
@@ -162,16 +162,28 @@
 
 
         var select2Options = {
-            width: 'resolve'
+            width: 'resolve',
+
+            allowClear: true,
+            // Activamos la opcion "Tags" del plugin
+            width: 'resolve',
+            language: "es",
+            placeholder: "Terminal"
         };
         // Loading raw JSON files of a secret gist - https://gist.github.com/ajaxray/32c5a57fafc3f6bc4c430153d66a55f5
         var apiUrl = 'GetPoolFilteredSel/:parentId:';
 
         $('#subtype').select2(select2Options);
-        var cascadLoading = new Select2Cascade($('#type'), $('#subtype'), apiUrl, select2Options);
+        var cascadLoading = new Select2CascadeNuevo($('#type'), $('#subtype'), apiUrl, select2Options);
         cascadLoading.then(function (parent, child, items) {});
 
 
+
+
+    });
+    $('#subtype').select2().on("change", function (e) {
+
+        console.log($(this).select2('data')[0]);
 
 
     });
@@ -183,11 +195,12 @@
             this.$element.attr('name'));
     });
     /********Boton Submit del Modal Agregar Terminal **************/
-   $('#TerminalUser_Nuevo').submit(function (e) {
+    $("#TerminalUser_Nuevo").submit(function (e) {
+        e.preventDefault();
 
-        // terminal_movil_id = $(("input[id=subtype]").val();
-       var terminal_movil_id =$('#type').find(':selected').val();
-       console.log(terminal_movil_id);
+        terminal_movil_id = $('#subtype').val();
+        console.log(terminal_movil_id);
+
         obs = $('#obs').val();
         termactual = $("input[id=termactual]").val();
         if (termactual == "false") {
@@ -196,26 +209,20 @@
             term = 1;
         }
 
-        devant = $("input[id=devant]").val();
-        if (devant == "false") {
-            ant = 0;
-        } else {
-            ant = 1;
 
-        }
 
         if ($('#terminales_nuevo_form').parsley().isValid()) {
-            event.preventDefault();
+            // event.preventDefault();
 
             $.ajax({
-                url: 'terminalesusuarios/crear',
+                url: 'terminalesusuarios/asigncreated',
                 type: 'POST',
                 data: {
                     linea_usuario_id: nummovil,
                     terminal_movil_id: terminal_movil_id,
 
                     Observaciones: obs,
-                    Actual: term
+                    Actual: term,
 
 
                 },
@@ -236,11 +243,9 @@
                         $('#terminales_nuevo_form')[0].reset();
                         $('#terminales_nuevo_form').parsley().reset();
                         $('#TerminalUser_Nuevo').modal('hide')
-                               $table_terminales.ajax.reload();
-
                         HelperNotificaciones.notificaciones('Terminal Agregado con exito', 'Telefonia', 'success');
                         // DatatableTerminales(nummovil);
-
+                        $('#TablaTerminales').DataTable().ajax.reload();
                     } else {
                         HelperPrintMsg.printErrorMsg(data.error);
                     }
@@ -257,7 +262,7 @@
 
         $('#HiddenFields').show();
         $('#HiddenFields2').show();
-        $('#HiddenFields3').show();
+
     });
 
 
@@ -281,4 +286,3 @@
     });
 
 </script>
-

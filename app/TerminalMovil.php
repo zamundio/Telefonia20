@@ -12,6 +12,7 @@ class TerminalMovil extends Model
 {
     use HasFactory;
     protected $table = "maestra_terminales";
+
     protected $fillable = ['id', 'IdTerminal', 'Nserie', 'IMEI', 'Estado'];
 
     public $timestamps = false;

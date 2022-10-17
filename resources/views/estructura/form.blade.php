@@ -158,7 +158,7 @@
 
             </div>
             <div class="form-group"></div>
-             <div class="form-group"></div>
+            <div class="form-group"></div>
             <div class="form-row">
 
                 <div class="col-md-4">
@@ -236,7 +236,7 @@
                                 <th width="10px"></th>
                                 <th width="10px">Terminal</th>
                                 <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Fecha Alta o Cambio" width="10px">Fecha</th>
-                                 <th width="10px">Observaciones</th>
+                                <th width="10px">Observaciones</th>
                                 <th width="10px">Actual</th>
 
 
@@ -247,37 +247,41 @@
 
                     </table>
                 </div>
+
             </div>
-            <div class="col-md-4">
+            <div class="form-row">
             </div>
-            <div class="col-md-8">
-                <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-HistTerminales" id="TablaHistTerminales">
-                    <thead>
-                        <h3> Historico Terminales </h3>
-                        <tr>
+            <div class="form-row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-8">
+                    <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-HistTerminales" id="TablaHistTerminales">
+                        <thead>
+                            <h3> Historico Terminales </h3>
+                            <tr>
+                               <th width="10px">Obs</th>
+                                <th width="10px">Terminal</th>
+                                <th width="10px">N Serie</th>
+                                <th width="10px">IMEI</th>
+                                <th width="10px">Estado Ant</th>
+                                <th width="10px">Estado Act</th>
+                                <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Fecha Alta o Cambio" width="10px">Fecha ⏰</th>
+                                <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Fecha Baja del Usuario" width="100x">Fecha ⛔</th>
 
 
-
-                            <th width="10px">Terminal</th>
-                            <th width="10px">N Serie</th>
-                            <th width="10px">IMEI</th>
-                            <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Fecha Alta o Cambio" width="10px">Fecha</th>
-                            <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Fecha Baja del Usuario" width="15px">Fecha B</th>
-                            <th width="10px">Motivo</th>
-                            <th width="10px">Observaciones</th>
-                            {{-- <th width="10px">Actual</th>
+                                {{-- <th width="10px">Actual</th>
                  <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Devuelve Anterior?" width="10px">Devo?</th> --}}
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+
             </div>
-
-
-            {{-- </div> --}}
+                {{-- </div> --}}
 
     </form>
 

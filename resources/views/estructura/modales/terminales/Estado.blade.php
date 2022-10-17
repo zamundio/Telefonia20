@@ -71,10 +71,6 @@
 
 
 
-                        <div class="form-group">
-                            <label>Observaciones:</label>
-                            <textarea class="form-control" name="Observ_term_estado" id="Observ_term_estado" cols="40" rows="3"></textarea>
-                        </div>
 
 
                         <div class="form-group col-sm-9">
@@ -86,6 +82,11 @@
 
                         </div>
                     </div>
+                      <div class="form-group">
+                          <label>Observaciones:</label>
+                          <textarea class="form-control" name="Observ_term_estado" id="Observ_term_estado" cols="40" rows="3"></textarea>
+                      </div>
+
 
                     <div class="form-group">
                         @include('includes.botones_crear_modales')
@@ -202,6 +203,7 @@
     function ActualizarEstado_Pool() {
         event.preventDefault();
         $Estado = document.getElementById("estado").value;
+        $EstadoAnt= "1"
         $lin = document.getElementById('linea_original').value;
 
         $fechaalta = moment($("#fecha_alta").value).format('YYYY/MM/DD', 'es');
@@ -211,12 +213,13 @@
             url: 'terminalesusuarios/' + $terminal + '/ActEstado/',
             type: 'put',
             data: {
-                terminal_movil_id: $terminal,
-                linea_usuario_id: $lin,
-                f_cambio_alta: $fechaalta,
-                f_baja: $fecha_reasig,
+                id_terminal: $terminal,
+                id_linea: $lin,
+                fecha_asignacion: $fechaalta,
+                fecha_cambio: $fecha_reasig,
                 Observaciones: $obs,
-                Estado: $Estado
+                estado_act: $Estado,
+                estado_ant:$EstadoAnt
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -237,6 +240,8 @@
                     $('#TerminalModal_Estado').modal('hide')
 
                     HelperNotificaciones.notificaciones('Terminal Actualizado con exito', 'Telefonia', 'success');
+                    table_terminales.ajax.reload();
+                    $table_historico.ajax.reload();
                     // DatatableHistoricoTerminales(nummovil);
                     // DatatableTerminales(nummovil);
 
@@ -322,7 +327,7 @@
     $(document).ready(function () {
 
         $('#HiddenFieldsEstado').hide();
-        console.log($('#row').val());
+        // console.log($('#row').val());
         var select2Options = {
             width: 'resolve'
         };

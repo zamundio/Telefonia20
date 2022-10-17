@@ -43,12 +43,18 @@ Route::get('ampliaciongb/{id}/editar', 'AmpliacionesGBController@editar')->name(
 Route::put('ampliaciongb/{id}', 'AmpliacionesGBController@actualizar')->name('actualizar_ampliacion');
 
 Route::get('TerminalesDatatable', 'LineaUsuarioController@ShowTerminalesUser')->name('TerminalesDatatable');
-Route::post('terminalesusuarios/crear', 'TerminalesUserController@crear')->name('GuardarTerminalesUsuarios');
+Route::post('terminalesusuarios/asigncreated', 'TerminalesUserController@AsignarTerminal')->name('AsignExistTerminalesUsuarios');
 Route::put('terminalesusuarios/{id}/ActEstado', 'TerminalesUserController@actestado')->name('ActEstado_terminalusuario');
 Route::get('terminalesusuarios/{id}/editar', 'TerminalesUserController@editar')->name('editar_terminalusuario');
 Route::put('terminalesusuariosEstado/{estado}', 'TerminalesUserController@actualizarEstado')->name('actualizar_terminalusuarioEstado');
 Route::put('terminalesusuarios/{id}', 'TerminalesUserController@actualizar')->name('actualizar_terminalusuario');
 Route::get('GetEstadosTerminales', 'MaestrasController@Estadoterminales')->name('GetEstadosTerminales');
+
+
+
+Route::get('TerminalesHistDatatable', 'HistoricoTerminalesUserController@ShowHistTerminalesUser')->name('TerminalesHistDatatable');
+
+
 /*RUTAS Estructura -Modal Terminales*/
 Route::get('fillTerminalesPool', 'TerminalesMovilController@GetPoolterminales')->name('fillTerminalesPool');
 Route::get('GetPoolFilteredSel/{id?}', 'TerminalesMovilController@GetPoolFilteredSel')->name('GetPoolFilteredSel');

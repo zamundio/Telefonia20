@@ -150,7 +150,7 @@ public function PlanGBindex(Request $request)
 
             $terminalmovil = new TerminalMovil($requestData);
             $terminalmovil->save();
-            return response()->json(['mensaje' => 'ok']);
+            return response()->json(['success' => 'terminal Agregado', 'id' => $terminalmovil->id]);
         };
     }
 }
