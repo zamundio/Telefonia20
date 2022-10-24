@@ -202,7 +202,7 @@
 
     function ActualizarEstado_Pool() {
         event.preventDefault();
-        $Estado = document.getElementById("estado").value;
+        $Estado = document.getElementById('estado').value;
         $EstadoAnt= "1"
         $lin = document.getElementById('linea_original').value;
 
@@ -240,7 +240,7 @@
                     $('#TerminalModal_Estado').modal('hide')
 
                     HelperNotificaciones.notificaciones('Terminal Actualizado con exito', 'Telefonia', 'success');
-                    table_terminales.ajax.reload();
+                    $table_terminales.ajax.reload();
                     $table_historico.ajax.reload();
                     // DatatableHistoricoTerminales(nummovil);
                     // DatatableTerminales(nummovil);

@@ -55,7 +55,7 @@ class TerminalesUserController extends Controller
             //    Vuelve a poner el terminal como pool (2)
             if ($terminal) {
 
-                $terminal->Estado = $request->Estado;
+                $terminal->Estado = $request->estado_act;
                 $terminal->save();
             }
             return response()->json(['mensaje' => 'ok']);

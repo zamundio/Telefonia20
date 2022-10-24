@@ -8,6 +8,7 @@
 
 
     <script src="{{ asset('js/estructura/form.js?v=') }}" .$js></script>
+
     {{-- <script src="{{ asset('assets/pages/scripts/estructura/form.js?v=') }}" .$js type="text/javascript"></script> --}}
     {{-- <script src="{{ asset('js/handlebars.js') }}"></script> --}}
 
@@ -25,14 +26,14 @@
                     <td>IMEI:</td>
                     <td>{{ IMEI }}</td>
                 </tr>
-                <tr></tr>
-                    <td>Estado:</td>
-                    <td>{{ Estado }}</td>
-                </tr>
+
             </table>
 @endverbatim
     </script>
+
     <script>
+
+
         var template = Handlebars.compile($("#details-template").html());
 
     </script>

@@ -32,7 +32,7 @@
                         <label>Observaciones:</label>
                         <textarea class="form-control" name="Observ_nuevo" id="Observ_nuevo" cols="40" rows="3"></textarea>
                     </div>
-                       </div>
+
                        <div class="form-check  ml-2">
                            <input type="checkbox" id="toggle-princ_nuevo" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
                            <label class="form-check-label ml-2" for="toggle-princ_nuevo"><strong> Telefono Principal </strong></label>
@@ -44,19 +44,13 @@
                            <label class="form-check-label ml-2" for="toggle-LXLS_nuevo"><strong> XLS </strong></label>
                            <input type="hidden" name="LXLS_nuevo_original_text" id="LXLS_nuevo_original_text" data-parsley-ui-enabled="false">
                        </div>
+                         <p class="errorContent text-center alert alert-danger invisible"></p>
+                      <div class="modal-footer">
+
+    @include('includes.botones_crear_modales')
 
 
-
-                    {{-- <div class="form-group">
-                        <strong>XLS:</strong>
-                        <input class="form-check-input" name="LXLS_nuevo" id="LXLS_nuevo" checked type="checkbox">
-                    </div> --}}
-                    <div class="mt-md-4">
-                    </div>
-
-                    <div class="form-group">
-                        @include('includes.botones_crear_modales')
-                    </div>
+</div>
                 </form>
 
             </div>
@@ -67,18 +61,18 @@
 <script>
     $(document).ready(function () {
 
-
-
         $('#linea_nuevo_form').parsley();
     });
 
 
 
     /********Boton Submit del Modal Agregar Linea **************/
-    $('#LineaModal_Nuevo').submit(function (e) {
+    $('#linea_nuevo_form').submit(function (e) {
+    event.preventDefault();
+
+console.log('en el submit0');
 
 
-        $table = $('.yajra-datatable-Lineas').DataTable();
 
 
         abrev =$("input[name='abrev_nuevo']").val();
@@ -96,7 +90,7 @@
          }
 
 
-
+console.log('en el submit0');
 
 
 

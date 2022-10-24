@@ -59,8 +59,7 @@
 
                     <div class="form-group col-sm-9">
                         @include('includes.botones_crear_modales')
-                        {{-- <input type="submit" class="btn btn-success  btn-submit-term" name="submit_crear_term" id="submit_crear_term" value="Enviar">
-                        <input type="reset" name="reset_crear_term" id="reset_crear_term" class="btn btn-danger btn-cancel-term" data-validate="false" /> --}}
+
                     </div>
                 </form>
 

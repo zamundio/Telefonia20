@@ -9,8 +9,8 @@ class CentrosCoste extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "union_centros_de_coste";
+    protected $table = "centros_de_coste_all";
     protected $primaryKey = 'EMP_COST_CENTER';
-    protected $fillable = ['EMP_CODE','COST_CENTER_DESC', 'EMP_COST_CENTER'];
+    protected $fillable = ['COST_CENTER_DESC', 'EMP_COST_CENTER'];
 
 }

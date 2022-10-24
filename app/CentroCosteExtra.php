@@ -11,5 +11,5 @@ class CentroCosteExtra extends Model
     public $timestamps = false;
     protected $table = "centros_coste_extra";
     protected $primaryKey = 'EMP_COST_CENTER';
-    protected $fillable = ['EMP_CODE', 'COST_CENTER_DESC', 'EMP_COST_CENTER'];
+    protected $fillable = [ 'COST_CENTER_DESC', 'EMP_COST_CENTER'];
 }

@@ -82,7 +82,7 @@
 
 @section('scripts')
 
-
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 <script src="{{ asset('js/estructura/index.js') }}"></script>
 
 

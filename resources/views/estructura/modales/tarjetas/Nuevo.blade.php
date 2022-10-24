@@ -192,7 +192,7 @@
 
                         $('#TarjetaLineaModal_Nuevo').modal('hide');
                         HelperNotificaciones.notificaciones('Tarjeta Agregado con exito', 'Telefonia', 'success');
-                          $table.ajax.reload();
+                          $table_tarjetas.ajax.reload();
                         // DatatableTarjetas(nummovil);
 
                     } else {
