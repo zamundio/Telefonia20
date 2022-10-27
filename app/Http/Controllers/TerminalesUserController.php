@@ -7,8 +7,6 @@ use App\TerminalMovil;
 use App\TerminalesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Http\Controllers\HistoricoTerminalesUserController;
-
 class TerminalesUserController extends Controller
 {
     public function AsignarTerminal(Request $request)

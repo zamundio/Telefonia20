@@ -107,6 +107,17 @@
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
     ),
   ),
+  'thejenos/laradump' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Thejenos\\Laradump\\LaradumpServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Laradump' => 'Thejenos\\Laradump\\LaradumpFacade',
+    ),
+  ),
   'yajra/laravel-datatables-oracle' => 
   array (
     'providers' => 

@@ -15,8 +15,8 @@
         "maatwebsite/excel": "^3.1",
         "mpijierro/identity": "^1.1",
         "spatie/laravel-permission": "^3.0",
+        "thejenos/laradump": "^0.0.2",
         "yajra/laravel-datatables-oracle": "^9.19"
-
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",

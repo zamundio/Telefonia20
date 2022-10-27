@@ -20,12 +20,12 @@
                 <form id="terminales_estado_form" data-parsley-validate>
                     @csrf
                     <div class="form-group col-sm-9">
-                        <label name="modelo_terminal_estado" class="col-sm-6 control-label font-weight-bold"  id="modelo_terminal_estado">Modelo:</label>
+                        <label name="modelo_terminal_estado" class="col-sm-6 control-label font-weight-bold" id="modelo_terminal_estado">Modelo:</label>
                         <input type="hidden" id="fecha_alta" name="fecha_alta">
                         <input type="hidden" id="linea_original" name="linea_original">
                     </div>
                     <div class="form-group col-sm-9">
-                        <label name="ns_terminal_estado" class="col-sm-6 control-label font-weight-bold"  id="ns_terminal_estado">NS:</label>
+                        <label name="ns_terminal_estado" class="col-sm-6 control-label font-weight-bold" id="ns_terminal_estado">NS:</label>
 
                     </div>
                     <div class="form-group col-sm-9">
@@ -33,14 +33,14 @@
 
                     </div>
 
-                  <div class="form-row">
+                    <div class="form-row">
 
-                      <div class="form-group col-sm-3-fecha">
-                          <label for="fechaalta">Fecha</label>
+                        <div class="form-group col-sm-3-fecha">
+                            <label for="fechaalta">Fecha</label>
 
-                          <input id="fecha_estado_term_editar" data-inputmask="'mask':  '99/99/9999'" name="fecha_estado_term_editar" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
-                      </div>
-                  </div>
+                            <input id="fecha_estado_term_editar" data-inputmask="'mask':  '99/99/9999'" name="fecha_estado_term_editar" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
+                        </div>
+                    </div>
                     <div class="form-group col-sm-9">
                         <label for="type" class="col-sm-3 control-label">Estado</label>
                         <div class="col-sm-6">
@@ -82,10 +82,10 @@
 
                         </div>
                     </div>
-                      <div class="form-group">
-                          <label>Observaciones:</label>
-                          <textarea class="form-control" name="Observ_term_estado" id="Observ_term_estado" cols="40" rows="3"></textarea>
-                      </div>
+                    <div class="form-group">
+                        <label>Observaciones:</label>
+                        <textarea class="form-control" name="Observ_term_estado" id="Observ_term_estado" cols="40" rows="3"></textarea>
+                    </div>
 
 
                     <div class="form-group">
@@ -203,7 +203,7 @@
     function ActualizarEstado_Pool() {
         event.preventDefault();
         $Estado = document.getElementById('estado').value;
-        $EstadoAnt= "1"
+        $EstadoAnt = "1"
         $lin = document.getElementById('linea_original').value;
 
         $fechaalta = moment($("#fecha_alta").value).format('YYYY/MM/DD', 'es');
@@ -219,7 +219,7 @@
                 fecha_cambio: $fecha_reasig,
                 Observaciones: $obs,
                 estado_act: $Estado,
-                estado_ant:$EstadoAnt
+                estado_ant: $EstadoAnt
             },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

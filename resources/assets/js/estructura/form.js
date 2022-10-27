@@ -8,6 +8,7 @@ $(function() {
         trigger: 'hover'
 
     });
+
     var linea;
     var $terminal;
     var $tableAmpl;
