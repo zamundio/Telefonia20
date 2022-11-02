@@ -27,12 +27,12 @@ word-spacing: 10px;
 <br>
 <br>
 
-                    <h1 style="color:black;font-size:45px;">           {{ $data->Nombre }}  {{ $data->Apellidos }} </h1>
-                    <h2 style="color:black;font-size:40px;">           {{ $data->Direccion}}</h2>
-                    <h2 style="color:black;font-size:40px;">           {{ $data->CP}}        {{ $data->Poblacion}}</h2>
-                    <h2 style="color:black;font-size:40px;">           {{ $data->Provincia}}</h2>
-                    <h2 style="color:black;font-size:25x;">           Telf. {{ $data->Telf}}</h2>
-                    <h2 style="color:black;font-size:25px;">           Movil. {{ $data->num_movil }}</h2>
+                    <h1 style="color:black;font-size:45px;">           {{ $data->FIRST_NAME }}  {{ $data->LAST_NAME }} </h1>
+                    <h2 style="color:black;font-size:40px;">           {{ $data->HOME_ADDRESS}}</h2>
+                    <h2 style="color:black;font-size:40px;">           {{ $data->HOME_POSTAL_CODE}}        {{ $data->HOME_CITY}}</h2>
+                    <h2 style="color:black;font-size:40px;">           {{ $data->HOME_STATE_CODE}}</h2>
+                    <h2 style="color:black;font-size:25x;">           Telf. {{ $data->PHONE}}</h2>
+
 
 <br>
 <br>

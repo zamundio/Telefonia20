@@ -59,6 +59,7 @@
 
 </div>
 <script>
+
     $(document).ready(function () {
 
         $('#linea_nuevo_form').parsley();

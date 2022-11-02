@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -95,6 +95,7 @@
 
 $(function () {
   $table_tarjetas = "";
+  $table_lineas = "";
   $table_terminales = "";
   $table_historico = "";
   $(document).popover({
@@ -109,15 +110,21 @@ $(function () {
   /*   Datatable Lineas *********************************************/
 
   $tarjetas_usuario_id = "";
-  $table = new $('.yajra-datatable-Lineas').DataTable({
+  $table_lineas = new $('.yajra-datatable-Lineas').DataTable({
     fnInitComplete: function fnInitComplete() {
-      rw = $table.row(0).data();
+      rw = $table_lineas.row(0).data();
       nummovil = rw.id;
       linea = rw.id;
       DatatableHistoricoTerminales(nummovil);
       DatatableTarjetas(nummovil);
       DatatableAmpliaciones(nummovil);
-      DatatableTerminales(nummovil); // document.getElementById('Apellidos').value = nummovil
+      DatatableTerminales(nummovil);
+      console.log(user);
+
+      if (!user) {
+        $table_lineas.buttons().disable();
+      } // document.getElementById('Apellidos').value = nummovil
+
     },
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -1387,7 +1394,7 @@ function ajaxRequest(form) {
 
 /***/ }),
 
-/***/ 16:
+/***/ 17:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/estructura/form.js ***!
   \******************************************************/

@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
+use App\User;
 use App\PlanGB;
 use App\Estructura;
+
 use App\LineaUsuario;
 use App\TerminalMovil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,6 +47,8 @@ class LineaUsuarioController extends Controller
     public function ShowTarjetas(request $request)
     {
 
+
+
         $linea = LineaUsuario::with('tarjetas')->find($request->linea_usuario_id);
 
         return Datatables::of($linea->tarjetas)
@@ -64,13 +71,15 @@ class LineaUsuarioController extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
+
+                if (Gate::allows('admin-access')) {
                 $btn = '<form action=' . route('eliminar_tarjeta', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
                     . csrf_field() . '
          ' . method_field("DELETE") .
                     '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
     <i class="fa fa-trash text-danger"></i>
 </button>
-         </form>';
+         </form>';}else{$btn= '  </form>';}
 
                 return $btn;
             })
@@ -109,6 +118,8 @@ class LineaUsuarioController extends Controller
             // })
 
             ->addColumn('action', function ($row) {
+
+            if (Gate::allows('admin-access')){
                 $btn = '<form action=' . route('eliminar_ampliacion', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
                     . csrf_field() . '
          ' . method_field("DELETE") .
@@ -118,6 +129,11 @@ class LineaUsuarioController extends Controller
     <i class="fa fa-trash text-danger"></i>
 </button>
          </form>';
+            } else {
+                $btn = '</form>';}
+
+
+
 
                 return $btn;
             })

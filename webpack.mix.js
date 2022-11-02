@@ -85,8 +85,15 @@ mix.postCss('resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.sta
  |--------------------------------------------------------------------------
 */
 mix.js('bower_components/jquery-slimscroll/jquery.slimscroll.js', 'public/js');
- 
-  /*
+
+/*
+ |--------------------------------------------------------------------------
+ |PrintPreview
+ |--------------------------------------------------------------------------
+*/
+mix.js('resources/assets/print/jquery.printpage.js', 'public/js')
+
+/*
  |--------------------------------------------------------------------------
  |InputMask
  |--------------------------------------------------------------------------

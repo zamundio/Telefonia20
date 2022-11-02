@@ -80,15 +80,27 @@
 @endcan
 @endsection
 
+@role('administrator')
+
+@else
+
+@endrole
+
 @section('scripts')
 
 <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
 <script src="{{ asset('js/estructura/index.js') }}"></script>
+
+
 
 
 
 <script>
     var load_urlTree = "{{ route('ajaxFillStructTree.get') }}";
+
+user="{{Auth::user()->hasRole('administrator')}}";
+
 
     $('#estructura').submit(function (e) {
         e.preventDefault();

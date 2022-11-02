@@ -1,5 +1,6 @@
-$(function() {
+$(function () {
     $table_tarjetas = "";
+     $table_lineas = "";
     $table_terminales = "";
     $table_historico = "";
     $(document).popover({
@@ -14,13 +15,14 @@ $(function() {
     var $tableAmpl;
     var $lineadatos;
 
+
     /*   Datatable Lineas *********************************************/
 
     $tarjetas_usuario_id = "";
 
-    $table = new $('.yajra-datatable-Lineas').DataTable({
-        fnInitComplete: function() {
-            rw = $table.row(0).data();
+    $table_lineas = new $('.yajra-datatable-Lineas').DataTable({
+        fnInitComplete: function () {
+            rw = $table_lineas.row(0).data();
             nummovil = rw.id;
             linea = rw.id;
 
@@ -28,13 +30,18 @@ $(function() {
             DatatableTarjetas(nummovil);
             DatatableAmpliaciones(nummovil);
             DatatableTerminales(nummovil);
+            console.log(user);
+            if (!user) {
+    $table_lineas.buttons().disable();
+}
+
 
             // document.getElementById('Apellidos').value = nummovil
         },
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
-        "drawCallback": function(settings) {
+        "drawCallback": function (settings) {
 
             var hasRows = this.api().rows().data().length > 0;
 
@@ -51,7 +58,7 @@ $(function() {
                 data: null,
                 defaultContent: '',
                 "width": "1%",
-                render: function(data, type, full, meta) {
+                render: function (data, type, full, meta) {
                     if (meta.row == 0) {
                         return '<input type="checkbox" name="checkbox" checked <div/>';
                     } {
@@ -97,84 +104,88 @@ $(function() {
                 "user_id": $cod
             }
         },
-        buttons: [{
-                text: 'Añadir Linea',
-                className: 'btn btn-primary btn-sm btn-rounded',
-                action: function(e, dt, node, config) {
 
-                    $(".print-error-msg").find("ul").html('');
-                    $(".print-error-msg").css('display', 'none');
-                    $modal = $('#LineaModal_Nuevo');
-                    // $modal.find('form')[0].reset();
-                    $('#linea_nuevo_form').parsley().reset();
-                    $('#toggle-LXLS_nuevo').bootstrapToggle('on');
-                    $('#toggle-princ_nuevo').bootstrapToggle('on');
-                    $("#LineaModal_Nuevo").modal("show");
+
+            buttons: [{
+                    text: 'Añadir Linea',
+                    className: 'btn btn-primary btn-sm btn-rounded',
+                    action: function (e, dt, node, config) {
+
+                        $(".print-error-msg").find("ul").html('');
+                        $(".print-error-msg").css('display', 'none');
+                        $modal = $('#LineaModal_Nuevo');
+                        // $modal.find('form')[0].reset();
+                        $('#linea_nuevo_form').parsley().reset();
+                        $('#toggle-LXLS_nuevo').bootstrapToggle('on');
+                        $('#toggle-princ_nuevo').bootstrapToggle('on');
+                        $("#LineaModal_Nuevo").modal("show");
+                    },
+
+                }, {
+
+                    text: '<i class="fas fa-sync"></i>',
+                    titleAttr: 'Refresh',
+                    className: 'btn btn-info',
+                    action: function (e, dt, node, config) {
+
+
+                        dt.clear().draw();
+                        dt.ajax.reload();
+                    },
+                    enabled: false
                 },
+                {
 
-            }, {
+                    text: 'Editar Linea',
+                    titleAttr: 'Editar Linea',
+                    enabled: false,
+                    className: 'btn btn-success ',
+                    action: function (e, dt, node, config) {
+                        $(".print-error-msg").find("ul").html('');
+                        $(".print-error-msg").css('display', 'none');
+                        $.ajax({
+                            "url": 'lineas/' + nummovil + '/editar',
+                            type: 'get',
 
-                text: '<i class="fas fa-sync"></i>',
-                titleAttr: 'Refresh',
-                className: 'btn btn-info',
-                action: function(e, dt, node, config) {
+                            success: function (data) {
+                                document.querySelector('#num_mo_editar').value = data.id;
+                                document.querySelector('#num_mo_editar_original_text').value = data.id;
+                                document.querySelector('#Observ_editar').value = data.Observaciones;
+                                document.querySelector('#Observ_editar_original_text').value = data.Observaciones;
+                                document.querySelector('#abrev_editar').value = data.Abreviado;
+                                document.querySelector('#abrev_editar_original_text').value = data.Abreviado;
+                                if (data.ListadoXLS == "1") {
+                                    // document.querySelector('#LXLS_editar').checked = true;
 
+                                    $('#toggle-LXLS_editar').bootstrapToggle('on');
+                                } else {
+                                    // document.querySelector('#LXLS_editar').checked = false;
+                                    $('#toggle-LXLS_editar').bootstrapToggle('off');
+                                }
+                                document.querySelector('#Princ_editar_original_text').value = data.ListadoXLS;
+                                if (data.Principal == "1") {
+                                    // document.querySelector('#Princ_editar').checked = true;
 
-                    dt.clear().draw();
-                    dt.ajax.reload();
-                },
-                enabled: false
-            },
-            {
+                                    $('#toggle-principal_editar').bootstrapToggle('on');
+                                } else {
+                                    // document.querySelector('#Princ_editar').checked = false;
+                                    $('#toggle-principal_editar').bootstrapToggle('off');
+                                }
+                                document.querySelector('#Princ_editar_original_text').value = data.Principal;
+                                $("#LineaModal_Editar").modal("show");
+                            },
+                            error: function () {
 
-                text: 'Editar Linea',
-                titleAttr: 'Editar Linea',
-                enabled: false,
-                className: 'btn btn-success ',
-                action: function(e, dt, node, config) {
-                    $(".print-error-msg").find("ul").html('');
-                    $(".print-error-msg").css('display', 'none');
-                    $.ajax({
-                        "url": 'lineas/' + nummovil + '/editar',
-                        type: 'get',
-
-                        success: function(data) {
-                            document.querySelector('#num_mo_editar').value = data.id;
-                            document.querySelector('#num_mo_editar_original_text').value = data.id;
-                            document.querySelector('#Observ_editar').value = data.Observaciones;
-                            document.querySelector('#Observ_editar_original_text').value = data.Observaciones;
-                            document.querySelector('#abrev_editar').value = data.Abreviado;
-                            document.querySelector('#abrev_editar_original_text').value = data.Abreviado;
-                            if (data.ListadoXLS == "1") {
-                                // document.querySelector('#LXLS_editar').checked = true;
-
-                                $('#toggle-LXLS_editar').bootstrapToggle('on');
-                            } else {
-                                // document.querySelector('#LXLS_editar').checked = false;
-                                $('#toggle-LXLS_editar').bootstrapToggle('off');
                             }
-                            document.querySelector('#Princ_editar_original_text').value = data.ListadoXLS;
-                            if (data.Principal == "1") {
-                                // document.querySelector('#Princ_editar').checked = true;
+                        });
 
-                                $('#toggle-principal_editar').bootstrapToggle('on');
-                            } else {
-                                // document.querySelector('#Princ_editar').checked = false;
-                                $('#toggle-principal_editar').bootstrapToggle('off');
-                            }
-                            document.querySelector('#Princ_editar_original_text').value = data.Principal;
-                            $("#LineaModal_Editar").modal("show");
-                        },
-                        error: function() {
+                    }
 
-                        }
-                    });
+                }]
 
-                },
 
-            }
+,
 
-        ],
 
         order: [
             [1, "desc"]
@@ -186,7 +197,7 @@ $(function() {
             },
             {
                 "data": 'Observaciones',
-                "render": function(data, type, full, meta) {
+                "render": function (data, type, full, meta) {
                     if (data != '' &&
                         data != null) {
                         $ob = "<a class='btn btn-primary btn-circle ' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
@@ -245,13 +256,13 @@ function DatatableTarjetas(numm) {
 
 
     $table_tarjetas = $('.yajra-datatable-Tarjetas').DataTable({
-        fnInitComplete: function() {
+        fnInitComplete: function () {
             $("[data-toggle='tooltip']").tooltip();
             rw = $table_tarjetas.row('#TablaTerminales tbody tr:eq(0)').data();
 
 
         },
-        "drawCallback": function(settings) {
+        "drawCallback": function (settings) {
 
             var hasRows = this.api().rows().data().length > 0;
 
@@ -273,7 +284,7 @@ function DatatableTarjetas(numm) {
                 "targets": [0],
                 data: null,
                 defaultContent: '',
-                render: function(data, type, full, meta) {
+                render: function (data, type, full, meta) {
                     if (meta.row == 0) {
                         return '<input type="checkbox" name="checkbox" checked <div/>';
                     } {
@@ -344,7 +355,7 @@ function DatatableTarjetas(numm) {
         buttons: [{
                 text: 'Añadir Tarjeta',
                 className: 'btn btn-primary btn-sm btn-rounded',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     // $('#tarjetas_nuevo_form')[0].reset();
@@ -361,7 +372,7 @@ function DatatableTarjetas(numm) {
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
                 className: 'btn btn-info',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
 
 
                     dt.clear().draw();
@@ -374,7 +385,7 @@ function DatatableTarjetas(numm) {
                 text: 'Editar Tarjeta',
                 titleAttr: 'Editar Tarjeta',
                 className: 'btn btn-success ',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
 
@@ -382,7 +393,7 @@ function DatatableTarjetas(numm) {
                         "url": 'tarjetasusuarios/' + $tarjetas_usuario_id + "/editar",
                         type: 'get',
 
-                        success: function(data) {
+                        success: function (data) {
 
                             document.querySelector('#imei_tarj_editar').value = data.id;
                             document.querySelector('#pin_tarj_editar').value = data.PIN;
@@ -402,7 +413,7 @@ function DatatableTarjetas(numm) {
                             document.querySelector('#obs_tarj_editar').value = data.Observaciones;
                             $("#TarjetaLineaModal_Editar").modal("show");
                         },
-                        error: function() {
+                        error: function () {
 
                         }
                     });
@@ -422,7 +433,7 @@ function DatatableTarjetas(numm) {
             },
             {
                 "data": 'Observaciones',
-                "render": function(data, type, full, meta) {
+                "render": function (data, type, full, meta) {
                     if (data != '' &&
                         data != null) {
                         $ob = "<a class='btn btn-primary btn-circle ' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
@@ -485,7 +496,7 @@ function DatatableAmpliaciones(numm) {
         scrollY: '150px',
         scrollCollapse: true,
         paging: false,
-        "drawCallback": function(settings) {
+        "drawCallback": function (settings) {
 
             var hasRows = this.api().rows().data().length > 0;
 
@@ -517,7 +528,7 @@ function DatatableAmpliaciones(numm) {
             }
 
         },
-        fnInitComplete: function() {
+        fnInitComplete: function () {
             $("[data-toggle='tooltip']").tooltip();
 
             rw = $table.row('#TablaAmpliaciones tbody tr:eq(0)').data();
@@ -564,7 +575,7 @@ function DatatableAmpliaciones(numm) {
                 "targets": [0],
                 data: null,
                 defaultContent: '',
-                render: function(data, type, full, meta) {
+                render: function (data, type, full, meta) {
                     if (meta.row == 0) {
                         return '<input type="checkbox" name="checkbox" checked <div/>';
                     } {
@@ -575,7 +586,7 @@ function DatatableAmpliaciones(numm) {
             {
                 "width": "40%",
                 "targets": [1],
-                render: function(d) {
+                render: function (d) {
                     moment.locale('es-ES');
                     if (d != null) {
 
@@ -621,7 +632,7 @@ function DatatableAmpliaciones(numm) {
         buttons: [{
                 text: 'Añadir Ampliación',
                 className: 'btn btn-primary btn-sm btn-rounded',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $("#numeromovil").html(nummovil);
@@ -638,7 +649,7 @@ function DatatableAmpliaciones(numm) {
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
                 className: 'btn btn-info',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
 
 
                     dt.clear().draw();
@@ -651,14 +662,14 @@ function DatatableAmpliaciones(numm) {
                 text: 'Editar Ampliación',
                 titleAttr: 'Editar Ampliación',
                 className: 'btn btn-success ',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $.ajax({
                         "url": 'ampliaciongb/' + $ampliaciones_id + '/editar',
                         type: 'get',
 
-                        success: function(data) {
+                        success: function (data) {
                             // console.log(data.get_plan.GB);
 
                             $('#Ampliaciones_Editar').find('#numeromovil_editar').html(data.linea_usuario_id);
@@ -682,7 +693,7 @@ function DatatableAmpliaciones(numm) {
 
                             $("#Ampliaciones_Editar").modal("show");
                         },
-                        error: function() {
+                        error: function () {
 
                         }
                     });
@@ -714,7 +725,7 @@ function DatatableAmpliaciones(numm) {
             // },
             {
                 "data": 'Observaciones',
-                "render": function(data, type, full, meta) {
+                "render": function (data, type, full, meta) {
                     if (data != "" & data != null) {
                         $ob = "<a class='btn btn-primary btn-circle ' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
                         $obpop = "<a class='btn btn-primary btn-circle' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
@@ -747,7 +758,7 @@ function DatatableTerminales(numm) {
 
     $table_terminales = $('.yajra-datatable-Terminales').DataTable({
 
-        "drawCallback": function(settings) {
+        "drawCallback": function (settings) {
 
             var hasRows = this.api().rows().data().length > 0;
 
@@ -782,7 +793,7 @@ function DatatableTerminales(numm) {
             }
 
         },
-        InitComplete: function() {
+        InitComplete: function () {
             $("[data-toggle='tooltip']").tooltip();
 
 
@@ -797,7 +808,7 @@ function DatatableTerminales(numm) {
                 "targets": [0],
                 data: null,
                 defaultContent: '',
-                render: function(data, type, full, meta) {
+                render: function (data, type, full, meta) {
                     if (meta.row == 0) {
                         return '<input type="checkbox" name="checkbox" checked <div/>';
                     } {
@@ -816,7 +827,7 @@ function DatatableTerminales(numm) {
             {
                 "width": "15%",
                 "targets": [3],
-                render: function(d) {
+                render: function (d) {
                     moment.locale('es-ES');
                     if (d != null) {
                         return moment(d).format('DD/MM/YYYY', 'es');
@@ -862,7 +873,7 @@ function DatatableTerminales(numm) {
         buttons: [{
                 text: 'Añadir Terminal',
                 className: 'btn btn-primary btn-sm btn-rounded',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $('#terminales_nuevo_form')[0].reset();
@@ -882,11 +893,11 @@ function DatatableTerminales(numm) {
                             dataType: 'json',
                             url: 'GetPoolModelos',
                             delay: 250,
-                            processResults: function(data) {
+                            processResults: function (data) {
 
                                 return {
 
-                                    results: $.map(data, function(item) {
+                                    results: $.map(data, function (item) {
 
                                         return {
                                             text: item.Terminal,
@@ -896,7 +907,7 @@ function DatatableTerminales(numm) {
                                 };
                             },
                             cache: true
-                                // processResults: function (data, page) {
+                            // processResults: function (data, page) {
 
                             //     return {
                             //         results: data
@@ -914,7 +925,7 @@ function DatatableTerminales(numm) {
                 text: '<i class="fas fa-sync"></i>',
                 titleAttr: 'Refresh',
                 className: 'btn btn-info',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
 
 
                     dt.clear().draw();
@@ -927,7 +938,7 @@ function DatatableTerminales(numm) {
                 text: 'Editar Terminal',
                 titleAttr: 'Editar Terminal',
                 className: 'btn btn-success ',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $('#btn-submit-editar-terminal').val('Enviar')
@@ -936,7 +947,7 @@ function DatatableTerminales(numm) {
                         "url": 'terminalesusuarios/' + $terminal + '/editar',
                         type: 'get',
 
-                        success: function(data) {
+                        success: function (data) {
 
                             console.log(data.term['Nserie']);
                             if (typeof data.term['Nserie'] === 'undefined' ||
@@ -975,7 +986,7 @@ function DatatableTerminales(numm) {
 
                             $("#TerminalModal_Editar").modal("show");
                         },
-                        error: function() {
+                        error: function () {
 
                         }
                     });
@@ -985,7 +996,7 @@ function DatatableTerminales(numm) {
             }, {
                 text: 'Reasignar Terminal',
                 className: 'btn btn-warning ',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $('#TerminalModal_Estado').parsley().reset();
                     $('#submit_estado_term').val('Enviar')
                     $('#submit_estado_term').attr('disabled', false);
@@ -1001,10 +1012,10 @@ function DatatableTerminales(numm) {
                             dataType: 'json',
                             url: 'GetEstadosTerminales',
                             delay: 250,
-                            processResults: function(data) {
+                            processResults: function (data) {
 
                                 return {
-                                    results: $.map(data, function(item) {
+                                    results: $.map(data, function (item) {
 
                                         return {
                                             text: item.Estado,
@@ -1014,7 +1025,7 @@ function DatatableTerminales(numm) {
                                 };
                             },
                             cache: true
-                                // processResults: function (data, page) {
+                            // processResults: function (data, page) {
 
                             // return {
                             // results: data
@@ -1031,7 +1042,7 @@ function DatatableTerminales(numm) {
                         "url": 'terminalesusuarios/' + $terminal + '/editar',
                         type: 'get',
 
-                        success: function(data) {
+                        success: function (data) {
 
                             document.querySelector('#ns_terminal_estado').innerHTML = data.f_cambio_alta;
                             document.querySelector('#linea_original').value = data.linea_usuario_id;
@@ -1070,7 +1081,7 @@ function DatatableTerminales(numm) {
 
                             $('#TerminalModal_Estado').modal("show");
                         },
-                        error: function() {
+                        error: function () {
 
                         }
                     });
@@ -1083,7 +1094,7 @@ function DatatableTerminales(numm) {
                 text: '<span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-danger"></span>Crear Terminal</a>',
                 className: 'btn icon-btn btn-outline-danger',
 
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     $(".print-error-msg").find("ul").html('');
                     $(".print-error-msg").css('display', 'none');
                     $('#terminales_nuevo_form')[0].reset();
@@ -1102,11 +1113,11 @@ function DatatableTerminales(numm) {
                             dataType: 'json',
                             url: 'GetPoolModelos',
                             delay: 250,
-                            processResults: function(data) {
+                            processResults: function (data) {
 
                                 return {
 
-                                    results: $.map(data, function(item) {
+                                    results: $.map(data, function (item) {
 
                                         return {
                                             text: item.Terminal,
@@ -1116,7 +1127,7 @@ function DatatableTerminales(numm) {
                                 };
                             },
                             cache: true
-                                // processResults: function (data, page) {
+                            // processResults: function (data, page) {
 
                             //     return {
                             //         results: data
@@ -1184,7 +1195,7 @@ function DatatableHistoricoTerminales(numm) {
     $table_historico = $('.yajra-datatable-HistTerminales').DataTable({
 
 
-        InitComplete: function() {
+        InitComplete: function () {
             $("[data-toggle='tooltip']").tooltip();
 
 
@@ -1225,7 +1236,7 @@ function DatatableHistoricoTerminales(numm) {
             {
                 "width": "40%",
                 "targets": [6],
-                render: function(d) {
+                render: function (d) {
                     moment.locale('es-ES');
                     if (d != null) {
                         return moment(d).format('DD/MM/YYYY', 'es');
@@ -1239,7 +1250,7 @@ function DatatableHistoricoTerminales(numm) {
             {
                 "width": "40%",
                 "targets": [7],
-                render: function(d) {
+                render: function (d) {
                     moment.locale('es-ES');
                     if (d != null) {
                         return moment(d).format('DD/MM/YYYY', 'es');
@@ -1279,7 +1290,7 @@ function DatatableHistoricoTerminales(numm) {
         ],
         columns: [{
                 "data": 'Observaciones',
-                "render": function(data, type, full, meta) {
+                "render": function (data, type, full, meta) {
                     if (data != "" & data != null) {
                         $ob = "<a class='btn btn-primary btn-circle ' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
                         $obpop = "<a class='btn btn-primary btn-circle' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
@@ -1331,7 +1342,7 @@ function DatatableHistoricoTerminales(numm) {
 };
 
 
-$("#TablaLineas").on('submit', '.form-eliminar', function() {
+$("#TablaLineas").on('submit', '.form-eliminar', function () {
     event.preventDefault();
     const form = $(this);
     $table = $('.yajra-datatable-Lineas').DataTable();
@@ -1415,7 +1426,7 @@ $("#TablaLineas").on('submit', '.form-eliminar', function() {
 
 // });
 
-$("#TablaAmpliaciones").on('submit', '.form-eliminar', function() {
+$("#TablaAmpliaciones").on('submit', '.form-eliminar', function () {
     event.preventDefault();
     const form = $(this);
     swal({
@@ -1435,7 +1446,7 @@ $("#TablaAmpliaciones").on('submit', '.form-eliminar', function() {
 });
 
 
-$("#TablaTarjetas").on('submit', '.form-eliminar', function() {
+$("#TablaTarjetas").on('submit', '.form-eliminar', function () {
     event.preventDefault();
     const form = $(this);
     swal({
@@ -1472,10 +1483,10 @@ $("#TablaTarjetas").on('submit', '.form-eliminar', function() {
 
 /********Se recargan todas las datatables al cambiar de linea******************************** */
 
-$('#TablaLineas tbody').on('click', 'tr', function() {
+$('#TablaLineas tbody').on('click', 'tr', function () {
 
 
-    var tableData = $(this).children("td").map(function() {
+    var tableData = $(this).children("td").map(function () {
         return $(this).text();
     }).get();
 
@@ -1502,10 +1513,10 @@ $('#TablaLineas tbody').on('click', 'tr', function() {
 });
 
 
-$('#TablaTarjetas tbody').on('click', 'tr', function() {
+$('#TablaTarjetas tbody').on('click', 'tr', function () {
 
 
-    var tableData = $(this).children("td").map(function() {
+    var tableData = $(this).children("td").map(function () {
         return $(this).text();
     }).get();
 
@@ -1526,7 +1537,7 @@ $('#TablaTarjetas tbody').on('click', 'tr', function() {
 });
 
 /********Se guarda el valor id de la linea seleccionada para editar o eliminar******************************** */
-$('#TablaAmpliaciones tbody').on('click', 'tr', function() {
+$('#TablaAmpliaciones tbody').on('click', 'tr', function () {
 
     var table = $('#TablaAmpliaciones').DataTable();
     $ampliaciones_id = table.row(this).data().id;
@@ -1540,7 +1551,7 @@ $('#TablaAmpliaciones tbody').on('click', 'tr', function() {
 
 });
 
-$('#TablaTerminales tbody').on('click', 'td.details-control', function() {
+$('#TablaTerminales tbody').on('click', 'td.details-control', function () {
 
     var tr = $(this).closest('tr');
 
@@ -1560,10 +1571,10 @@ $('#TablaTerminales tbody').on('click', 'td.details-control', function() {
     }
 });
 
-$('#TablaTerminales tbody').on('click', 'tr', function() {
+$('#TablaTerminales tbody').on('click', 'tr', function () {
 
 
-    var tableData = $(this).children("td").map(function() {
+    var tableData = $(this).children("td").map(function () {
         return $(this).text();
     }).get();
     var table = $('#TablaTerminales').DataTable();
@@ -1578,7 +1589,7 @@ $('#TablaTerminales tbody').on('click', 'tr', function() {
 });
 
 
-$("table").on('change', 'input', function(e) {
+$("table").on('change', 'input', function (e) {
     e.preventDefault();
     var table = $('#TablaLineas').DataTable();
     table.$("input[type=checkbox]").prop("checked", false);
@@ -1586,7 +1597,7 @@ $("table").on('change', 'input', function(e) {
 
 });
 
-$('#TablaAmpliaciones').on('init.dt', function(evt, settings) {
+$('#TablaAmpliaciones').on('init.dt', function (evt, settings) {
     if (settings.fnRecordsTotal() < settings._iDisplayLength) {
         // hide pagination controls, fewer records than minimum length
         // console.log(settings._iDisplayLength);
@@ -1632,10 +1643,10 @@ $('#TablaAmpliaciones').on('init.dt', function(evt, settings) {
 
 /********Se recargan todas las datatables al cambiar de linea******************************** */
 
-$('#TablaLineas tbody').on('click', 'tr', function() {
+$('#TablaLineas tbody').on('click', 'tr', function () {
 
 
-    var tableData = $(this).children("td").map(function() {
+    var tableData = $(this).children("td").map(function () {
         return $(this).text();
     }).get();
 
@@ -1667,20 +1678,21 @@ function ajaxRequest(form) {
         url: form.attr('action'),
         type: 'POST',
         data: form.serialize(),
-        success: function(respuesta) {
+        success: function (respuesta) {
             if (respuesta.mensaje == "ok") {
                 form.parents('tr').remove();
 
                 HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
 
-            } else {;
+            } else {
+                ;
                 HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
 
             }
 
 
         },
-        error: function() {
+        error: function () {
 
         }
 

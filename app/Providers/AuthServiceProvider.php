@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use auth;
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Gate;
@@ -23,8 +23,12 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        $this->registerPolicies();
-    }
+   public function boot()
+{
+    $this->registerPolicies();
+
+    Gate::define('access-admin', function ($user) {
+        return $user->administrator;
+    });
+}
 }

@@ -1,5 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
+use Auth;
+use App\User;
+use App\Estructura;
 
-Inspiring::quote();
+ Auth::user()->getRoleNames();

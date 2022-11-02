@@ -8,6 +8,10 @@
 
 
     <script src="{{ asset('js/estructura/form.js?v=') }}" .$js></script>
+    <script src="{{ asset('js/jquery.printpage.js') }}" type="text/javascript"></script>
+    <script>
+        $('.btnPrint').printPage();
+    </script>
 
     {{-- <script src="{{ asset('assets/pages/scripts/estructura/form.js?v=') }}" .$js type="text/javascript"></script> --}}
     {{-- <script src="{{ asset('js/handlebars.js') }}"></script> --}}
@@ -32,8 +36,6 @@
     </script>
 
     <script>
-
-
         var template = Handlebars.compile($("#details-template").html());
 
     </script>
@@ -124,9 +126,10 @@
                     <label for="provincia">Provincia</label>
                     <input type="text" class="form-control" id="provincia" value="{{ old('nombre', $estructuras->HOME_STATE_CODE ?? '') }}">
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-2">
                     <br>
-                    {{-- <a href="{{ route('mostrar_personal', ['id' => $estructuras->EMP_CODE]) }}" class="btn btn-info" role="button">Mas Datos</a> --}}
+                    <p><a class="btn btn-info btnPrint" href={{ URL::to('estructura/printPreview', $id = $estructuras->EMP_CODE) }}>Imprimir
+                            Dirección</a></p>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="posicion">Posición</label>
@@ -260,7 +263,7 @@
                         <thead>
                             <h3> Historico Terminales </h3>
                             <tr>
-                               <th width="10px">Obs</th>
+                                <th width="10px">Obs</th>
                                 <th width="10px">Terminal</th>
                                 <th width="10px">N Serie</th>
                                 <th width="10px">IMEI</th>
@@ -282,7 +285,7 @@
                 </div>
 
             </div>
-                {{-- </div> --}}
+            {{-- </div> --}}
 
     </form>
 

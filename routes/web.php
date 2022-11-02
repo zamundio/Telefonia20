@@ -25,6 +25,7 @@ Route::get('estructura', 'TreeEstructuraController@index')->name('estructura.ind
 Route::get('checkcc', 'MaestrasController@CheckCC')->name('checkcc');
 Route::get('checkpe', 'PersonalExtraController@CheckPE')->name('checkpe');
 Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
+Route::get('estructura/printPreview/{id}', 'PrintController@PrintPreview');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');
