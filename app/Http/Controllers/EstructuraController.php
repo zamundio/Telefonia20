@@ -6,6 +6,7 @@ use App\Estructura;
 use App\CentrosCoste;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class EstructuraController extends Controller
@@ -21,8 +22,8 @@ class EstructuraController extends Controller
         // can('estructura-lmsa');
         $estructuras = Estructura::first();
 
-        $comboCC=CentrosCoste::orderby('EMP_COST_CENTER', 'asc')->select('EMP_COST_CENTER', 'COST_CENTER_DESC')->get();
-        return view("estructura.index", compact('estructuras','comboCC'));
+        $comboCC = CentrosCoste::orderby('EMP_COST_CENTER', 'asc')->select('EMP_COST_CENTER', 'COST_CENTER_DESC')->get();
+        return view("estructura.index", compact('estructuras', 'comboCC'));
     }
     public function ShowLinea(request $request)
     {
@@ -49,20 +50,25 @@ class EstructuraController extends Controller
             })
 
             ->addColumn('action', function ($row) {
+
+            if (Gate::allows('admin-access')) {
+
                 $btn = '<form action=' . route('eliminar_linea', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="post">'
-                . csrf_field() . '
+                    . csrf_field() . '
          ' . method_field('delete') .
 
-                '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
+                    '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
     <i class="fa fa-trash text-danger"></i>
-</button>'
-         ;
+</button>';}else{
+    $btn="";
 
+
+}
 
                 return $btn;
             })
 
-            ->rawColumns(['XLS','Principal', 'action'])
+            ->rawColumns(['XLS', 'Principal', 'action'])
             ->make(true);
     }
 }

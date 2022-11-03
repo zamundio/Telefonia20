@@ -1,8 +1,8 @@
 $(function () {
-    $table_tarjetas = "";
-     $table_lineas = "";
-    $table_terminales = "";
-    $table_historico = "";
+    var $table_tarjetas;
+    var $table_lineas = "";
+    var $table_terminales = "";
+    var $table_historico = "";
     $(document).popover({
         selector: '[data-toggle=hover]',
         html: true,
@@ -27,13 +27,14 @@ $(function () {
             linea = rw.id;
 
             DatatableHistoricoTerminales(nummovil);
-            DatatableTarjetas(nummovil);
+            $table_tarjetas = DatatableTarjetas(nummovil);
             DatatableAmpliaciones(nummovil);
             DatatableTerminales(nummovil);
-            console.log(user);
+
             if (!user) {
-    $table_lineas.buttons().disable();
-}
+                $table_lineas.buttons().disable();
+
+            }
 
 
             // document.getElementById('Apellidos').value = nummovil
@@ -106,7 +107,7 @@ $(function () {
         },
 
 
-            buttons: [{
+        buttons: [{
                     text: 'Añadir Linea',
                     className: 'btn btn-primary btn-sm btn-rounded',
                     action: function (e, dt, node, config) {
@@ -181,10 +182,11 @@ $(function () {
 
                     }
 
-                }]
+                }
+            ]
 
 
-,
+            ,
 
 
         order: [
@@ -255,7 +257,7 @@ $(function () {
 function DatatableTarjetas(numm) {
 
 
-    $table_tarjetas = $('.yajra-datatable-Tarjetas').DataTable({
+    var $table_tarjetas = new $('.yajra-datatable-Tarjetas').DataTable({
         fnInitComplete: function () {
             $("[data-toggle='tooltip']").tooltip();
             rw = $table_tarjetas.row('#TablaTerminales tbody tr:eq(0)').data();
@@ -273,8 +275,12 @@ function DatatableTarjetas(numm) {
                 $tarjetas_usuario_id = rows[0].id;
                 $(this).DataTable().button(2).enable();
             }
+   if (!user) {
+ $(this).DataTable().button(0).disable();
+  $(this).DataTable().button(1).disable();
+   $(this).DataTable().button(2).disable();
 
-
+   }
         },
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -485,7 +491,7 @@ function DatatableTarjetas(numm) {
     });
 
 
-
+    return $table_tarjetas;
 };
 
 /********Se cargan las ampliciones de GB en el evento fnInitComplete de Las Lineas******************************** */
@@ -535,7 +541,12 @@ function DatatableAmpliaciones(numm) {
             if ($(this).find('tbody tr').length == 0) {
                 $(this).DataTable().button(2).disable();
             }
+ if (!user) {
+     $(this).DataTable().button(0).disable();
+     $(this).DataTable().button(1).disable();
+     $(this).DataTable().button(2).disable();
 
+ }
         },
 
 
@@ -769,6 +780,15 @@ function DatatableTerminales(numm) {
                 $(this).DataTable().button(2).enable();
                 $(this).DataTable().button(3).enable();
             }
+             if (!user) {
+                 $(this).DataTable().button(0).disable();
+                 $(this).DataTable().button(1).disable();
+                 $(this).DataTable().button(2).disable();
+                   $(this).DataTable().button(3).disable();
+                     $(this).DataTable().button(4).disable();
+
+
+             }
             var api = this.api();
 
             // Output the data for the visible rows to the browser's console

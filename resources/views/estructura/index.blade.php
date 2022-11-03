@@ -16,13 +16,14 @@
 
                         <div class="card-header">
                             <h3 class="card-title">Estructura</h3>
-
-                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#CrearCC">
-                                Crear CC
-                            </button>
-                            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#AñadirpersonalCC">
-                                Añadir Personal
-                            </button>
+                            @can('ver_botones')
+                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#CrearCC">
+                                    Crear CC
+                                </button>
+                                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#AñadirpersonalCC">
+                                    Añadir Personal
+                                </button>
+                            @endcan
                             <button class="btn btn-primary" name='refrescar' id='refrescar'><span class="glyphicon glyphicon-refresh"></span> Refrescar</button>
                         </div>
                         <!-- /.card-header -->
@@ -38,17 +39,18 @@
                                     </div>
                                 </div>
 
-                                    <div id="tree-container" class="demo" style="max-width: 430px;">
-                                    </div>
+                                <div id="tree-container" class="demo" style="max-width: 430px;">
+                                </div>
 
                             </div>
                         </form>
                         <div class="card-footer text-center">
-
+@can('ver_botones')
 
                             <a href="{{ URL::route('ExportFacturacion') }}" class="tn btn-primary btn-sm float-left mr-1"> XLS Facturación</a>
                             <a href="{{ URL::route('ExportListadoSede') }}" class="tn btn-success btn-sm float-left  mr-1"> XLS Sede</a>
                             <a href="{{ URL::route('ExportListadoRed') }}" class="tn btn-warning btn-sm float-left  mr-1"> XLS Red</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -99,7 +101,7 @@
 <script>
     var load_urlTree = "{{ route('ajaxFillStructTree.get') }}";
 
-user="{{Auth::user()->hasRole('administrator')}}";
+    user = "{{ Auth::user()->hasRole('administrator') }}";
 
 
     $('#estructura').submit(function (e) {
