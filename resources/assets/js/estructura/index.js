@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-
+  var user = "{{ Auth::user()->hasRole('administrator') }}";
 
 
     $('.datepicker').datepicker({

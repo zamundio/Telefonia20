@@ -13,13 +13,12 @@ $(function () {
     var linea;
     var $terminal;
     var $tableAmpl;
-    var $lineadatos;
 
 
     /*   Datatable Lineas *********************************************/
 
     $tarjetas_usuario_id = "";
-
+    user = "{{ Auth::user()->hasRole('administrator') }}";
     $table_lineas = new $('.yajra-datatable-Lineas').DataTable({
         fnInitComplete: function () {
             rw = $table_lineas.row(0).data();
@@ -82,6 +81,10 @@ $(function () {
             {
                 "width": "1%",
                 "targets": [4]
+            },
+            {
+                "width": "1%",
+                "targets": [5]
             }
         ],
         select: {
@@ -221,6 +224,10 @@ $(function () {
             },
 
             {
+                data: 'Plan',
+                name: 'Plan'
+            },
+            {
                 data: 'Principal',
                 name: 'Principal'
             },
@@ -275,12 +282,13 @@ function DatatableTarjetas(numm) {
                 $tarjetas_usuario_id = rows[0].id;
                 $(this).DataTable().button(2).enable();
             }
-   if (!user) {
- $(this).DataTable().button(0).disable();
-  $(this).DataTable().button(1).disable();
-   $(this).DataTable().button(2).disable();
 
-   }
+            if (!user) {
+                $(this).DataTable().button(0).disable();
+                $(this).DataTable().button(1).disable();
+                $(this).DataTable().button(2).disable();
+
+            }
         },
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -541,12 +549,12 @@ function DatatableAmpliaciones(numm) {
             if ($(this).find('tbody tr').length == 0) {
                 $(this).DataTable().button(2).disable();
             }
- if (!user) {
-     $(this).DataTable().button(0).disable();
-     $(this).DataTable().button(1).disable();
-     $(this).DataTable().button(2).disable();
+            if (!user) {
+                $(this).DataTable().button(0).disable();
+                $(this).DataTable().button(1).disable();
+                $(this).DataTable().button(2).disable();
 
- }
+            }
         },
 
 
@@ -780,15 +788,15 @@ function DatatableTerminales(numm) {
                 $(this).DataTable().button(2).enable();
                 $(this).DataTable().button(3).enable();
             }
-             if (!user) {
-                 $(this).DataTable().button(0).disable();
-                 $(this).DataTable().button(1).disable();
-                 $(this).DataTable().button(2).disable();
-                   $(this).DataTable().button(3).disable();
-                     $(this).DataTable().button(4).disable();
+            if (!user) {
+                $(this).DataTable().button(0).disable();
+                $(this).DataTable().button(1).disable();
+                $(this).DataTable().button(2).disable();
+                $(this).DataTable().button(3).disable();
+                $(this).DataTable().button(4).disable();
 
 
-             }
+            }
             var api = this.api();
 
             // Output the data for the visible rows to the browser's console

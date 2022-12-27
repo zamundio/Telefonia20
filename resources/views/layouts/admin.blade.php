@@ -202,6 +202,7 @@ datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
   <script>
     $(function () {
+
         window.Parsley.setLocale('es');
       let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
       let csvButtonTrans = '{{ trans('global.datatables.csv') }}'
@@ -293,7 +294,9 @@ datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     });
 
   </script>
+
   @yield('scripts')
+
 </body>
 
 </html>

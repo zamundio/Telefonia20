@@ -4,4 +4,5 @@ use Auth;
 use App\User;
 use App\Estructura;
 
- Auth::user()->getRoleNames();
+$estructuras = Estructura::with('lineas', 'parent')->find('0015', ['EMP_CODE']);
+$estructuras->first();

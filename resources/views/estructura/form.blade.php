@@ -11,6 +11,7 @@
     <script src="{{ asset('js/jquery.printpage.js') }}" type="text/javascript"></script>
     <script>
         $('.btnPrint').printPage();
+
     </script>
 
     {{-- <script src="{{ asset('assets/pages/scripts/estructura/form.js?v=') }}" .$js type="text/javascript"></script> --}}
@@ -109,8 +110,6 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="direccion" value="{{ old('nombre', $estructuras->HOME_ADDRESS ?? '') }}">
 
-
-
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
 
@@ -172,10 +171,10 @@
 
                             <th width="5px"></th>
                             <th width="5px">Obs</th>
-                            <th width="5px">Abrev</th>
+                            <th width="5px">Abr</th>
                             <th width="5px">Movil</th>
-
-                            <th width="5px">Princ</th>
+                            <th width="5px">Plan</th>
+                            <th width="5px">Pr</th>
                             <th width="5px">XLS</th>
                             <th width="10px"></th>
                             </tr>
@@ -261,6 +260,8 @@
                 <div class="col-md-8">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-HistTerminales" id="TablaHistTerminales">
                         <thead>
+                            <br>
+                            <br>
                             <h3> Historico Terminales </h3>
                             <tr>
                                 <th width="10px">Obs</th>

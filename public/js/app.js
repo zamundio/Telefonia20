@@ -37047,6 +37047,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
+var user = '';
 window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a;
 /**
  * Next, we will create a fresh Vue application instance and attach it to

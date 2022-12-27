@@ -83,7 +83,7 @@ Route::delete('tarjetasusuarios/{id}/eliminar', 'TarjetaLineaController@eliminar
 
 /* Maestras*/
 Route::get('GetPlanGB', 'MaestrasController@PlanGBindex')->name('GetPlanGB');
-
+Route::get('GetPlanDatos', 'MaestrasController@PlanDatosindex')->name('GetPlanDatos');
 Route::get('ExportFacturacion', 'ListadosController@exportfacturacion')->name('ExportFacturacion');
 Route::get('ExportListadoSede', 'ListadosController@exportListadoSede')->name('ExportListadoSede');
 Route::get('ExportListadoRed', 'ListadosController@exportListadoRed')->name('ExportListadoRed');

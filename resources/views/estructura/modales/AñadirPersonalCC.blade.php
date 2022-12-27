@@ -118,6 +118,7 @@
                             <label for="abrev">Linea</label>
                             <input type="text" class="form-control" id="POSITION_TITLE" name="POSITION_TITLE"  value="">
                         </div>
+
                         <div class="form-group col-md-2">
                             <label for="zona">Equipo</label>
                             <input type="text" class="form-control" id="SUBAREA2" name=" SUBAREA2" value="">

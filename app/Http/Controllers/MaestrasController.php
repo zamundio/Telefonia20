@@ -8,6 +8,7 @@ use App\EstadoStock;
 use App\CentrosCoste;
 use App\TerminalMovil;
 use App\CentroCosteExtra;
+use App\Plandatos;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -104,6 +105,23 @@ public function PlanGBindex(Request $request)
 
 
 
+    }
+    public function PlanDatosindex(Request $request)
+    {
+
+
+
+
+        $data = [];
+
+
+
+        $search = $request->q;
+        $data = Plandatos::select("Id", "Plan")->where('Plan', 'LIKE', "%$search%")->get();
+
+
+
+        return response()->json($data);
     }
 
     public function Estadoterminales(Request $request)

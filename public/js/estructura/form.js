@@ -106,10 +106,10 @@ $(function () {
   var linea;
   var $terminal;
   var $tableAmpl;
-  var $lineadatos;
   /*   Datatable Lineas *********************************************/
 
   $tarjetas_usuario_id = "";
+  user = "{{ Auth::user()->hasRole('administrator') }}";
   $table_lineas = new $('.yajra-datatable-Lineas').DataTable({
     fnInitComplete: function fnInitComplete() {
       rw = $table_lineas.row(0).data();
@@ -163,6 +163,9 @@ $(function () {
     }, {
       "width": "1%",
       "targets": [4]
+    }, {
+      "width": "1%",
+      "targets": [5]
     }],
     select: {
       style: 'single',
@@ -270,6 +273,9 @@ $(function () {
     }, {
       data: 'id',
       name: 'num_movil'
+    }, {
+      data: 'Plan',
+      name: 'Plan'
     }, {
       data: 'Principal',
       name: 'Principal'

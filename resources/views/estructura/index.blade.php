@@ -101,7 +101,7 @@
 <script>
     var load_urlTree = "{{ route('ajaxFillStructTree.get') }}";
 
-    user = "{{ Auth::user()->hasRole('administrator') }}";
+
 
 
     $('#estructura').submit(function (e) {

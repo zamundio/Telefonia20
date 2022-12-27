@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 import swal from 'sweetalert2';
+var user='';
 window.Swal = swal;
 
 

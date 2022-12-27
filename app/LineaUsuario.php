@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Tarjeta;
+use App\Plandatos;
 use App\TerminalMovil;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,6 +40,10 @@ class LineaUsuario extends Model
     {
         return $this->belongsToMany(TerminalMovil::class, 'lineas_historico_terminales')
             ->withPivot('f_cambio_alta', 'f_baja', 'Motivo', 'Observaciones')->orderby('f_baja', 'desc');
+    }
+    public function GetPlanDatos()
+    {
+        return $this->hasone(Plandatos::class, 'Id', 'Plan');
     }
 
 }

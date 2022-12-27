@@ -31,22 +31,20 @@
     27 => 'Laravel\\Telescope\\TelescopeServiceProvider',
     28 => 'Laravel\\Tinker\\TinkerServiceProvider',
     29 => 'Laravel\\Ui\\UiServiceProvider',
-    30 => 'Collective\\Html\\HtmlServiceProvider',
-    31 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
-    32 => 'Carbon\\Laravel\\ServiceProvider',
-    33 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    34 => 'Spatie\\Permission\\PermissionServiceProvider',
-    35 => 'Thejenos\\Laradump\\LaradumpServiceProvider',
-    36 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-    37 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    38 => 'Intervention\\Image\\ImageServiceProvider',
-    39 => 'Collective\\Html\\HtmlServiceProvider',
-    40 => 'App\\Providers\\AppServiceProvider',
-    41 => 'App\\Providers\\AuthServiceProvider',
-    42 => 'App\\Providers\\EventServiceProvider',
-    43 => 'App\\Providers\\RouteServiceProvider',
-    44 => 'App\\Providers\\TelescopeServiceProvider',
-    45 => 'Spatie\\Permission\\PermissionServiceProvider',
+    30 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    31 => 'Carbon\\Laravel\\ServiceProvider',
+    32 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    33 => 'Spatie\\Permission\\PermissionServiceProvider',
+    34 => 'Thejenos\\Laradump\\LaradumpServiceProvider',
+    35 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    36 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    37 => 'Intervention\\Image\\ImageServiceProvider',
+    38 => 'App\\Providers\\AppServiceProvider',
+    39 => 'App\\Providers\\AuthServiceProvider',
+    40 => 'App\\Providers\\EventServiceProvider',
+    41 => 'App\\Providers\\RouteServiceProvider',
+    42 => 'App\\Providers\\TelescopeServiceProvider',
+    43 => 'Spatie\\Permission\\PermissionServiceProvider',
   ),
   'eager' => 
   array (
@@ -205,10 +203,6 @@
     'command.ide-helper.generate' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     'command.ide-helper.models' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
-    'html' => 'Collective\\Html\\HtmlServiceProvider',
-    'form' => 'Collective\\Html\\HtmlServiceProvider',
-    'Collective\\Html\\HtmlBuilder' => 'Collective\\Html\\HtmlServiceProvider',
-    'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
   ),
   'when' => 
   array (
@@ -252,9 +246,6 @@
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 
-    array (
-    ),
-    'Collective\\Html\\HtmlServiceProvider' => 
     array (
     ),
   ),
