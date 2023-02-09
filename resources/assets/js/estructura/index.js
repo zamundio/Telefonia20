@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 
+
   var user = "{{ Auth::user()->hasRole('administrator') }}";
 
 
@@ -14,6 +15,7 @@ $(document).ready(function() {
         weekStart: 1
 
     });
+
 
     window.Parsley.addValidator('dni', {
         validateString: function(value) {

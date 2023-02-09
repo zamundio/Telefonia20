@@ -29,7 +29,15 @@
                         <input type="text" class="form-control" name="abrev_editar" id="abrev_editar" autocomplete="off" data-parsley-type="digits" data-parsley-pattern="\d{4}" data-parsley-trigger="change">
                         <input type="hidden" name="abrev_editar_original_text" id="abrev_editar_original_text" data-parsley-ui-enabled="false">
                     </div>
+                    <div class="form-group col-sm-9">
+                        <label for="type" class="col-sm-6 control-label">Plan Datos</label>
+                        <div class="col-sm-5">
 
+                            <select class="form-control select2" name="plandatos_editar" id="plandatos_editar" data-width="1250%" data-parsley-required="true" required data-parsley-trigger="change"> </select>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group  ml-2">
                         <label>Observaciones:</label>
                         <textarea class="form-control" name="Observ_editar" id="Observ_editar" cols="40" rows="3"></textarea>
@@ -38,9 +46,9 @@
                     <div class="form-check  ml-2">
                         <input type="checkbox" id="toggle-principal_editar" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
                         <label class="form-check-label ml-2" for="toggle-principal_editar"><strong> Telefono Principal </strong></label>
-                           <input type="hidden" name="Princ_editar_original_text" id="Princ_editar_original_text" data-parsley-ui-enabled="false">
+                        <input type="hidden" name="Princ_editar_original_text" id="Princ_editar_original_text" data-parsley-ui-enabled="false">
                     </div>
-                        <div class="form-group"></div>
+                    <div class="form-group"></div>
                     <div class="form-check  ml-2">
                         <input type="checkbox" id="toggle-LXLS_editar" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="Si" data-off="No">
                         <label class="form-check-label ml-2" for="toggle-LXLS_editar"><strong> XLS </strong></label>
@@ -66,47 +74,48 @@
 
         abrev = document.getElementById("abrev_editar").value;
 
-      abrevAnt= document.getElementById("abrev_editar_original_text").value;
+        abrevAnt = document.getElementById("abrev_editar_original_text").value;
 
-
+        idplangbdatos = $("#plandatos_editar").val();
 
         var num_movil = $("input[name='num_mo_editar']").val();
         var obs = document.getElementById("Observ_editar").value;
 
-         if (document.getElementById("toggle-principal_editar").checked) {
-         principal = 1;
+        if (document.getElementById("toggle-principal_editar").checked) {
+            principal = 1;
 
-         } else {
-         principal = 0;
+        } else {
+            principal = 0;
 
-         }
+        }
 
-         fecha_Act = $('#fecha_tarj').val();
-
-
+        fecha_Act = $('#fecha_tarj').val();
 
 
-         if (document.getElementById("toggle-LXLS_editar").checked) {
-         XLS = 1;
 
-         } else {
-         XLS = 0;
 
-         }
+        if (document.getElementById("toggle-LXLS_editar").checked) {
+            XLS = 1;
+
+        } else {
+            XLS = 0;
+
+        }
 
         if ($('#linea_editar_form').parsley().isValid()) {
             event.preventDefault();
 
             $.ajax({
-                url: 'lineas/'+abrevAnt,
+                url: 'lineas/' + abrevAnt,
                 type: 'PUT',
                 data: {
                     cod_emp: $cod,
                     id: nummovil,
                     Observaciones: obs,
                     Abreviado: abrev,
+                    Plan: idplangbdatos,
                     ListadoXLS: XLS,
-                    Principal:principal
+                    Principal: principal
                 },
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -154,9 +163,38 @@
 
 
     });
-     $('#toggle-principal_tarj').change(function () {
-     // $('#toggle-termactual_hide').html( $(this).prop('checked'))
-     $("input[id=principal]").val($(this).prop('checked'));
-     });
+
+    $('#plandatos_editar').select2({
+        // Activamos la opcion "Tags" del plugin
+        width: '100px',
+        ajax: {
+            dataType: 'json',
+            url: '{{ url("GetPlanDatos") }}',
+            delay: 250,
+            processResults: function (data) {
+                // console.log(data);
+                return {
+                    results: $.map(data, function (item) {
+
+                        return {
+                            text: item.Plan,
+                            id: item.Id
+                        }
+                    })
+                };
+            },
+            cache: true
+            // processResults: function (data, page) {
+
+            // return {
+            // results: data
+            // };
+            // },
+        }
+    });
+    $('#toggle-principal_tarj').change(function () {
+        // $('#toggle-termactual_hide').html( $(this).prop('checked'))
+        $("input[id=principal]").val($(this).prop('checked'));
+    });
 
 </script>

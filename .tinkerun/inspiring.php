@@ -3,6 +3,7 @@
 use Auth;
 use App\User;
 use App\Estructura;
+use App\NuevasAltas;
+use App\TerminalMovil;
 
-$estructuras = Estructura::with('lineas', 'parent')->find('0015', ['EMP_CODE']);
-$estructuras->first();
+$data = NuevasAltas::all();

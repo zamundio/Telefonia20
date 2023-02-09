@@ -17,7 +17,7 @@ class LineaUsuario extends Model
     protected $casts = [
         'cod_emp' => 'string',
     ];
-    protected $fillable = ['id', 'cod_emp','Abreviado', 'Observaciones', 'ListadoXLS','Principal'];
+    protected $fillable = ['id', 'cod_emp','Abreviado', 'Observaciones', 'ListadoXLS','Plan','Principal'];
 
     public function Linea()
     {

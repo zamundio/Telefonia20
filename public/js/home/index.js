@@ -146,12 +146,12 @@ $(document).ready(function () {
     $(".temp").css("color", font_color);
   }
 
-  $table = new $('.datatable-logultmovimientos').DataTable({
+  $table = new $('.yajra-datatable-nuevasaltas').DataTable({
     "language": {
       "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
     },
     "ajax": {
-      "url": 'ajaxloglastmov',
+      "url": 'nuevasaltas',
       "type": "get"
     },
     "serverSide": false,
@@ -174,59 +174,50 @@ $(document).ready(function () {
     },
     "pageLength": 15,
     columnDefs: [{
-      width: 110,
-      targets: 0,
-
-      /*   render: function (value) {
-            if (value === null) return "";
-               return moment(value).format('DD-MM-YYYY hh:mm');
-        } */
-      render: function render(value) {
-        return moment(value).format('DD-MM-YYYY hh:mm');
-      }
+      "width": "2%",
+      targets: [0]
     }, {
-      className: "hide_me",
-      targets: 1
+      "width": "2%",
+      "targets": [1]
     }, {
-      width: 20,
-      targets: 2
+      "width": "2%",
+      "targets": [2]
     }, {
-      width: 30,
-      targets: 3
+      "width": "2%",
+      "targets": [3]
     }, {
-      width: 30,
-      targets: 4
+      "width": "2%",
+      "targets": [4]
     }, {
-      width: 30,
-      targets: 5
+      "width": "2%",
+      "targets": [5]
     }, {
-      width: 30,
-      targets: 6
+      "width": "2%",
+      "targets": [6]
     }],
     columns: [{
-      data: 'Fecha',
-      name: 'Fecha'
+      data: 'EMP_CODE',
+      name: 'EMP_CODE'
     }, {
-      data: 'Fecha',
-      name: 'FechaHidden'
+      data: 'LAST_NAME',
+      name: 'LAST_NAME'
     }, {
-      data: 'NS',
-      name: 'NS'
+      data: 'FIRST_NAME',
+      name: 'FIRST_NAME'
     }, {
-      data: 'Estado_Anterior',
-      name: 'Estado_Anterior'
+      data: 'EMP_COST_CENTER',
+      name: 'EMP_COST_CENTER'
     }, {
-      data: 'Estado_Actual',
-      name: 'Estado_Actual'
+      data: 'HIRE_DATE',
+      name: 'HIRE_DATE'
     }, {
-      data: 'DelegadoOld',
-      name: 'DelegadoOld'
+      data: 'EMAIL',
+      name: 'EMAIL'
     }, {
-      data: 'DelegadoNew',
-      name: 'DelegadoNew'
+      data: 'POSITION_TITLE',
+      name: 'POSITION_TITLE'
     }]
-  });
-  $table.column(1).visible(false);
+  }); // $table.column(1).visible(false);
 });
 
 function ManageItemlist(it, metodo) {
@@ -305,15 +296,16 @@ $(function () {
           ManageItemlist(object, "delete");
         }
       });
-      $('#todo-lists-basic-demo').lobiList(data);
-      var $lobilist = $('#todo-lists-basic-demo').data('lobiList'); //$lobilist.$lists
-
+      /* $('#todo-lists-basic-demo').lobiList(data);
+      var $lobilist = $('#todo-lists-basic-demo').data('lobiList');
+      //$lobilist.$lists
       var $dueDateInput = $lobilist.$el.find('form [name=dueDate]');
-      $dueDateInput[0]['autocomplete'] = "off";
-      $dueDateInput.datepicker({
-        format: "dd/mm/yyyy",
-        language: "es"
-      });
+      $dueDateInput[0]['autocomplete'] = "off"; */
+
+      /*     $dueDateInput.datepicker({
+              format: "dd/mm/yyyy",
+              language: "es"
+          }); */
     }
   });
 });

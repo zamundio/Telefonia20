@@ -28,10 +28,10 @@
                     </div>
                     {{-- <p class="errorContent text-center alert alert-danger hidden"></p> --}}
                     <div class="form-group col-sm-9">
-                        <label for="type" class="col-sm-3 control-label">GB</label>
-                        <div class="col-sm-6">
+                        <label for="type" class="col-sm-6 control-label">Plan Datos</label>
+                        <div class="col-sm-5">
 
-                            <select class="form-control select2-hidden-accessible" name="plandatos" id="plandatos" data-width="1250%" data-parsley-required="true" required data-parsley-trigger="change"> </select>
+                            <select class="form-control select2" name="plandatos" id="plandatos" data-width="1250%" data-parsley-required="true" required data-parsley-trigger="change"> </select>
                             <div class="col-sm-6">
                             </div>
                         </div>
@@ -84,7 +84,7 @@
 
 
         abrev = $("input[name='abrev_nuevo']").val();
-
+ idplangbdatos = $("#plandatos").val();
 
         var num_movil = $("input[name='num_mo_nuevo']").val();
         var obs = document.getElementById("Observ_nuevo").value;
@@ -122,7 +122,7 @@
                     Observaciones: obs,
                     Abreviado: abrev,
                     ListadoXLS: XLS,
-
+                    Plan:idplangbdatos,
                     Principal: principal
                 },
                 headers: {
@@ -155,7 +155,7 @@
     });
     $('#plandatos').select2({
         // Activamos la opcion "Tags" del plugin
-        width: '200px',
+        width: '100px',
         ajax: {
             dataType: 'json',
             url: '{{ url("GetPlanDatos") }}',

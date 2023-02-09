@@ -14,6 +14,7 @@
 
     </script>
 
+
     {{-- <script src="{{ asset('assets/pages/scripts/estructura/form.js?v=') }}" .$js type="text/javascript"></script> --}}
     {{-- <script src="{{ asset('js/handlebars.js') }}"></script> --}}
 
@@ -39,7 +40,17 @@
     <script>
         var template = Handlebars.compile($("#details-template").html());
 
+        function CopytoClip(e) {
+
+
+
+            // Init clipboard -- for more info, please read the offical documentation: https://clipboardjs.com/
+       new ClipboardJS('.btn-idcopy');
+       HelperNotificaciones.notificaciones('Linea ' + e.innerText +' copiada al Portapapeles', 'Telefonia', 'success');
+        };
+
     </script>
+
     <style>
         .btn-sml {
             height: 2vh;
@@ -164,7 +175,7 @@
             <div class="form-group"></div>
             <div class="form-row">
 
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-Lineas" id="TablaLineas">
                         <thead>
                             <h3> Lineas </h3>
@@ -172,6 +183,7 @@
                             <th width="5px"></th>
                             <th width="5px">Obs</th>
                             <th width="5px">Abr</th>
+                            <th width="5px">Movil</th>
                             <th width="5px">Movil</th>
                             <th width="5px">Plan</th>
                             <th width="5px">Pr</th>
@@ -184,7 +196,7 @@
                     </table>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-Tarjetas" id="TablaTarjetas">
                         <thead>
                             <h3> Tarjetas </h3>
@@ -209,7 +221,7 @@
 
             </div>
             <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-Ampliaciones" id="TablaAmpliaciones">
                         <thead>
                             <h3> Ampliaciones GB </h3>
@@ -229,7 +241,7 @@
                     </table>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-Terminales" id="TablaTerminales">
                         <thead>
                             <h3> Terminales </h3>
@@ -255,9 +267,9 @@
             <div class="form-row">
             </div>
             <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-HistTerminales" id="TablaHistTerminales">
                         <thead>
                             <br>

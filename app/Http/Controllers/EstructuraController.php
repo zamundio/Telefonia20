@@ -32,6 +32,8 @@ class EstructuraController extends Controller
 
         return DataTables::of($estructuras->lineas)
             ->addIndexColumn()
+
+
             ->addColumn('Plan', function ($row) {
 
                 switch ($row->getplandatos->Id) {
@@ -65,6 +67,7 @@ class EstructuraController extends Controller
                     return '<span class="badge badge-primary">?? </span>';
                 } */
             })
+
             ->addColumn('XLS', function ($row) {
 
                 if ($row->ListadoXLS == 1) {
@@ -73,6 +76,7 @@ class EstructuraController extends Controller
                     return '<div class="text-center"><span class="badge badge-danger">NO</span></div>';
                 }
             })
+
             ->addColumn('Principal', function ($row) {
 
                 if ($row->Principal == 1) {

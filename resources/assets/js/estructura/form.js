@@ -15,6 +15,7 @@ $(function () {
     var $tableAmpl;
 
 
+
     /*   Datatable Lineas *********************************************/
 
     $tarjetas_usuario_id = "";
@@ -75,8 +76,9 @@ $(function () {
                 "targets": [2]
             },
             {
-                "width": "2%",
-                "targets": [3]
+                "width": "0%",
+                "targets": [3],
+                visible: false
             },
             {
                 "width": "1%",
@@ -85,6 +87,10 @@ $(function () {
             {
                 "width": "1%",
                 "targets": [5]
+            },
+            {
+                "width": "1%",
+                "targets": [6]
             }
         ],
         select: {
@@ -220,8 +226,17 @@ $(function () {
 
             {
                 data: 'id',
-                name: 'num_movil'
+                name: 'id'
             },
+            {
+                data: 'id',
+                name: 'idcopy',
+                 "render": function (data, type, full, meta) {
+                  return '<button type="button" id="idcopy" name="idcopy"  data-clipboard-text=' + data + ' class = "btn btn-idcopy btn-outline-primary"  onclick=CopytoClip(this) >' + data + ' </button>'
+                 }
+
+            },
+
 
             {
                 data: 'Plan',
@@ -246,6 +261,18 @@ $(function () {
 
     });
 
+
+    // Select element
+
+
+    // Success action handler
+    /*  clipboard.on('success', function (e) {
+         const currentLabel = target.innerHTML;
+
+
+
+
+     }); */
 
 
     // $(document).popover({
@@ -1217,6 +1244,10 @@ function DatatableTerminales(numm) {
 };
 
 
+
+
+
+
 function DatatableHistoricoTerminales(numm) {
 
 
@@ -1520,8 +1551,8 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
 
     nummovil = tableData[3];
     linea = nummovil;
-    $('#TablaLineas tbody > tr').removeClass('markrow');
-    $(this).addClass('markrow');
+    // $('#TablaLineas tbody > tr').removeClass('markrow');
+    // $(this).addClass('markrow');
     var table = $('#TablaLineas').DataTable();
     table.$("input[type=checkbox]").prop("checked", false);
 

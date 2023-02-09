@@ -158,14 +158,18 @@ $(function () {
       "width": "15%",
       "targets": [2]
     }, {
-      "width": "2%",
-      "targets": [3]
+      "width": "0%",
+      "targets": [3],
+      visible: false
     }, {
       "width": "1%",
       "targets": [4]
     }, {
       "width": "1%",
       "targets": [5]
+    }, {
+      "width": "1%",
+      "targets": [6]
     }],
     select: {
       style: 'single',
@@ -272,7 +276,13 @@ $(function () {
       name: 'Abreviado'
     }, {
       data: 'id',
-      name: 'num_movil'
+      name: 'id'
+    }, {
+      data: 'id',
+      name: 'idcopy',
+      "render": function render(data, type, full, meta) {
+        return '<button type="button" id="idcopy" name="idcopy"  data-clipboard-text=' + data + ' class = "btn btn-idcopy btn-outline-primary"  onclick=CopytoClip(this) >' + data + ' </button>';
+      }
     }, {
       data: 'Plan',
       name: 'Plan'
@@ -288,7 +298,13 @@ $(function () {
       orderable: true,
       searchable: true
     }]
-  }); // $(document).popover({
+  }); // Select element
+  // Success action handler
+
+  /*  clipboard.on('success', function (e) {
+       const currentLabel = target.innerHTML;
+       }); */
+  // $(document).popover({
   //     selector: '[data-toggle=hover]',
   //     html: true,
   //     trigger: 'hover'
@@ -1272,9 +1288,9 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
     return $(this).text();
   }).get();
   nummovil = tableData[3];
-  linea = nummovil;
-  $('#TablaLineas tbody > tr').removeClass('markrow');
-  $(this).addClass('markrow');
+  linea = nummovil; // $('#TablaLineas tbody > tr').removeClass('markrow');
+  // $(this).addClass('markrow');
+
   var table = $('#TablaLineas').DataTable();
   table.$("input[type=checkbox]").prop("checked", false);
   $(this).find('input[type=checkbox]').prop('checked', true); // var url = `TarjetasDatatable?linea_usuario_id=${nummovil}`;

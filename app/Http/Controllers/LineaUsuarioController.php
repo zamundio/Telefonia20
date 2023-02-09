@@ -73,13 +73,16 @@ class LineaUsuarioController extends Controller
             ->addColumn('action', function ($row) {
 
                 if (Gate::allows('admin-access')) {
-                $btn = '<form action=' . route('eliminar_tarjeta', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
-                    . csrf_field() . '
+                    $btn = '<form action=' . route('eliminar_tarjeta', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
+                        . csrf_field() . '
          ' . method_field("DELETE") .
-                    '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
+                        '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
     <i class="fa fa-trash text-danger"></i>
 </button>
-         </form>';}else{$btn= '  </form>';}
+         </form>';
+                } else {
+                    $btn = '  </form>';
+                }
 
                 return $btn;
             })
@@ -119,18 +122,19 @@ class LineaUsuarioController extends Controller
 
             ->addColumn('action', function ($row) {
 
-            if (Gate::allows('admin-access')){
-                $btn = '<form action=' . route('eliminar_ampliacion', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
-                    . csrf_field() . '
+                if (Gate::allows('admin-access')) {
+                    $btn = '<form action=' . route('eliminar_ampliacion', ['id' => $row->id]) . ' class="d-inline form-eliminar" method="POST">'
+                        . csrf_field() . '
          ' . method_field("DELETE") .
-                    //             '<button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar esta ampliacion"><i class="fa fa-trash text-danger"></i></button>
-                    //  </form>'
-                    '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
+                        //             '<button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar esta ampliacion"><i class="fa fa-trash text-danger"></i></button>
+                        //  </form>'
+                        '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete">
     <i class="fa fa-trash text-danger"></i>
 </button>
          </form>';
-            } else {
-                $btn = '</form>';}
+                } else {
+                    $btn = '</form>';
+                }
 
 
 

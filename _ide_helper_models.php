@@ -14,7 +14,7 @@ namespace App{
 /**
  * App\AmpliacionesGB
  *
- * @property string|null $linea_usuario_id
+ * @property string $linea_usuario_id
  * @property string|null $FECHA
  * @property int|null $GB_AMPLIADOS
  * @property string|null $Observaciones
@@ -37,14 +37,12 @@ namespace App{
 /**
  * App\CentroCosteExtra
  *
- * @property string|null $EMP_CODE
  * @property int $EMP_COST_CENTER
  * @property string|null $COST_CENTER_DESC
  * @method static \Illuminate\Database\Eloquent\Builder|CentroCosteExtra newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CentroCosteExtra newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CentroCosteExtra query()
  * @method static \Illuminate\Database\Eloquent\Builder|CentroCosteExtra whereCOSTCENTERDESC($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CentroCosteExtra whereEMPCODE($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CentroCosteExtra whereEMPCOSTCENTER($value)
  */
 	class CentroCosteExtra extends \Eloquent {}
@@ -76,7 +74,7 @@ namespace App{
 /**
  * App\EstadoStock
  *
- * @property int $Id
+ * @property int|null $Id
  * @property string|null $Estado
  * @property-read \App\TerminalMovil|null $estado
  * @method static \Illuminate\Database\Eloquent\Builder|EstadoStock newModelQuery()
@@ -108,12 +106,12 @@ namespace App{
  * App\HistoricoTerminalesUsers
  *
  * @property int $idhistorico_terminales
- * @property int|null $id_linea
+ * @property string|null $id_linea
+ * @property string|null $id_terminal
  * @property int|null $estado_ant
  * @property int|null $estado_act
  * @property string|null $fecha_asignacion
  * @property string|null $fecha_cambio
- * @property int|null $id_terminal
  * @property string|null $Observaciones
  * @method static \Illuminate\Database\Eloquent\Builder|HistoricoTerminalesUsers newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HistoricoTerminalesUsers newQuery()
@@ -134,12 +132,14 @@ namespace App{
 /**
  * App\LineaUsuario
  *
- * @property string|null $cod_emp
+ * @property string $cod_emp
  * @property int $id
  * @property string|null $Observaciones
  * @property string|null $ListadoXLS
- * @property int|null $Principal
  * @property string|null $Abreviado
+ * @property int|null $Principal
+ * @property int|null $Plan
+ * @property-read \App\Plandatos|null $GetPlanDatos
  * @property-read \App\Estructura|null $Linea
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\AmpliacionesGB[] $ampliaciones
  * @property-read int|null $ampliaciones_count
@@ -157,6 +157,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|LineaUsuario whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LineaUsuario whereListadoXLS($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LineaUsuario whereObservaciones($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LineaUsuario wherePlan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LineaUsuario wherePrincipal($value)
  */
 	class LineaUsuario extends \Eloquent {}
@@ -218,8 +219,9 @@ namespace App{
 /**
  * App\PlanGB
  *
- * @property int|null $Id
+ * @property int $Id
  * @property string|null $GB
+ * @property int|null $Precio
  * @property string|null $Observaciones
  * @method static \Illuminate\Database\Eloquent\Builder|PlanGB newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PlanGB newQuery()
@@ -227,32 +229,44 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|PlanGB whereGB($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PlanGB whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PlanGB whereObservaciones($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlanGB wherePrecio($value)
  */
 	class PlanGB extends \Eloquent {}
 }
 
 namespace App{
 /**
+ * App\Plandatos
+ *
+ * @property int $Id
+ * @property string|null $plan
+ * @method static \Illuminate\Database\Eloquent\Builder|Plandatos newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plandatos newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plandatos query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Plandatos whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Plandatos wherePlan($value)
+ */
+	class Plandatos extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\Tarjeta
  *
- * @property int|null $Abrev_XXX_Eliminar
  * @property int|null $linea_usuario_id
- * @property string|null $id
+ * @property string $id
  * @property string|null $Observaciones
  * @property string|null $PIN
  * @property string|null $PUK
  * @property int|null $Principal
  * @property int|null $Datos
  * @property string|null $Fecha_Activacion
- * @property int $ID_KEY
  * @property-read \App\LineaUsuario|null $Linea
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta query()
- * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereAbrevXXXEliminar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereDatos($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereFechaActivacion($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereIDKEY($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereLineaUsuarioId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tarjeta whereObservaciones($value)
@@ -272,7 +286,6 @@ namespace App{
  * @property string|null $Nserie
  * @property string|null $IMEI
  * @property int|null $Estado
- * @property string|null $Observaciones
  * @property-read \App\EstadoStock|null $ChkEstado
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\LineaUsuario[] $linea_usuario
  * @property-read int|null $linea_usuario_count
@@ -287,7 +300,6 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalMovil whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalMovil whereIdTerminal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalMovil whereNserie($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TerminalMovil whereObservaciones($value)
  */
 	class TerminalMovil extends \Eloquent {}
 }
@@ -299,8 +311,10 @@ namespace App{
  * @property int|null $linea_usuario_id
  * @property int|null $terminal_movil_id
  * @property string|null $f_cambio_alta
+ * @property string|null $Motivo
  * @property string|null $Observaciones
  * @property int|null $Actual
+ * @property int|null $Devuelve_Anterior
  * @property int|null $id
  * @property int $idx
  * @property-read \App\TerminalMovil|null $term
@@ -308,10 +322,12 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers query()
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereActual($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereDevuelveAnterior($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereFCambioAlta($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereIdx($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereLineaUsuarioId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereMotivo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereObservaciones($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TerminalesUsers whereTerminalMovilId($value)
  */
@@ -382,7 +398,7 @@ namespace App{
  * @property string|null $HOME_STATE_CODE
  * @property string|null $HOME_CTRY_CODE
  * @property string|null $HOME_POSTAL_CODE
- * @property string|null $PHONE
+ * @property int|null $PHONE
  * @property string|null $GENDER_CODE
  * @property string|null $ACTUAL_LEAVE_DATE
  * @property string|null $BIRTH_DATE
@@ -390,6 +406,7 @@ namespace App{
  * @property string|null $MAR_STAT_CODE
  * @property int|null $EXTERNAL
  * @property string|null $GLOBAL_POS_CODE
+ * @property string|null $POS_CODE
  * @property string|null $POSITION_TITLE
  * @property string|null $COMPANY
  * @property string|null $DIVISION
@@ -442,6 +459,7 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|personalextra whereLASTNAME($value)
  * @method static \Illuminate\Database\Eloquent\Builder|personalextra whereMARSTATCODE($value)
  * @method static \Illuminate\Database\Eloquent\Builder|personalextra wherePHONE($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|personalextra wherePOSCODE($value)
  * @method static \Illuminate\Database\Eloquent\Builder|personalextra wherePOSITIONTITLE($value)
  * @method static \Illuminate\Database\Eloquent\Builder|personalextra wherePROFESSIONALCODE($value)
  * @method static \Illuminate\Database\Eloquent\Builder|personalextra whereREPORTSTOGLOBALPOSCODE($value)

@@ -25,6 +25,7 @@ Route::get('estructura', 'TreeEstructuraController@index')->name('estructura.ind
 Route::get('checkcc', 'MaestrasController@CheckCC')->name('checkcc');
 Route::get('checkpe', 'PersonalExtraController@CheckPE')->name('checkpe');
 Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
+Route::get('nuevasaltas', 'MaestrasController@NuevasAltasIndex')-> name('nuevasaltas');
 Route::get('estructura/printPreview/{id}', 'PrintController@PrintPreview');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
@@ -87,3 +88,8 @@ Route::get('GetPlanDatos', 'MaestrasController@PlanDatosindex')->name('GetPlanDa
 Route::get('ExportFacturacion', 'ListadosController@exportfacturacion')->name('ExportFacturacion');
 Route::get('ExportListadoSede', 'ListadosController@exportListadoSede')->name('ExportListadoSede');
 Route::get('ExportListadoRed', 'ListadosController@exportListadoRed')->name('ExportListadoRed');
+
+/* Send Notifications*/
+
+
+Route::get('/send', '\App\Http\Controllers\HomeController@send')->name('home.send');

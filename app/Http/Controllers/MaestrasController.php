@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\PlanGB;
-use App\EstadoStock;
+use App\Plandatos;
 
+use App\EstadoStock;
+use App\NuevasAltas;
 use App\CentrosCoste;
 use App\TerminalMovil;
 use App\CentroCosteExtra;
-use App\Plandatos;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -106,6 +107,25 @@ public function PlanGBindex(Request $request)
 
 
     }
+    public function NuevasAltasIndex()
+    {
+
+
+
+
+        $data = [];
+
+
+
+
+        $data = NuevasAltas::all();
+
+       // $data = NuevasAltas::first();
+
+
+        return response()->json($data);
+    }
+
     public function PlanDatosindex(Request $request)
     {
 
