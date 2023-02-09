@@ -42,10 +42,12 @@
 
         function CopytoClip(e) {
 
+const target = document.getElementById('idcopy');
 
+        console.log(target)    ;
+        // Init clipboard -- for more info, please read the offical documentation: https://clipboardjs.com/
+       var clipboard =new ClipboardJS(target);
 
-            // Init clipboard -- for more info, please read the offical documentation: https://clipboardjs.com/
-       new ClipboardJS('.btn-idcopy');
        HelperNotificaciones.notificaciones('Linea ' + e.innerText +' copiada al Portapapeles', 'Telefonia', 'success');
         };
 

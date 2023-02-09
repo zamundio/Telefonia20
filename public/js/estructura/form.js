@@ -279,7 +279,7 @@ $(function () {
       name: 'id'
     }, {
       data: 'id',
-      name: 'idcopy',
+      name: 'idcopypaste',
       "render": function render(data, type, full, meta) {
         return '<button type="button" id="idcopy" name="idcopy"  data-clipboard-text=' + data + ' class = "btn btn-idcopy btn-outline-primary"  onclick=CopytoClip(this) >' + data + ' </button>';
       }
