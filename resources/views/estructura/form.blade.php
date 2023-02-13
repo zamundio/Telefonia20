@@ -10,8 +10,28 @@
     <script src="{{ asset('js/estructura/form.js?v=') }}" .$js></script>
     <script src="{{ asset('js/jquery.printpage.js') }}" type="text/javascript"></script>
     <script>
-        $('.btnPrint').printPage();
 
+
+
+        function CopytoClip(e) {
+
+  $('.btnPrint').printPage();
+  const target = document.getElementById('idcopy');
+
+  var clipboard = new ClipboardJS('#idcopy');
+   clipboard.on('success', function (e) {
+   console.info('Action:', e.action);
+   console.info('Text:', e.text);
+   console.info('Trigger:', e.trigger);
+   });
+
+   clipboard.on('error', function (e) {
+   console.info('Action:', e.action);
+   console.info('Text:', e.text);
+   console.info('Trigger:', e.trigger);
+   });
+   HelperNotificaciones.notificaciones('Linea ' + e.innerText + ' copiada al Portapapeles', 'Telefonia', 'success');
+   };
     </script>
 
 
@@ -40,16 +60,7 @@
     <script>
         var template = Handlebars.compile($("#details-template").html());
 
-        function CopytoClip(e) {
 
-const target = document.getElementById('idcopy');
-
-        console.log(target)    ;
-        // Init clipboard -- for more info, please read the offical documentation: https://clipboardjs.com/
-       var clipboard =new ClipboardJS(target);
-
-       HelperNotificaciones.notificaciones('Linea ' + e.innerText +' copiada al Portapapeles', 'Telefonia', 'success');
-        };
 
     </script>
 
@@ -270,6 +281,35 @@ const target = document.getElementById('idcopy');
             </div>
             <div class="form-row">
                 <div class="col-md-5">
+                    <div class="py-5">
+                        <div class="rounded border p-10">
+                            <!--begin::Form-->
+                            <form class="form" action="#" method="post">
+                                <!--begin::Input group-->
+                                <div class="fv-row">
+                                    <!--begin::Dropzone-->
+                                    <div class="dropzone" id="kt_dropzonejs_example_1">
+                                        <!--begin::Message-->
+                                        <div class="dz-message needsclick">
+                                            <!--begin::Icon-->
+                                            <i class="fa fa-file-text-o "></i>
+                                            <!--end::Icon-->
+
+                                            <!--begin::Info-->
+                                            <div class="ms-4">
+                                                <h3 class="fs-5 fw-bold text-gray-900 mb-1">Arrastre ficheros o haga clic </h3>
+                                                <span class="fs-7 fw-semibold text-primary opacity-75">Suba maximo 10 ficheros</span>
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                    </div>
+                                    <!--end::Dropzone-->
+                                </div>
+                                <!--end::Input group-->
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-7">
                     <table class="table  table-striped table-bordered dt-responsive table-hover yajra-datatable-HistTerminales" id="TablaHistTerminales">
