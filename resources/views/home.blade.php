@@ -18,7 +18,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-1 col-sm-3">
                     <div class="circle-tile">
                         <a href="#">
                             <div class="circle-tile-heading orange">
@@ -36,20 +36,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="page-content page-container col-lg-9" id="page-content">
+                <div class="page-content page-container col-lg-11" id="page-content">
                     <div class="padding">
-                        <div class="row container d-flex justify-content-center">
+                        <div class="row container col-lg-10 d-flex justify-content-center">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
-
-
                                         <div class="padding">
                                             <div class="table-responsive">
                                                 <table id="NuevasAltas" class=" table table-bordered table-striped table-hover yajra-datatable-nuevasaltas" id="TablaNuevasAltas">
                                                     <thead>
                                                         <tr>
+                                                            <th>
 
+                                                            </th>
                                                             <th>
                                                                 {{ trans('global.telefonia.fields.EMP_CODE') }}
                                                             </th>
@@ -72,7 +72,9 @@
                                                                 {{ trans('global.telefonia.fields.POSITION_TITLE') }}
                                                             </th>
 
-
+                                                            <th>
+                                                                {{ trans('global.telefonia.fields.Linea') }}
+                                                            </th>
 
                                                         </tr>
                                                     </thead>
@@ -130,7 +132,7 @@
             <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
             <script src="{{ asset("js/lobibox.min.js") }}"></script>
             <script src="{{ asset("js/demo.js") }}"></script>
-              <script src="{{ asset('js/home/index.js') }}"></script>
+            <script src="{{ asset('js/home/index.js') }}"></script>
 
 
             {{-- <script src="{{ asset('js/estructura/form.js') }}"></script> --}}

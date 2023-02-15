@@ -173,29 +173,64 @@ $(document).ready(function () {
       console.log(errors);
     },
     "pageLength": 15,
+    buttons: [],
     columnDefs: [{
-      "width": "2%",
-      targets: [0]
+      targets: 0,
+      data: null,
+      defaultContent: '',
+      "width": "1%",
+      render: function render(data, type, full, meta) {
+        if (meta.row == 0) {
+          return '<input type="checkbox" name="checkbox" checked <div/>';
+        }
+
+        {
+          return '<input type="checkbox" name="checkbox" uncheked  <div />';
+        }
+      }
     }, {
-      "width": "2%",
-      "targets": [1]
+      "width": "1%",
+      targets: [1]
     }, {
-      "width": "2%",
+      "width": "4%",
       "targets": [2]
     }, {
-      "width": "2%",
+      "width": "1%",
       "targets": [3]
     }, {
-      "width": "2%",
+      "width": "3%",
       "targets": [4]
     }, {
       "width": "2%",
-      "targets": [5]
+      "targets": [5],
+      render: function render(d) {
+        moment.locale('es-ES');
+
+        if (d != null) {
+          return moment(d).format('DD/MM/YYYY', 'es');
+        }
+      }
     }, {
       "width": "2%",
       "targets": [6]
+    }, {
+      "width": "7%",
+      "targets": [7]
+    }, {
+      "width": "7%",
+      "targets": [8],
+      render: function render(d) {
+        if (d == 'SI') {
+          return '<span class="badge badge-primary">SI</span>';
+        } else {
+          return '<span class="badge badge-danger">NO</span>';
+        }
+      }
     }],
     columns: [{
+      data: 'Checkbox',
+      name: 'Checkbox'
+    }, {
       data: 'EMP_CODE',
       name: 'EMP_CODE'
     }, {
@@ -205,8 +240,8 @@ $(document).ready(function () {
       data: 'FIRST_NAME',
       name: 'FIRST_NAME'
     }, {
-      data: 'EMP_COST_CENTER',
-      name: 'EMP_COST_CENTER'
+      data: 'COST_CENTER_DESC',
+      name: 'COST_CENTER_DESC'
     }, {
       data: 'HIRE_DATE',
       name: 'HIRE_DATE'
@@ -216,6 +251,9 @@ $(document).ready(function () {
     }, {
       data: 'POSITION_TITLE',
       name: 'POSITION_TITLE'
+    }, {
+      data: 'LINEA',
+      name: 'LINEA'
     }]
   }); // $table.column(1).visible(false);
 });

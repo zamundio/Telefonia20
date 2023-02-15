@@ -12,6 +12,7 @@ Route::patch('change_password', 'Auth\ChangePasswordController@changePassword')-
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('nuevasaltas', 'MaestrasController@NuevasAltasIndex')->name('nuevasaltas');
     Route::resource('permissions', 'Admin\PermissionsController');
     Route::delete('permissions_mass_destroy', 'Admin\PermissionsController@massDestroy')->name('permissions.mass_destroy');
     Route::resource('roles', 'Admin\RolesController');
@@ -19,13 +20,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('users', 'Admin\UsersController');
     Route::delete('users_mass_destroy', 'Admin\UsersController@massDestroy')->name('users.mass_destroy');
 });
+
 Route::get('ajaxFillStructTree', 'AjaxController@ajaxFillStrucTree')->name('ajaxFillStructTree.get');
 Route::get('ajaxGetNodeInfoStructTree', 'AjaxController@ajaxGetNodeInfoStructTree')->name('ajaxGetNodeInfoStructTree');
 Route::get('estructura', 'TreeEstructuraController@index')->name('estructura.index');
 Route::get('checkcc', 'MaestrasController@CheckCC')->name('checkcc');
 Route::get('checkpe', 'PersonalExtraController@CheckPE')->name('checkpe');
 Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
-Route::get('nuevasaltas', 'MaestrasController@NuevasAltasIndex')-> name('nuevasaltas');
+
 Route::get('estructura/printPreview/{id}', 'PrintController@PrintPreview');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');

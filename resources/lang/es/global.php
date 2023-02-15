@@ -81,6 +81,8 @@ return [
             'EMAIL_helper'  => '',
             'POSITION_TITLE'         => 'Posición',
             'POSITION_TITLE_helper'  => '',
+            'Linea'         => 'Linea',
+            'Linea_hlper'  => '',
             'fbaja'         => 'Fecha Baja',
             'fbaja_helper'  => '',
             'alta'         => 'Estado',
@@ -92,11 +94,11 @@ return [
 			'activo'         => 'Activo?',
             'activo_helper'  => '',
         ],],
-		
+
 			'logmovimientos'                              => [
         'title'          => 'Log Movimientos',
         'title_singular' => 'Log Movimientos',
-        'fields'         => [ 
+        'fields'         => [
 		'fecha'                 => 'Fecha',
         'NS_helper'          => '',
 		'NS'                 => 'NS',
@@ -118,7 +120,7 @@ return [
 		'obsnew'                 => 'Obs Act',
         'NS_helper'          => ''
 		]],
-		
+
     'action'                               => 'Acción',
     'action_id'                            => 'Action id',
     'action_model'                         => 'Action model',

@@ -111,19 +111,20 @@ public function PlanGBindex(Request $request)
     {
 
 
-
-
         $data = [];
 
 
 
 
-        $data = NuevasAltas::all();
+       // $data = NuevasAltas::all();
 
-       // $data = NuevasAltas::first();
+        $data = NuevasAltas::All();
 
 
-        return response()->json($data);
+       // return response()->json($data);
+
+         return Datatables::of($data)->toJson();
+
     }
 
     public function PlanDatosindex(Request $request)

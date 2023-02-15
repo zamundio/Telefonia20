@@ -16,20 +16,10 @@
         function CopytoClip(e) {
 
   $('.btnPrint').printPage();
-  const target = document.getElementById('idcopy');
+
 
   var clipboard = new ClipboardJS('#idcopy');
-   clipboard.on('success', function (e) {
-   console.info('Action:', e.action);
-   console.info('Text:', e.text);
-   console.info('Trigger:', e.trigger);
-   });
 
-   clipboard.on('error', function (e) {
-   console.info('Action:', e.action);
-   console.info('Text:', e.text);
-   console.info('Trigger:', e.trigger);
-   });
    HelperNotificaciones.notificaciones('Linea ' + e.innerText + ' copiada al Portapapeles', 'Telefonia', 'success');
    };
     </script>
