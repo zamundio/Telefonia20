@@ -1655,3 +1655,17 @@ tr.shown td.details-control {
     border-radius: 50px;
     /* create gap between buttons for display, you can remove this*/
 }
+
+
+.td.dt-center {
+    text-align: center;
+}
+
+.last-created-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+.badge {
+    vertical-align: middle;
+}

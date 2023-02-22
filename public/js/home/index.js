@@ -146,23 +146,23 @@ $(document).ready(function () {
     $(".temp").css("color", font_color);
   }
 
-  $table = new $('.yajra-datatable-nuevasaltas').DataTable({
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+  $table = new $(".yajra-datatable-nuevasaltas").DataTable({
+    language: {
+      url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
     },
-    "ajax": {
-      "url": 'nuevasaltas',
-      "type": "get"
+    ajax: {
+      url: "nuevasaltas",
+      type: "get"
     },
-    "serverSide": false,
-    "processing": false,
+    serverSide: false,
+    processing: false,
     success: function success(result) {
       if (result.errors) {
         $.each(result.errors, function (key, value) {
-          console.log(' errores') + value;
+          console.log(" errores") + value;
         });
       } else {
-        console.log('sin errores');
+        console.log("sin errores");
       }
     },
     error: function error(data) {
@@ -172,89 +172,110 @@ $(document).ready(function () {
       var errors = data.responseJSON;
       console.log(errors);
     },
-    "pageLength": 15,
+    pageLength: 15,
     buttons: [],
     columnDefs: [{
-      targets: 0,
-      data: null,
-      defaultContent: '',
-      "width": "1%",
-      render: function render(data, type, full, meta) {
-        if (meta.row == 0) {
-          return '<input type="checkbox" name="checkbox" checked <div/>';
-        }
-
-        {
-          return '<input type="checkbox" name="checkbox" uncheked  <div />';
-        }
-      }
+      width: "1%",
+      targets: [0]
     }, {
-      "width": "1%",
+      width: "8%",
       targets: [1]
     }, {
-      "width": "4%",
-      "targets": [2]
+      width: "1%",
+      targets: [2]
     }, {
-      "width": "1%",
-      "targets": [3]
+      width: "10%",
+      targets: [3]
     }, {
-      "width": "3%",
-      "targets": [4]
-    }, {
-      "width": "2%",
-      "targets": [5],
+      width: "2%",
+      targets: [4],
       render: function render(d) {
-        moment.locale('es-ES');
+        moment.locale("es-ES");
 
         if (d != null) {
-          return moment(d).format('DD/MM/YYYY', 'es');
+          return moment(d).format("DD/MM/YYYY", "es");
         }
       }
     }, {
-      "width": "2%",
-      "targets": [6]
+      width: "2%",
+      targets: [5]
     }, {
-      "width": "7%",
-      "targets": [7]
+      width: "7%",
+      targets: [6]
     }, {
-      "width": "7%",
-      "targets": [8],
+      className: "dt-center",
+      width: "1%",
+      targets: [7],
       render: function render(d) {
-        if (d == 'SI') {
-          return '<span class="badge badge-primary">SI</span>';
+        if (d == "SI") {
+          return '<span class="badge badge-primary  center-block">SI</span>';
         } else {
-          return '<span class="badge badge-danger">NO</span>';
+          return '<span class="badge badge-danger  center-block">NO</span>';
         }
       }
+    }, {
+      className: "dt-center",
+      width: "1%",
+      targets: [8],
+      render: function render(d) {
+        if (d == "SI") {
+          return '<span class="badge badge-primary  center-block">SI</span>';
+        } else {
+          return '<span class="badge badge-danger  center-block">NO</span>';
+        }
+      }
+    }, {
+      "width": "1%",
+      "targets": [9]
     }],
     columns: [{
-      data: 'Checkbox',
-      name: 'Checkbox'
+      data: "EMP_CODE",
+      name: "EMP_CODE"
     }, {
-      data: 'EMP_CODE',
-      name: 'EMP_CODE'
+      data: "LAST_NAME",
+      name: "LAST_NAME"
     }, {
-      data: 'LAST_NAME',
-      name: 'LAST_NAME'
+      data: "FIRST_NAME",
+      name: "FIRST_NAME"
     }, {
-      data: 'FIRST_NAME',
-      name: 'FIRST_NAME'
+      data: "COST_CENTER_DESC",
+      name: "COST_CENTER_DESC"
     }, {
-      data: 'COST_CENTER_DESC',
-      name: 'COST_CENTER_DESC'
+      data: "HIRE_DATE",
+      name: "HIRE_DATE"
     }, {
-      data: 'HIRE_DATE',
-      name: 'HIRE_DATE'
+      data: "EMAIL",
+      name: "EMAIL"
     }, {
-      data: 'EMAIL',
-      name: 'EMAIL'
+      data: "POSITION_TITLE",
+      name: "POSITION_TITLE"
     }, {
-      data: 'POSITION_TITLE',
-      name: 'POSITION_TITLE'
+      data: "LINEA",
+      name: "LINEA"
     }, {
-      data: 'LINEA',
-      name: 'LINEA'
+      data: "TERMINAL",
+      name: "TERMINAL"
+    }, {
+      data: 'action',
+      name: 'action'
     }]
+  });
+  $("#TablaNuevasAltas").on('submit', '.form-eliminar', function () {
+    event.preventDefault();
+    var form = $(this);
+    swal({
+      title: '¿ Está seguro que desea eliminar el registro ?',
+      text: "Esta acción no se puede deshacer!",
+      icon: 'warning',
+      buttons: {
+        cancel: "Cancelar",
+        confirm: "Aceptar"
+      }
+    }).then(function (value) {
+      if (value) {
+        ajaxRequest(form);
+      }
+    });
   }); // $table.column(1).visible(false);
 });
 
@@ -287,13 +308,13 @@ function ManageItemlist(it, metodo) {
     type: tipo,
     url: urlmetodo,
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
     },
     data: {
-      "userid": userid,
-      "fecha": fecha,
-      "descripcion": descripcion,
-      "titulo": titulo
+      userid: userid,
+      fecha: fecha,
+      descripcion: descripcion,
+      titulo: titulo
     },
     error: function error(data, _error) {// console.log(" Can't do because: " + data + error);
     },
@@ -302,11 +323,10 @@ function ManageItemlist(it, metodo) {
   });
 }
 
-;
 $(function () {
   $.ajaxSetup({
     headers: {
-      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      "X-CSRF-TOKEN": $('meta[name="_token"]').attr("content")
     }
   });
   $.ajax({
@@ -335,18 +355,41 @@ $(function () {
         }
       });
       /* $('#todo-lists-basic-demo').lobiList(data);
-      var $lobilist = $('#todo-lists-basic-demo').data('lobiList');
-      //$lobilist.$lists
-      var $dueDateInput = $lobilist.$el.find('form [name=dueDate]');
-      $dueDateInput[0]['autocomplete'] = "off"; */
+                  var $lobilist = $('#todo-lists-basic-demo').data('lobiList');
+                  //$lobilist.$lists
+                  var $dueDateInput = $lobilist.$el.find('form [name=dueDate]');
+                  $dueDateInput[0]['autocomplete'] = "off"; */
 
       /*     $dueDateInput.datepicker({
-              format: "dd/mm/yyyy",
-              language: "es"
-          }); */
+                          format: "dd/mm/yyyy",
+                          language: "es"
+                      }); */
     }
   });
 });
+
+function ajaxRequest(form) {
+  $check = "";
+  return $.ajax({
+    url: form.attr('action'),
+    type: 'POST',
+    data: form.serialize(),
+    success: function success(respuesta) {
+      if (respuesta.mensaje == "ok") {
+        form.parents('tr').remove();
+        $('#count-emp-code').text(respuesta.cuenta);
+        HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
+        /*   setTimeout(function () {
+            location.reload();
+          }, 1000); */
+      } else {
+        ;
+        HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
+      }
+    },
+    error: function error() {}
+  });
+}
 
 /***/ }),
 

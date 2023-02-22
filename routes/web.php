@@ -35,7 +35,7 @@ Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('
 Route::get('lineas/{id}/editar', 'LineaUsuarioController@editar')->name('editar_linea');
 Route::post('lineas', 'LineaUsuarioController@guardar')->name('GuardarLinea');
 Route::put('lineas/{abrev}', 'LineaUsuarioController@actualizar')->name('ActualizarLinea');
-
+Route::delete('nuevasaltas/eliminar/{id}', 'MaestrasController@eliminar_nueva_alta')-> name('eliminar_nueva_alta');
 Route::get('CentrosdeCoste', 'MaestrasController@DT_CentrosdeCoste')->name('CentrosdeCoste');
 Route::post('submit_form_añadirpersonal', 'PersonalExtraController@store')->name('guardarpersonal');
 

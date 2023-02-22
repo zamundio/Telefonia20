@@ -1298,6 +1298,23 @@ $("#TablaTarjetas").on('submit', '.form-eliminar', function () {
     }
   });
 });
+$("#TablaTarjetas").on('submit', '.form-eliminar', function () {
+  event.preventDefault();
+  var form = $(this);
+  swal({
+    title: '¿ Está seguro que desea eliminar el registro ?',
+    text: "Esta acción no se puede deshacer!",
+    icon: 'warning',
+    buttons: {
+      cancel: "Cancelar",
+      confirm: "Aceptar"
+    }
+  }).then(function (value) {
+    if (value) {
+      ajaxRequest(form);
+    }
+  });
+});
 /********Se recargan todas las datatables al cambiar de linea******************************** */
 
 $('#TablaLineas tbody').on('click', 'tr', function () {
@@ -1431,25 +1448,6 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
   $('.yajra-datatable-Terminales').DataTable().ajax.url(url).load();
   $('.yajra-datatable-Terminales').DataTable().draw();
 });
-
-function ajaxRequest(form) {
-  $check = "";
-  return $.ajax({
-    url: form.attr('action'),
-    type: 'POST',
-    data: form.serialize(),
-    success: function success(respuesta) {
-      if (respuesta.mensaje == "ok") {
-        form.parents('tr').remove();
-        HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
-      } else {
-        ;
-        HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
-      }
-    },
-    error: function error() {}
-  });
-}
 
 /***/ }),
 

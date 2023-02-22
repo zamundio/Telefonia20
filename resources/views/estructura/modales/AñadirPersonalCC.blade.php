@@ -27,12 +27,12 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="Nombre">Nombre</label>
-                                <input type="text" class="form-control" id="FIRST_NAME" name="FIRST_NAME" autocomplete="off"  placeholder="" value="">
+                                <input type="text" class="form-control" id="FIRST_NAME" name="FIRST_NAME" autocomplete="off" placeholder="" value="">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="Apellidos">Apellidos</label>
-                                <input type="text" class="form-control" id="LAST_NAME" name="LAST_NAME" autocomplete="off"   placeholder="" value="">
+                                <input type="text" class="form-control" id="LAST_NAME" name="LAST_NAME" autocomplete="off" placeholder="" value="">
                             </div>
                         </div>
                         <div class="form-row">
@@ -60,7 +60,7 @@
 
                             <div class="form-group  col-sm-3half">
                                 <label for="telefono">Teléfono</label>
-                                <input type="text" class="form-control" style="width: 100px;" id="PHONE" name="PHONE" autocomplete="off"  value="">
+                                <input type="text" class="form-control" style="width: 100px;" id="PHONE" name="PHONE" autocomplete="off" value="">
                             </div>
 
                             <div class="form-group  col-sm-3-Email">
@@ -116,7 +116,7 @@
 
                         <div class="form-group col-md-2">
                             <label for="abrev">Linea</label>
-                            <input type="text" class="form-control" id="POSITION_TITLE" name="POSITION_TITLE"  value="">
+                            <input type="text" class="form-control" id="POSITION_TITLE" name="POSITION_TITLE" value="">
                         </div>
 
                         <div class="form-group col-md-2">
@@ -127,6 +127,14 @@
                             <label for="wp">Workplace</label>
                             <input type="text" class="form-control" style="width: 190px;" id="SUBAREA3" name=" SUBAREA3" value="">
                         </div>
+                      <div class="form-group form-inline">
+                          <label for="last-extra" class="ml-5 mr-4 mb-2 text-uppercase font-weight-bold" style="font-size: 18px;">Última Alta Creada:</label>
+
+                          <span class="badge badge-primary badge-large align-middle" style="font-size: 18px;">{{ $lastExtra->EMP_CODE }} {{ $lastExtra->LAST_NAME }} , {{ $lastExtra->FIRST_NAME }}</span>
+                      </div>
+
+
+
 
 
 
@@ -136,7 +144,7 @@
 </div>
 <div class="modal-footer">
 
-@include('includes.botones_crear_modales')
+    @include('includes.botones_crear_modales')
     {{-- <input type="submit" class="btn btn-default"></button> --}}
 
 </div>
@@ -145,7 +153,6 @@
 </form>
 </div>
 <script type="text/javascript">
-  $formname='AñadirPersonal';
-
+    $formname = 'AñadirPersonal';
 
 </script>

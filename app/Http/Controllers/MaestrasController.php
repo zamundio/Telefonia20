@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Odi;
 use App\PlanGB;
-use App\Plandatos;
 
+use App\Plandatos;
 use App\EstadoStock;
 use App\NuevasAltas;
 use App\CentrosCoste;
 use App\TerminalMovil;
 use App\CentroCosteExtra;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,23 +23,11 @@ class MaestrasController extends Controller
     {
         if ($request->ajax()) {
 
-   $cc = CentrosCoste::select('EMP_COST_CENTER', 'COST_CENTER_DESC')->get();
-
-
-
+            $cc = CentrosCoste::select('EMP_COST_CENTER', 'COST_CENTER_DESC')->get();
 
             return Datatables::of($cc)
-                -> addColumn('action', function ($row) {
-
-
-
+                ->addColumn('action', function ($row) {
                     $btn = "";
-
-
-
-
-
-
                     return  $btn;
                 })
 
@@ -46,20 +37,40 @@ class MaestrasController extends Controller
         }
     }
 
-    public function  CheckCC(request $request){
-if ($request->ajax()) {
+    public function  CheckCC(request $request)
+    {
+        if ($request->ajax()) {
 
-            $cc= CentrosCoste::find($request->emp_cost_center);
+            $cc = CentrosCoste::find($request->emp_cost_center);
 
-    if($cc){
+            if ($cc) {
                 abort(404);
-        } else {
+            } else {
 
                 return response()->json(['success' => 'CC disponible']);
+            }
         }
     }
-}
+    public function Eliminar_Nueva_alta(Request $request, $id)
+    {
 
+        if ($request->ajax()) {
+
+
+
+
+
+            $del = NuevasAltas::where('EMP_CODE', $id)->first();
+
+            $input = Arr::except($del->toArray(), ['LINEA', 'TERMINAL']);
+            $odi = new Odi($input);
+            $odi->save();
+            $cuenta= NuevasAltas::count();
+            return response()->json(['mensaje' => 'ok','cuenta'=> $cuenta]);
+        } else {
+            abort(404);
+        }
+    }
 
 
 
@@ -83,85 +94,55 @@ if ($request->ajax()) {
         $cc = new CentroCosteExtra($requestData);
         $cc->save();
     }
-public function PlanGBindex(Request $request)
+    public function PlanGBindex(Request $request)
     {
 
-
-
-
         $data = [];
-
-
-
         $search = $request->q;
         $data = PlanGB::select("Id", "GB")->where('GB', 'LIKE', "%$search%")->get();
-
-
-
         return response()->json($data);
-
-
-
-
-
-
-
     }
     public function NuevasAltasIndex()
     {
 
 
         $data = [];
-
-
-
-
-       // $data = NuevasAltas::all();
-
         $data = NuevasAltas::All();
+        return Datatables::of($data)
+            ->addColumn('action', function ($row) {
 
+                if (Gate::allows('admin-access')) {
 
-       // return response()->json($data);
+                    $btn = '<form action=' . route('eliminar_nueva_alta', ['id' => $row->EMP_CODE]) . ' class="d-inline form-eliminar" method="post">'
+                        . csrf_field() . method_field('delete') .  '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete"> <i class="fa fa-handshake text-danger"></i></button>';
+                } else {
+                    $btn = "";
+                }
 
-         return Datatables::of($data)->toJson();
-
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     public function PlanDatosindex(Request $request)
     {
-
-
-
-
         $data = [];
-
-
-
         $search = $request->q;
         $data = Plandatos::select("Id", "Plan")->where('Plan', 'LIKE', "%$search%")->get();
-
-
-
         return response()->json($data);
     }
 
     public function Estadoterminales(Request $request)
     {
 
-
         // if ($request->ajax()) {
 
         $data = [];
 
-
-
         $search = $request->q;
         $data = EstadoStock::select("Id", "Estado")->where('Estado', 'LIKE', "%$search%")->get();
-
-
-
         return response()->json($data);
-
     }
 
     public function CrearTerminal(request $request)
@@ -185,13 +166,9 @@ public function PlanGBindex(Request $request)
 
                 return response()->json(['error' => $validator->errors()->all()]);
             }
-
-
             $terminalmovil = new TerminalMovil($requestData);
             $terminalmovil->save();
             return response()->json(['success' => 'terminal Agregado', 'id' => $terminalmovil->id]);
         };
     }
 }
-
-

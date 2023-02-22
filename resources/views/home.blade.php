@@ -30,7 +30,7 @@
                                 NUEVAS ALTAS
                             </div>
                             <div class="circle-tile-number text-faded">
-                                {{ $nuevasaltas->count('EMP_CODE') }}
+                                <div id="count-emp-code">{{ $nuevasaltas->count('EMP_CODE') }}</div>
                             </div>
                             <a href="#" onclick="ShowNorecep()" class="circle-tile-footer">Mas Info <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
@@ -39,49 +39,53 @@
                 <div class="page-content page-container col-lg-11" id="page-content">
                     <div class="padding">
                         <div class="row container col-lg-10 d-flex justify-content-center">
-                            <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="col-lg-10 grid-margin stretch-card">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="padding">
                                             <div class="table-responsive">
-                                                <table id="NuevasAltas" class=" table table-bordered table-striped table-hover yajra-datatable-nuevasaltas" id="TablaNuevasAltas">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
+                                                <form class="form" id="formnuevasaltas" name="formnuevasaltas">
+                                                    <table id="TablaNuevasAltas" class=" table table-bordered table-striped table-hover yajra-datatable-nuevasaltas">
+                                                        <thead>
+                                                            <tr>
 
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.EMP_CODE') }}
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.LAST_NAME') }}
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.FIRST_NAME') }}
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.COST_CENTER_DESC') }}
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.HIRE_DATE') }}
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.EMAIL') }}
-                                                            </th>
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.POSITION_TITLE') }}
-                                                            </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.EMP_CODE') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.LAST_NAME') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.FIRST_NAME') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.COST_CENTER_DESC') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.HIRE_DATE') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.EMAIL') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.POSITION_TITLE') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.Linea') }}
+                                                                </th>
+                                                                <th>
+                                                                    {{ trans('global.telefonia.fields.Terminal') }}
+                                                                </th>
+                                                                <th>
 
-                                                            <th>
-                                                                {{ trans('global.telefonia.fields.Linea') }}
-                                                            </th>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
 
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                    </tbody>
-                                                </table>
+                                                        </tbody>
+                                                    </table>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -90,54 +94,27 @@
                         </div>
                     </div>
                 </div>
-                {{--  <div class="row">
-        <div class="col-lg-12">
-            Home
 
-        </div>
-        <div id="lobilist-examples">
-            <h1>Examples</h1>
-            <hr>
-            <!--Basic example-->
-            <div>
-                <div class="bs-example">
-                    <h4>Basic example</h4>
-                    <div id="todo-lists-basic-demo"></div>
-                </div>
-            </div>
-            <!--Custom datepicker-->
-            <div>
-                <div class="bs-example">
-                    <h4>Custom datepicker</h4>
-                    <p>This example uses <a target="_blank" href="https://github.com/eternicode/bootstrap-datepicker">Bootstrap datepicker</a></p>
-                    <div id="todo-lists-demo-datepicker"></div>
-                </div>
-            </div>
-            <!--Event handling-->
 
-        </div>
-        </div>
     </div>
- --}}
+  </div>
+                    @endsection
+                    @section('scripts')
+                    @parent
+                    <script src="{{ asset("js/jquery.min.js") }}"></script>
+                    <script src="{{ asset("js/jquery-ui.min.js") }}"></script>
+                    <script src="{{ asset("js/jquery.ui.touch-punch-improved.js") }}"></script>
+                    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+                    <script src="{{ asset("js/lobilist.js") }}"></script>
+                    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+                    <script src="{{ asset("js/lobibox.min.js") }}"></script>
+                    <script src="{{ asset("js/demo.js") }}"></script>
+                    <script src="{{ asset('js/home/index.js') }}"></script>
+                    <script>
 
-            </div>
-            @endsection
-            @section('scripts')
-            @parent
-            <script src="{{ asset("js/jquery.min.js") }}"></script>
-            <script src="{{ asset("js/jquery-ui.min.js") }}"></script>
-            <script src="{{ asset("js/jquery.ui.touch-punch-improved.js") }}"></script>
-            <script src="{{ asset("js/bootstrap.min.js") }}"></script>
-            <script src="{{ asset("js/lobilist.js") }}"></script>
-            <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-            <script src="{{ asset("js/lobibox.min.js") }}"></script>
-            <script src="{{ asset("js/demo.js") }}"></script>
-            <script src="{{ asset('js/home/index.js') }}"></script>
-
-
-            {{-- <script src="{{ asset('js/estructura/form.js') }}"></script> --}}
+                    {{-- <script src="{{ asset('js/estructura/form.js') }}"></script> --}}
 
 
 
-            {{-- <script src="{{ asset('js/home/index.js') }}"></script> --}}
-            @endsection
+                    {{-- <script src="{{ asset('js/home/index.js') }}"></script> --}}
+                    @endsection

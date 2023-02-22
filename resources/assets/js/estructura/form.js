@@ -249,9 +249,9 @@ $(function () {
             {
                 data: 'id',
                 name: 'idcopypaste',
-                 "render": function (data, type, full, meta) {
-                  return '<button type="button" id="idcopy" name="idcopy"  data-clipboard-text=' + data + ' class = "btn btn-idcopy btn-outline-primary"  onclick=CopytoClip(this) >' + data + ' </button>'
-                 }
+                "render": function (data, type, full, meta) {
+                    return '<button type="button" id="idcopy" name="idcopy"  data-clipboard-text=' + data + ' class = "btn btn-idcopy btn-outline-primary"  onclick=CopytoClip(this) >' + data + ' </button>'
+                }
 
             },
 
@@ -1542,6 +1542,25 @@ $("#TablaTarjetas").on('submit', '.form-eliminar', function () {
     });
 });
 
+$("#TablaTarjetas").on('submit', '.form-eliminar', function () {
+    event.preventDefault();
+    const form = $(this);
+    swal({
+        title: '¿ Está seguro que desea eliminar el registro ?',
+        text: "Esta acción no se puede deshacer!",
+        icon: 'warning',
+        buttons: {
+            cancel: "Cancelar",
+            confirm: "Aceptar"
+        },
+    }).then((value) => {
+        if (value) {
+
+            ajaxRequest(form);
+        }
+    });
+});
+
 
 
 
@@ -1749,29 +1768,4 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
 
 
 
-function ajaxRequest(form) {
-    $check = "";
-    return $.ajax({
-        url: form.attr('action'),
-        type: 'POST',
-        data: form.serialize(),
-        success: function (respuesta) {
-            if (respuesta.mensaje == "ok") {
-                form.parents('tr').remove();
 
-                HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
-
-            } else {
-                ;
-                HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
-
-            }
-
-
-        },
-        error: function () {
-
-        }
-
-    });
-}
