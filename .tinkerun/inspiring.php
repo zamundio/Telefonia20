@@ -6,5 +6,6 @@ use App\Estructura;
 use App\NuevasAltas;
 use App\personalextra;
 use App\TerminalMovil;
+use Illuminate\Support\Facades\Redis;
 
-$cuenta = NuevasAltas::count();
+Redis::set('mykey', 'myvalue');

@@ -31,6 +31,7 @@
                             </div>
                             <div class="circle-tile-number text-faded">
                                 <div id="count-emp-code">{{ $nuevasaltas->count('EMP_CODE') }}</div>
+
                             </div>
                             <a href="#" onclick="ShowNorecep()" class="circle-tile-footer">Mas Info <i class="fa fa-chevron-circle-right"></i></a>
                         </div>
@@ -96,25 +97,31 @@
                 </div>
 
 
-    </div>
-  </div>
-                    @endsection
-                    @section('scripts')
-                    @parent
-                    <script src="{{ asset("js/jquery.min.js") }}"></script>
-                    <script src="{{ asset("js/jquery-ui.min.js") }}"></script>
-                    <script src="{{ asset("js/jquery.ui.touch-punch-improved.js") }}"></script>
-                    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
-                    <script src="{{ asset("js/lobilist.js") }}"></script>
-                    <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
-                    <script src="{{ asset("js/lobibox.min.js") }}"></script>
-                    <script src="{{ asset("js/demo.js") }}"></script>
-                    <script src="{{ asset('js/home/index.js') }}"></script>
-                    <script>
+            </div>
+        </div>
+        @endsection
+        @section('scripts')
+        @parent
+        <script src="{{ asset("js/jquery.min.js") }}"></script>
+        <script src="{{ asset("js/jquery-ui.min.js") }}"></script>
+        <script src="{{ asset("js/jquery.ui.touch-punch-improved.js") }}"></script>
+        <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+        <script src="{{ asset("js/lobilist.js") }}"></script>
+        <script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ asset("js/lobibox.min.js") }}"></script>
+        <script src="{{ asset("js/demo.js") }}"></script>
+        <script src="{{ asset('js/home/index.js') }}"></script>
+        <script>
+            {
+                {
+                    -- % 3 Cscript % 20 src % 3 D % 26 % 2334 % 3 B % 7 B % 7 B % 20 asset( % 26 % 2339 % 3 Bjs % 2 Festructura % 2 Fform.js % 26 % 2339 % 3 B)
+                }
+            }
+            ">
 
-                    {{-- <script src="{{ asset('js/estructura/form.js') }}"></script> --}}
+        </script> --}}
 
 
 
-                    {{-- <script src="{{ asset('js/home/index.js') }}"></script> --}}
-                    @endsection
+        {{-- <script src="{{ asset('js/home/index.js') }}"></script> --}}
+        @endsection

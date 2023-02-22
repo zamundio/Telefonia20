@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Odi;
 use App\User;
 use \Notification;
-use App\NuevasAltas;
 
+use App\ListadoRed;
+use App\NuevasAltas;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use App\Notifications\EmailNotification;
 
 class HomeController extends Controller
@@ -50,6 +53,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
+
 
         $nuevasaltas = NuevasAltas::All();
         return view('home',compact('nuevasaltas'));

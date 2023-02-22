@@ -6,6 +6,7 @@ use App\Odi;
 use App\PlanGB;
 
 use App\Plandatos;
+use App\ListadoRed;
 use App\EstadoStock;
 use App\NuevasAltas;
 use App\CentrosCoste;
@@ -14,6 +15,7 @@ use App\CentroCosteExtra;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redis;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -106,7 +108,9 @@ class MaestrasController extends Controller
     {
 
 
-        $data = [];
+
+
+      $data = [];
         $data = NuevasAltas::All();
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
