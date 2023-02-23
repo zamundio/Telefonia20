@@ -93,8 +93,8 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-  var user = "{{ Auth::user()->hasRole('administrator') }}";
+$(function () {
+  var user = "{{ auth()->user()->hasRole('administrator') }}";
   $('.datepicker').datepicker({
     format: 'dd/mm/yyyy',
     autoclose: true,

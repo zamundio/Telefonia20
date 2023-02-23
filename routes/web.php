@@ -29,6 +29,10 @@ Route::get('checkpe', 'PersonalExtraController@CheckPE')->name('checkpe');
 Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
 
 Route::get('estructura/printPreview/{id}', 'PrintController@PrintPreview');
+
+
+Route::get('inventario', 'InventarioController@index')->name('inventario.index');
+Route::get('InventarioDatatable', 'InventarioController@DatatableInventario')->name('inventarioDatatable');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');
@@ -48,7 +52,7 @@ Route::put('ampliaciongb/{id}', 'AmpliacionesGBController@actualizar')->name('ac
 
 Route::get('TerminalesDatatable', 'LineaUsuarioController@ShowTerminalesUser')->name('TerminalesDatatable');
 Route::post('terminalesusuarios/asigncreated', 'TerminalesUserController@AsignarTerminal')->name('AsignExistTerminalesUsuarios');
-Route::put('terminalesusuarios/{id}/ActEstado', 'TerminalesUserController@actestado')->name('ActEstado_terminalusuario');
+Route::put('terminalesusuarios/{id}/{nummovil}/ActEstado', 'TerminalesUserController@actestado')->name('ActEstado_terminalusuario');
 Route::get('terminalesusuarios/{id}/editar', 'TerminalesUserController@editar')->name('editar_terminalusuario');
 Route::put('terminalesusuariosEstado/{estado}', 'TerminalesUserController@actualizarEstado')->name('actualizar_terminalusuarioEstado');
 Route::put('terminalesusuarios/{id}', 'TerminalesUserController@actualizar')->name('actualizar_terminalusuario');

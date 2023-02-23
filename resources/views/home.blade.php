@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-
+{{--
 <link rel="stylesheet" href="{{ asset("css/lobilist.css") }}">
-<link rel="stylesheet" href="{{ asset("css/style2.css") }}">
+<link rel="stylesheet" href="{{ asset("css/style2.css") }}"> --}}
 </head>
 @section('content')
 <div class="content">
@@ -111,17 +111,5 @@
         <script src="{{ asset("js/lobibox.min.js") }}"></script>
         <script src="{{ asset("js/demo.js") }}"></script>
         <script src="{{ asset('js/home/index.js') }}"></script>
-        <script>
-            {
-                {
-                    -- % 3 Cscript % 20 src % 3 D % 26 % 2334 % 3 B % 7 B % 7 B % 20 asset( % 26 % 2339 % 3 Bjs % 2 Festructura % 2 Fform.js % 26 % 2339 % 3 B)
-                }
-            }
-            ">
 
-        </script> --}}
-
-
-
-        {{-- <script src="{{ asset('js/home/index.js') }}"></script> --}}
         @endsection

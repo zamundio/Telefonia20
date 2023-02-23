@@ -38,11 +38,13 @@ class TerminalesUserController extends Controller
 
 
 
-    public function actestado(request $request, $id)
+    public function actestado(request $request, $id, $nummovil)
     {
 
         if ($request->ajax()) {
-            TerminalesUsers::where('terminal_movil_id', $id)->delete();
+            TerminalesUsers::where('terminal_movil_id', $id)
+            ->where('linea_usuario_id', $nummovil)
+            ->delete();
             $historicoterminal = new HistoricoTerminalesUsers($request->toarray());
 
 

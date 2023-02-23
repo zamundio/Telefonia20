@@ -210,7 +210,7 @@
         $obs = document.getElementById("Observ_term_estado").value;
 
         $.ajax({
-            url: 'terminalesusuarios/' + $terminal + '/ActEstado/',
+            url: 'terminalesusuarios/' + $terminal + '/'+$lin+'/ActEstado/',
             type: 'put',
             data: {
                 id_terminal: $terminal,

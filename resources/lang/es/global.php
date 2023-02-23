@@ -81,6 +81,10 @@ return [
             'EMAIL_helper'  => '',
             'POSITION_TITLE'         => 'Posición',
             'POSITION_TITLE_helper'  => '',
+
+            'Actual'         => 'Actual?',
+            'Actual_helper'  => '',
+
             'Linea'         => 'Linea?',
             'Linea_helper'  => '',
             'Terminal'         => 'Movil?',

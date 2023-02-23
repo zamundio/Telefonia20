@@ -48,20 +48,28 @@
                 </li>
 
             @endcan
- <li class="nav-item">
-     <a href="{{ route("estructura.index") }}" class="nav-link {{ request()->is('estructura') || request()->is('estructura/*') ? 'active' : '' }}">
-         <i class="fa-fw fas fa-building nav-icon">
-
-         </i>
-         {{ trans('cruds.estructura.title') }}
-     </a>
- </li>
             <li class="nav-item">
-                <a href="{{ route('auth.change_password') }}" class="nav-link">
-                    <i class="nav-icon fas fa-fw fa-key">
+                <a href="{{ route("estructura.index") }}" class="nav-link {{ request()->is('estructura') || request()->is('estructura/*') ? 'active' : '' }}">
+                    <i class="fa-fw fas fa-building nav-icon">
 
                     </i>
-                   Cambiar Password
+                    {{ trans('cruds.estructura.title') }}
+                </a>
+            </li>
+              <li class="nav-item">
+                  <a href="{{ route('inventario.index') }}" class="nav-link {{ request()->is('inventario') || request()->is('inventario/*') ? 'active' : '' }}">
+               <i class="fas fa-mobile-alt nav-icon">
+
+               </i>
+                      {{ trans('cruds.inventario.title') }}
+                  </a>
+              </li>
+
+            <li class="nav-item">
+                <a href="{{ route('auth.change_password') }}" class="nav-link">
+                    <i class="nav-icon fas fa-fw fa-key nav-icon">
+                         </i>
+                    Cambiar Password
                 </a>
             </li>
             <li class="nav-item">
