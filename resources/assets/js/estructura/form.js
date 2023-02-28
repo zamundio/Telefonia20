@@ -1765,7 +1765,35 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
     $('.yajra-datatable-Terminales').DataTable().draw();
 
 });
+function ajaxRequest(form) {
+    $check = "";
+    return $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        data: form.serialize(),
+        success: function (respuesta) {
+            if (respuesta.mensaje == "ok") {
+                form.parents('tr').remove();
+                $('#count-emp-code').text(respuesta.cuenta);
+                HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
+
+                /*   setTimeout(function () {
+                    location.reload();
+                  }, 1000); */
+
+            } else {
+                ;
+                HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
+
+            }
 
 
+        },
+        error: function () {
+
+        }
+
+    });
+}
 
 

@@ -45,6 +45,7 @@
                      </th>
                      <th>
 
+                    {{ trans('global.telefonia.fields.ACTUAL_LEAVE_DATE') }}
                      </th>
                      <th>
                          {{ trans('global.telefonia.fields.POSITION_TITLE') }}
@@ -55,9 +56,12 @@
                      <th>
                          {{ trans('global.telefonia.fields.Terminal') }}
                      </th>
-                      <th>
-                          {{ trans('global.telefonia.fields.Actual') }}
-                      </th>
+                       <th>
+                           {{ trans('global.telefonia.fields.Abreviado') }}
+                       </th>
+                        <th>
+                            {{ trans('global.telefonia.fields.Actual') }}
+                        </th>
                      <th>
 
                      </th>

@@ -77,14 +77,15 @@ return [
             'COST_CENTER_DESC_helper'       => '',
             'HIRE_DATE'              => 'Fecha Alta',
             'HIRE_DATE_helper'       => '',
+            'ACTUAL_LEAVE_DATE'=> 'Fecha Baja',
             'EMAIL'         => '@Mail',
             'EMAIL_helper'  => '',
             'POSITION_TITLE'         => 'Posición',
             'POSITION_TITLE_helper'  => '',
-
+            'Abreviado'         => 'Abrev',
+            'Abreviado_helper'  => '',
             'Actual'         => 'Actual?',
             'Actual_helper'  => '',
-
             'Linea'         => 'Linea?',
             'Linea_helper'  => '',
             'Terminal'         => 'Movil?',
@@ -101,7 +102,7 @@ return [
             'activo_helper'  => '',
         ],],
 
-			'logmovimientos'                              => [
+		'logmovimientos'                              => [
         'title'          => 'Log Movimientos',
         'title_singular' => 'Log Movimientos',
         'fields'         => [

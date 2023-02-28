@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1449,9 +1449,32 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
   $('.yajra-datatable-Terminales').DataTable().draw();
 });
 
+function ajaxRequest(form) {
+  $check = "";
+  return $.ajax({
+    url: form.attr('action'),
+    type: 'POST',
+    data: form.serialize(),
+    success: function success(respuesta) {
+      if (respuesta.mensaje == "ok") {
+        form.parents('tr').remove();
+        $('#count-emp-code').text(respuesta.cuenta);
+        HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
+        /*   setTimeout(function () {
+            location.reload();
+          }, 1000); */
+      } else {
+        ;
+        HelperNotificaciones.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Telefonia', 'error');
+      }
+    },
+    error: function error() {}
+  });
+}
+
 /***/ }),
 
-/***/ 17:
+/***/ 18:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/estructura/form.js ***!
   \******************************************************/

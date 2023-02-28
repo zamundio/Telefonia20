@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -96,6 +96,11 @@
 $(function () {
   var user = "{{ Auth::user()->hasRole('administrator') }}";
   $table = new $(".yajra-datatable-inventario").DataTable({
+    "rowCallback": function rowCallback(row, data) {
+      if (data.ACTUAL_LEAVE_DATE != null) {
+        $(row).addClass('bg-baja');
+      }
+    },
     language: {
       url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
     },
@@ -142,7 +147,7 @@ $(function () {
       width: "1%",
       targets: [5]
     }, {
-      width: "6%",
+      width: "3%",
       targets: [6]
     }, {
       className: "dt-center",
@@ -153,11 +158,16 @@ $(function () {
       width: "1%",
       targets: [8]
     }, {
-      "width": "1%",
-      "targets": [9]
+      className: "dt-center",
+      width: "1%",
+      targets: [9]
     }, {
       "width": "1%",
-      "targets": [10]
+      "targets": [10],
+      className: "dt-center"
+    }, {
+      "width": "1%",
+      "targets": [11]
     }],
     columns: [{
       data: "EMP_CODE",
@@ -184,6 +194,9 @@ $(function () {
       data: "num_movil",
       name: "NUM_MOVIL"
     }, {
+      data: "Abreviado",
+      name: "Abreviado"
+    }, {
       data: "terminal",
       name: "TERMINAL"
     }, {
@@ -205,7 +218,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /*!*******************************************************!*\
   !*** multi ./resources/assets/js/inventario/index.js ***!
   \*******************************************************/

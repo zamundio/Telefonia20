@@ -106,6 +106,7 @@ mix.js('node_modules/inputmask/dist/jquery.inputmask.min.js', 'public/js');
  |--------------------------------------------------------------------------
  */
 mix.js('resources/assets/js/home/index.js', 'public/js/home');
+mix.js('resources/assets/js/main.js', 'public/js/main.js');
 mix.copy('resources/assets/js/helper.js', 'public/js/helper.js');
 mix.js('resources/assets/js/estructura/index.js', 'public/js/estructura');
 mix.js('resources/assets/js/estructura/form.js', 'public/js/estructura');

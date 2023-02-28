@@ -1655,7 +1655,15 @@ tr.shown td.details-control {
     border-radius: 50px;
     /* create gap between buttons for display, you can remove this*/
 }
+.bg-baja {
+    background-color: #ebc87d !important;
+}
 
+a.bg-baja:hover,
+a.bg-baja:focus {
+    background-color: #ded4a6 !important;
+    ;
+}
 
 .td.dt-center {
     text-align: center;

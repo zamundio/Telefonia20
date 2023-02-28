@@ -5,6 +5,12 @@ $(function () {
 var user = "{{ Auth::user()->hasRole('administrator') }}";
 
 $table = new $(".yajra-datatable-inventario").DataTable({
+      "rowCallback": function (row, data) {
+
+        if (data.ACTUAL_LEAVE_DATE !=null) {
+              $(row).addClass('bg-baja');
+          }
+      },
      language: {
          url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
      },
@@ -12,6 +18,7 @@ $table = new $(".yajra-datatable-inventario").DataTable({
          url: "InventarioDatatable",
          type: "get"
      },
+
      serverSide: false,
      processing: false,
      success: function success(result) {
@@ -30,6 +37,7 @@ $table = new $(".yajra-datatable-inventario").DataTable({
          var errors = data.responseJSON;
          console.log(errors);
      },
+
      pageLength: 15,
      buttons: [],
      columnDefs: [{
@@ -52,26 +60,32 @@ $table = new $(".yajra-datatable-inventario").DataTable({
          width: "1%",
          targets: [5]
      }, {
-         width: "6%",
+         width: "3%",
          targets: [6]
      }, {
          className: "dt-center",
          width: "1%",
          targets: [7],
+          },
+          {
+              className: "dt-center",
+              width: "1%",
+              targets: [8],
 
-
-     }, {
+          },
+          {
          className: "dt-center",
          width: "1%",
-         targets: [8],
+         targets: [9],
 
      }, {
          "width": "1%",
-         "targets": [9]
+         "targets": [10],
+           className: "dt-center",
      },
     {
         "width": "1%",
-        "targets": [10]
+        "targets": [11]
     }],
 
 
@@ -101,7 +115,12 @@ $table = new $(".yajra-datatable-inventario").DataTable({
      }, {
          data: "num_movil",
          name: "NUM_MOVIL"
-     }, {
+     },
+     {
+         data: "Abreviado",
+         name: "Abreviado"
+     },
+     {
          data: "terminal",
          name: "TERMINAL"
      },
@@ -116,10 +135,6 @@ $table = new $(".yajra-datatable-inventario").DataTable({
                  }
                 }
      },
-
-
-
-
      {
          data: 'action',
          name: 'action'

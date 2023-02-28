@@ -9,6 +9,7 @@
 
     <script src="{{ asset('js/estructura/form.js?v=') }}" .$js></script>
     <script src="{{ asset('js/jquery.printpage.js') }}" type="text/javascript"></script>
+
     <script>
 
 
