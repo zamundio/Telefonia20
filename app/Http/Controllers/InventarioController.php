@@ -20,6 +20,7 @@ class InventarioController extends Controller
         $data = [];
         $data = inventario::All();
         return Datatables::of($data)
+            ->addIndexColumn()
             ->editColumn('HIRE_DATE', function ($data) {
             if ($data->HIRE_DATE != null) {
                 return date('d/m/Y', strtotime($data->HIRE_DATE));
@@ -29,6 +30,7 @@ class InventarioController extends Controller
             if($data->ACTUAL_LEAVE_DATE!=null){
                 return date('d/m/Y', strtotime($data->ACTUAL_LEAVE_DATE));}
             })
+             ->addColumn('checkbox','')
             ->addColumn('action', function ($row) {
 
                 if (Gate::allows('admin-access')) {
@@ -41,7 +43,7 @@ class InventarioController extends Controller
 
                 return $btn;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['action','checkbox'])
             ->make(true);
 
 

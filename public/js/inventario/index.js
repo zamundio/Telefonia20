@@ -94,8 +94,13 @@
 /***/ (function(module, exports) {
 
 $(function () {
+  $(document).popover({
+    selector: '[data-toggle=hover]',
+    html: true,
+    trigger: 'hover'
+  });
   var user = "{{ Auth::user()->hasRole('administrator') }}";
-  $table = new $(".yajra-datatable-inventario").DataTable({
+  var table = $("#inventario").DataTable({
     "rowCallback": function rowCallback(row, data) {
       if (data.ACTUAL_LEAVE_DATE != null) {
         $(row).addClass('bg-baja');
@@ -127,49 +132,72 @@ $(function () {
       console.log(errors);
     },
     pageLength: 15,
-    buttons: [],
     columnDefs: [{
       width: "1%",
+      orderable: false,
+      className: 'select-checkbox',
       targets: [0]
     }, {
-      width: "4%",
+      width: "1%",
       targets: [1]
     }, {
       width: "1%",
       targets: [2]
     }, {
-      width: "3%",
+      width: "4%",
       targets: [3]
     }, {
       width: "1%",
       targets: [4]
     }, {
-      width: "1%",
+      width: "3%",
       targets: [5]
     }, {
-      width: "3%",
+      width: "1%",
       targets: [6]
     }, {
-      className: "dt-center",
       width: "1%",
       targets: [7]
     }, {
-      className: "dt-center",
-      width: "1%",
+      width: "3%",
       targets: [8]
     }, {
       className: "dt-center",
       width: "1%",
       targets: [9]
     }, {
+      className: "dt-center",
+      width: "1%",
+      targets: [10]
+    }, {
+      className: "dt-center",
+      width: "1%",
+      targets: [11]
+    }, {
       "width": "1%",
-      "targets": [10],
+      "targets": [12],
       className: "dt-center"
     }, {
       "width": "1%",
-      "targets": [11]
+      "targets": [13]
     }],
+    select: {
+      style: 'multi+shift',
+      selector: 'td:first-child'
+    },
     columns: [{
+      data: 'checkbox',
+      name: 'checkbox'
+    }, {
+      "data": 'Observaciones',
+      "render": function render(data, type, full, meta) {
+        if (data != '' && data != null) {
+          return "<a class='btn btn-primary btn-circle' data-toggle='hover'  title='" + 'Observaciones' + "' data-content='" + data + "'><i class='fas fa-info'></i></a>";
+        } else {
+          return "";
+        }
+      }
+    }, {
       data: "EMP_CODE",
       name: "EMP_CODE"
     }, {
@@ -204,7 +232,9 @@ $(function () {
       name: "actual",
       render: function render(d) {
         if (d == 1) {
-          return '<span class="badge badge-primary  center-block">SI</span>';
+          return '<span class="badge badge-success  center-block">SI</span>';
+        } else if (d == null) {
+          return '<span class="badge badge-secondary center-block">---</span>';
         } else {
           return '<span class="badge badge-danger  center-block">NO</span>';
         }
@@ -213,6 +243,13 @@ $(function () {
       data: 'action',
       name: 'action'
     }]
+  });
+  $(".selectAll").on("click", function (e) {
+    if ($(this).is(":checked")) {
+      table.rows().select();
+    } else {
+      table.rows().deselect();
+    }
   });
 });
 

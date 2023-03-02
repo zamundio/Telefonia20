@@ -55,6 +55,7 @@ return [
         'csv'           => 'CSV',
         'excelono'         => 'Excel Onomasticas',
         'excelaños'         => 'Excel Años Emp.',
+        'excel' => 'XLS',
         'pdf'           => 'PDF',
         'print'         => 'Imprimir',
         'colvis'        => 'Columnas Visibles',

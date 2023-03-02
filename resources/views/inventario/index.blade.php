@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+
+
 @section('content')
 @can('estructura_show')
 
@@ -21,58 +23,62 @@
                         <form id="inventario">
                             <div class="card-body">
 
- <div class="table-responsive">
-     <form class="form" id="formnuevasaltas" name="formnuevasaltas">
-         <table id="inventario" class=" table table-bordered table-striped table-hover yajra-datatable-inventario">
-             <thead>
-                 <tr>
+                                <div class="table-responsive">
+                                    <form class="form" id="formnuevasaltas" name="formnuevasaltas">
+                                        <table id="inventario" class="table table-bordered table-striped table-hover datatable display select">
+                                            <thead>
+                                                <tr>
+                                                    <th class="col-xs-1">
+                                                        <input type="checkbox" class=" selectAll" value="1" id="example-select-all">
+                                                    </th>
+                                                      <th>
+                                                          {{ trans('global.telefonia.fields.Obs') }}
+                                                      </th>
+                                                    <th>
 
-                     <th>
+                                                        {{ trans('global.telefonia.fields.EMP_CODE') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.LAST_NAME') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.FIRST_NAME') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.COST_CENTER_DESC') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.HIRE_DATE') }}
+                                                    </th>
+                                                    <th>
 
-                        {{ trans('global.telefonia.fields.EMP_CODE') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.LAST_NAME') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.FIRST_NAME') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.COST_CENTER_DESC') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.HIRE_DATE') }}
-                     </th>
-                     <th>
+                                                        {{ trans('global.telefonia.fields.ACTUAL_LEAVE_DATE') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.POSITION_TITLE') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.Linea') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.Terminal') }}
+                                                    </th>
+                                                    <th>
+                                                        {{ trans('global.telefonia.fields.Abreviado') }}
+                                                    </th>
+                                                    <th data-toggle="tooltip" title="" data-placement="top" data-original-title="Principal" width="10px">PR</th>
+                                                    <th>
 
-                    {{ trans('global.telefonia.fields.ACTUAL_LEAVE_DATE') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.POSITION_TITLE') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.Linea') }}
-                     </th>
-                     <th>
-                         {{ trans('global.telefonia.fields.Terminal') }}
-                     </th>
-                       <th>
-                           {{ trans('global.telefonia.fields.Abreviado') }}
-                       </th>
-                        <th>
-                            {{ trans('global.telefonia.fields.Actual') }}
-                        </th>
-                     <th>
+                                                    </th>
+                                                </tr>
+                                            </thead>
 
-                     </th>
-                 </tr>
-             </thead>
+                                            <tbody>
 
-
-             </tbody>
-         </table>
-     </form>
- </div>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
 
 
                             </div>
@@ -97,12 +103,8 @@
 
 @section('scripts')
 @parent
-<script src="{{ asset("js/jquery.min.js") }}"></script>
-<script src="{{ asset("js/jquery-ui.min.js") }}"></script>
-<script src="{{ asset("js/jquery.ui.touch-punch-improved.js") }}"></script>
-<script src="{{ asset("js/bootstrap.min.js") }}"></script>
 
-<script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+
 
 
 <script src="{{ asset('js/inventario/index.js') }}"></script>
