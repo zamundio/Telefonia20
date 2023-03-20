@@ -1,4 +1,4 @@
-<div id="TerminalModal_Estado" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div id="TerminalModal_Estado" class="modal fade bd-example-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -38,14 +38,14 @@
                         <div class="form-group col-sm-3-fecha">
                             <label for="fechaalta">Fecha</label>
 
-                            <input id="fecha_estado_term_editar" data-inputmask="'mask':  '99/99/9999'" name="fecha_estado_term_editar" type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
+                            <input type="text" id="fecha_estado_term_editar" data-inputmask="'mask': '99/99/9999'" name="fecha_estado_term_editar" class="form-control datepicker" data-date-format="dd/mm/yyyy" autocomplete="off" value="" data-parsley-required="true" data-parsley-trigger="change">
                         </div>
                     </div>
                     <div class="form-group col-sm-9">
-                        <label for="type" class="col-sm-3 control-label">Estado</label>
-                        <div class="col-sm-6">
+                        <label for="type" class="col-sm-5 control-label">Estado</label>
+                        <div class="col-sm-4-select2">
 
-                            <select class="form-control select2-hidden-accessible" name="estado" id="estado" data-width="120%" data-parsley-required="true" required data-parsley-trigger="change"> </select>
+                            <select class="form-control select2-hidden-accessible" name="estado" id="estado" data-width="180%" data-parsley-required="true" required data-parsley-trigger="change"> </select>
                             <div class="col-sm-6">
 
                             </div>
@@ -55,7 +55,7 @@
                     <div class="form-group col-sm-12" id="HiddenFieldsEstado">
                         <div class="form-group col-sm-9">
                             <label for="type" class="col-sm-3 control-label">Persona</label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6-select2">
                                 <select name="persona_estado" id="persona_estado" class="form-control select2-hidden-accessible" data-width="160%" data-parsley-required="true" data-parsley-trigger="change"></select>
                             </div>
                         </div>
@@ -67,10 +67,6 @@
                                 </select>
                             </div>
                         </div>
-
-
-
-
 
 
                         <div class="form-group col-sm-9">
@@ -98,7 +94,12 @@
     </div>
 
 </div>
+
+
 <script>
+    console.log('probando');
+    // $(":input").inputmask();
+
     $('#terminales_estado_form').parsley().on('field:error', function () {
         console.log('Validation failed for: ', this.$element);
         var element = '#' + this.$element[0].id;
@@ -106,33 +107,7 @@
         $(this.$element[0].id).css("border: 1px solid red !important;");
     });
 
-    $("#TerminalModal_Estado").submit(function (e) {
-        event.preventDefault();
-        $fecha_reasig = moment($("#fecha_estado_term_editar").datepicker("getDate")).format('YYYY/MM/DD', 'es');
-        console.log($fecha_reasig);
-        TermActual = document.getElementById("termactual_estado").value;
-        if (TermActual == "true") {
-            Actual = "1";
-        } else {
-            Actual = "0";
 
-        }
-
-        var obs = document.getElementById("Observ_term_estado").value;
-
-
-        if ($('#terminales_estado_form').parsley().isValid()) {
-
-            if ($('#HiddenFieldsEstado').is(':visible')) {
-
-                ActualizarEstado_Personal();
-
-            } else {
-
-                ActualizarEstado_Pool();
-            }
-        }
-    });
 
 
     function ActualizarEstado_Personal() {
@@ -210,7 +185,7 @@
         $obs = document.getElementById("Observ_term_estado").value;
 
         $.ajax({
-            url: 'terminalesusuarios/' + $terminal + '/'+$lin+'/ActEstado/',
+            url: 'terminalesusuarios/' + $terminal + '/' + $lin + '/ActEstado/',
             type: 'put',
             data: {
                 id_terminal: $terminal,
@@ -324,6 +299,37 @@
         return Select2Cascade;
     })(window, $);
 
+    $("#TerminalModal_Estado").submit(function (e) {
+        console.log('en el submit');
+        event.preventDefault();
+
+        $fecha_reasig = moment($("#fecha_estado_term_editar").datepicker("getDate")).format('YYYY/MM/DD', 'es');
+        console.log($fecha_reasig);
+        TermActual = document.getElementById("termactual_estado").value;
+        if (TermActual == "true") {
+            Actual = "1";
+        } else {
+            Actual = "0";
+
+        }
+
+        var obs = document.getElementById("Observ_term_estado").value;
+        console.log('en el segundo paso');
+
+        if ($('#terminales_estado_form').parsley().isValid()) {
+            console.log('en el parsley valido');
+
+            if ($('#HiddenFieldsEstado').is(':visible')) {
+
+                ActualizarEstado_Personal();
+
+            } else {
+
+                ActualizarEstado_Pool();
+            }
+        }
+
+    });
     $(document).ready(function () {
 
         $('#HiddenFieldsEstado').hide();
@@ -339,101 +345,112 @@
         var cascadLoading = new Select2Cascade($('#persona_estado'), $('#linea_estado'), apiUrl, select2Options);
         cascadLoading.then(function (parent, child, items) {});
 
-        //    $('#terminales_editar_form').parsley();
+        // $('#terminales_editar_form').parsley();
         window.ParsleyConfig = {
             excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden"
         };
 
         $('#terminales_editar_form').parsley();
 
-    });
 
-    $('#estado').select2({
-        // Activamos la opcion "Tags" del plugin
-        width: 'resolve',
-        ajax: {
-            dataType: 'json',
-            url: '{{ url("GetEstadosTerminales") }}',
-            delay: 250,
-            processResults: function (data) {
+        $('#persona_estado').select2({
+            // Activamos la opcion "Tags" del plugin
+            width: '200px',
+            ajax: {
+                dataType: 'json',
+                url: '{{ url("GetSelectPersonal") }}',
+                delay: 250,
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error en la petición AJAX:', textStatus, errorThrown);
+                },
+                success: function (data) {
+                    console.log('La petición AJAX se completó correctamente');
+                    // Código para actualizar otro elemento en la página
+                },
+                processResults: function (data) {
 
-                return {
-                    results: $.map(data, function (item) {
+                    return {
+                        results: $.map(data, function (item) {
 
-                        return {
-                            text: item.Estado,
-                            id: item.Id
-                        }
-                    })
-                };
-            },
-            cache: true
-            // processResults: function (data, page) {
+                            return {
+                                text: item.text,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
 
-            // return {
-            // results: data
-            // };
-            // },
-        }
-    });
+                // processResults: function (data, page) {
 
-    $('#persona_estado').select2({
-        // Activamos la opcion "Tags" del plugin
-        width: 'resolve',
-        ajax: {
-            dataType: 'json',
-            url: '{{ url("GetSelectPersonal") }}',
-            delay: 250,
-            processResults: function (data) {
+                // return {
+                // results: data
+                // };
+                // },
+            }
+        });
+        $('#estado').select2({
+            // Activamos la opcion "Tags" del plugin
+            width: '100px',
+            ajax: {
+                dataType: 'json',
+                url: '{{ url("GetEstadosTerminales") }}',
+                delay: 250,
+                processResults: function (data) {
 
-                return {
-                    results: $.map(data, function (item) {
+                    return {
+                        results: $.map(data, function (item) {
 
-                        return {
-                            text: item.text,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-            // processResults: function (data, page) {
+                            return {
+                                text: item.Estado,
+                                id: item.Id
+                            }
+                        })
+                    };
+                },
+                cache: true
+                // processResults: function (data, page) {
 
-            // return {
-            // results: data
-            // };
-            // },
-        }
-    });
-
-    var term = $('#estado');
-    $(term).change(function () {
-
-
-        var ids = $('#estado').val();
-        console.log('Selected IDs: ' + $("#fecha_estado_term_editar").datepicker("getDate"));
-        if (ids == 1 || ids == 4) {
-            $('#persona_estado').attr('data-parsley-required', 'true');
-
-            $('#linea_estado').attr('data-parsley-required', 'true');
-            $('#HiddenFieldsEstado').show();
-
-        } else {
-            $('#persona_estado').attr('data-parsley-required', 'false');
-
-            $('#linea_estado').attr('data-parsley-required', 'false');
-            $('#HiddenFieldsEstado').hide();
-        }
-
-    });
-    linea = $('#linea_estado');
-    $(linea).change(function () {
-
-        var data = $('#linea_estado').select2('data')
+                // return {
+                // results: data
+                // };
+                // },
+            }
+        });
 
 
 
 
+        var term = $('#estado');
+        console.log('en el term');
+        $(term).change(function () {
+            console.log('en el change del estado');
+
+            var ids = $('#estado').val();
+            console.log('Selected IDs: ' + $("#fecha_estado_term_editar").datepicker("getDate"));
+            if (ids == 1 || ids == 4) {
+                $('#persona_estado').attr('data-parsley-required', 'true');
+
+                $('#linea_estado').attr('data-parsley-required', 'true');
+                $('#HiddenFieldsEstado').show();
+
+            } else {
+                $('#persona_estado').attr('data-parsley-required', 'false');
+
+                $('#linea_estado').attr('data-parsley-required', 'false');
+                $('#HiddenFieldsEstado').hide();
+            }
+
+        });
+        linea = $('#linea_estado');
+        $(linea).change(function () {
+
+            var data = $('#linea_estado').select2('data')
+
+
+
+
+        });
     });
 
 </script>

@@ -12,6 +12,7 @@ use App\NuevasAltas;
 use App\CentrosCoste;
 use App\TerminalMovil;
 use App\CentroCosteExtra;
+use App\Estructura;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -67,8 +68,8 @@ class MaestrasController extends Controller
             $input = Arr::except($del->toArray(), ['LINEA', 'TERMINAL']);
             $odi = new Odi($input);
             $odi->save();
-            $cuenta= NuevasAltas::count();
-            return response()->json(['mensaje' => 'ok','cuenta'=> $cuenta]);
+            $cuenta = NuevasAltas::count();
+            return response()->json(['mensaje' => 'ok', 'cuenta' => $cuenta]);
         } else {
             abort(404);
         }
@@ -110,7 +111,7 @@ class MaestrasController extends Controller
 
 
 
-      $data = [];
+        $data = [];
         $data = NuevasAltas::All();
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
@@ -145,9 +146,41 @@ class MaestrasController extends Controller
         $data = [];
 
         $search = $request->q;
+        // $data = EstadoStock::select("Id", "Estado")->where('Estado', 'LIKE', "%$search%")->get();
         $data = EstadoStock::select("Id", "Estado")->where('Estado', 'LIKE', "%$search%")->get();
         return response()->json($data);
     }
+
+
+    public function Selectpersonal(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data = [];
+
+            $search = $request->q;
+
+
+            $data = Estructura::selectRaw("EMP_CODE as id, CONCAT(LAST_NAME, ', ', FIRST_NAME) as text")
+                ->where("LAST_NAME", 'LIKE', "%$search%")
+                ->orWhereRaw("CONCAT(LAST_NAME, ', ', FIRST_NAME) LIKE ?", ["%$search%"])
+                ->get();
+
+            return response()->json($data);
+        }
+    }
+
+    public function Selectlineas(request $request,$id  ){
+        if ($request->ajax()) {
+
+            $data = Estructura::findOrFail($id)->lineas()->select('id', \DB::raw('id as text'))->get();
+            return response()->json($data);
+        }
+
+
+    }
+
+
 
     public function CrearTerminal(request $request)
     {

@@ -106,7 +106,7 @@
 
     $('#estructura').submit(function (e) {
         e.preventDefault();
-        //do something
+       console.log('en el submit de index');
     });
 
 </script>

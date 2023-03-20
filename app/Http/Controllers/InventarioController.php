@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Inventario;
 use App\NuevasAltas;
+use App\CentrosCoste;
+use App\ModelosTerminales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
@@ -12,13 +14,14 @@ class InventarioController extends Controller
 {
     public function index()
     {
-
-        return view('inventario.index');
+        $comboCC = CentrosCoste::orderby('EMP_COST_CENTER', 'asc')->select('EMP_COST_CENTER', 'COST_CENTER_DESC')->get();
+        $comboModelos=ModelosTerminales::orderby('Terminal', 'asc')->select('id', 'Terminal')->where('Activo','=',1)->get();
+        return view('inventario.index',compact('comboCC','comboModelos'));
     }
     public function DatatableInventario()
     {
         $data = [];
-        $data = inventario::All();
+        $data = Inventario::All();
         return Datatables::of($data)
             ->addIndexColumn()
             ->editColumn('HIRE_DATE', function ($data) {
@@ -31,19 +34,27 @@ class InventarioController extends Controller
                 return date('d/m/Y', strtotime($data->ACTUAL_LEAVE_DATE));}
             })
              ->addColumn('checkbox','')
+            ->addColumn('Activo',function ($data) {
+
+            if ($data->ACTUAL_LEAVE_DATE != null) {
+                return '<i class="fa fa-thumbs-down" style="color: red;"></i>';
+            } else {
+                return '';
+            }
+
+            })
             ->addColumn('action', function ($row) {
 
                 if (Gate::allows('admin-access')) {
 
-                    $btn = '<form action=' . route('eliminar_nueva_alta', ['id' => $row->EMP_CODE]) . ' class="d-inline form-eliminar" method="post">'
-                    . csrf_field() . method_field('delete') .  '<button class="btn btn-link btn-xs" data-container="body" data-placement="right" data-content="Eliminar Linea" type="submit" name="action" value="delete"> <i class="fa fa-handshake text-danger"></i></button>';
+                $btn = '<a href="javascript:void(0)" data-toggle="tooltip" onClick=editFunc('. $row->terminal_movil_id .') data-original-title="Edit" class="btn btn-primary fa fa-edit btn-sm">';
                 } else {
                     $btn = "";
                 }
 
                 return $btn;
             })
-            ->rawColumns(['action','checkbox'])
+            ->rawColumns(['action','checkbox','Activo'])
             ->make(true);
 
 

@@ -15,7 +15,7 @@ class TerminalesUsers extends Model
 
     public function term()
     {
-        return $this->belongsTo(TerminalMovil::class, 'terminal_movil_id', 'id');
+        return $this->belongsTo(TerminalMovil::class, 'terminal_movil_id', 'id')->with('modelo');
     }
 
 }

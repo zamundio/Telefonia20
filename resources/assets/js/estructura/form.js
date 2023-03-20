@@ -956,6 +956,7 @@ function DatatableTerminales(numm) {
                     $('#HiddenFields').hide();
                     $('#HiddenFields2').hide();
                     $('#HiddenFields2').hide();
+
                     $("#type").html("");
                     $("#type").select2();
                     $("#type").select2({
@@ -1765,6 +1766,7 @@ $('#TablaLineas tbody').on('click', 'tr', function () {
     $('.yajra-datatable-Terminales').DataTable().draw();
 
 });
+
 function ajaxRequest(form) {
     $check = "";
     return $.ajax({
@@ -1795,5 +1797,3 @@ function ajaxRequest(form) {
 
     });
 }
-
-

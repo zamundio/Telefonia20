@@ -72,13 +72,16 @@ mix.js('resources/assets/handlebars/handlebars.min-v4.7.7.js', 'public/js');
 
 /*
  |--------------------------------------------------------------------------
- |Boostrap Timepicker
+ |Bootstrap Timepicker
  |--------------------------------------------------------------------------
 */
 mix.js('resources/assets/bootstrap-datepicker/js/bootstrap-datepicker.js', 'public/js/bootstrap-datepicker/js')
 mix.js('resources/assets/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js', 'public/js/bootstrap-datepicker/locales')
 mix.postCss('resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.css','public/css/bootstrap-datepicker/css');
 mix.postCss('resources/assets/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css','public/css/bootstrap-datepicker/css');
+
+ /*
+
  /*
  |--------------------------------------------------------------------------
  |SlimScroll
@@ -111,6 +114,7 @@ mix.copy('resources/assets/js/helper.js', 'public/js/helper.js');
 mix.js('resources/assets/js/estructura/index.js', 'public/js/estructura');
 mix.js('resources/assets/js/estructura/form.js', 'public/js/estructura');
 mix.js('resources/assets/js/inventario/index.js', 'public/js/inventario');
+
 mix.postCss('resources/assets/css/custom.css', 'public/css');
 mix.postCss('resources/assets/css/custom3.css', 'public/css');
 mix.postCss('resources/assets/css/bootstrap-multiselect.min.css','public/css');

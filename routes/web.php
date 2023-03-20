@@ -57,6 +57,8 @@ Route::get('terminalesusuarios/{id}/editar', 'TerminalesUserController@editar')-
 Route::put('terminalesusuariosEstado/{estado}', 'TerminalesUserController@actualizarEstado')->name('actualizar_terminalusuarioEstado');
 Route::put('terminalesusuarios/{id}', 'TerminalesUserController@actualizar')->name('actualizar_terminalusuario');
 Route::get('GetEstadosTerminales', 'MaestrasController@Estadoterminales')->name('GetEstadosTerminales');
+Route::get('GetSelectPersonal', 'MaestrasController@Selectpersonal')->name('GetSelectPersonal');
+route::get('GetSelectLineas/{id}', 'MaestrasController@Selectlineas')->name('GetSelectLineas');
 
 
 
