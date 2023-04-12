@@ -25,6 +25,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap-datepicker": "^1.9.0",
     "bower": "^1.8.14",
+    "browserslist": "^4.21.5",
+    "caniuse-lite": "^1.0.30001472",
     "clipboard": "^2.0.11",
     "handlebars": "^4.7.7",
     "inputmask": "^5.0.7",

@@ -101,6 +101,19 @@ return [
             'Gerente_helper'  => '',
 			'activo'         => 'Activo?',
             'activo_helper'  => '',
+            'motivo'         => 'Motivo?',
+            'motivo_helper'  => '',
+            'retorno'         => 'Dev Ant?',
+            'retorno_helper'  => '',
+            'form_out'         => 'Form Env?',
+            'form_out_helper'  => '',
+            'form_ok'         => 'Form Cumpl?',
+            'form_ok_helper'  => '',
+            'fecha_pet'         => 'Fecha Pet.',
+            'fecha_pet_helper'  => '',
+            'fecha_ent'         => 'Fecha Entr.',
+            'fecha_ent_helper'  => '',
+
         ],],
 
 		'logmovimientos'                              => [

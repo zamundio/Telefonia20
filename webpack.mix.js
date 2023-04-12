@@ -114,7 +114,7 @@ mix.copy('resources/assets/js/helper.js', 'public/js/helper.js');
 mix.js('resources/assets/js/estructura/index.js', 'public/js/estructura');
 mix.js('resources/assets/js/estructura/form.js', 'public/js/estructura');
 mix.js('resources/assets/js/inventario/index.js', 'public/js/inventario');
-
+mix.js('resources/assets/js/cambios/index.js', 'public/js/cambios');
 mix.postCss('resources/assets/css/custom.css', 'public/css');
 mix.postCss('resources/assets/css/custom3.css', 'public/css');
 mix.postCss('resources/assets/css/bootstrap-multiselect.min.css','public/css');

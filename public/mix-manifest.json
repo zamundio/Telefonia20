@@ -12,6 +12,7 @@
     "/js/bootstrap-datepicker/js/bootstrap-datepicker.js": "/js/bootstrap-datepicker/js/bootstrap-datepicker.js",
     "/js/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js": "/js/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js",
     "/js/bootstrap.min.js": "/js/bootstrap.min.js",
+    "/js/cambios/index.js": "/js/cambios/index.js",
     "/js/demo.js": "/js/demo.js",
     "/js/estructura/form.js": "/js/estructura/form.js",
     "/js/estructura/index.js": "/js/estructura/index.js",

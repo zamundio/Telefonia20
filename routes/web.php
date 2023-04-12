@@ -30,9 +30,10 @@ Route::post('guardarcc', 'MaestrasController@GuardarCC')->name('guardarcc');
 
 Route::get('estructura/printPreview/{id}', 'PrintController@PrintPreview');
 
-
+Route::get('cambios', 'CambiosTerminalesController@index')->name('cambios.index');
 Route::get('inventario', 'InventarioController@index')->name('inventario.index');
 Route::get('InventarioDatatable', 'InventarioController@DatatableInventario')->name('inventarioDatatable');
+Route::get('CambioTerminalesDatatable', 'CambiosTerminalesController@DatatableCambioTerminales')->name('CambioTerminalesDatatable');
 /* Datatables*/
 Route::get('LineasDatatable', 'EstructuraController@ShowLinea')->name('LineasDatatable');
 Route::delete('lineas/{id}/eliminar', 'LineaUsuarioController@eliminar')->name('eliminar_linea');

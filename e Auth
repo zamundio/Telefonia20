@@ -7097,3 +7097,188 @@
     +[1mexception[22m: [36mnull[39m,
   }
 
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4825
+    [34mall[39m: [
+      [34;4mApp\User[39;24m {#4828
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: "[32mAdmin[39m",
+        [34memail[39m: "[32madmin@admin.com[39m",
+        [34mpassword[39m: "[32m$2y$10$uhPJhZ5YIdYA9KtHyCbO8O7Qnn5PcGxUH6HuR53WliKyhcZ/EEo9q[39m",
+        [34mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2022-10-19 05:37:00[39m",
+        [34mupdated_at[39m: "[32m2022-10-19 05:37:00[39m",
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#3841
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#4604
+              [34mid[39m: [35m1[39m,
+              [34mname[39m: "[32madministrator[39m",
+              [34mguard_name[39m: "[32mweb[39m",
+              [34mcreated_at[39m: "[32m2022-10-19 05:37:00[39m",
+              [34mupdated_at[39m: "[32m2022-10-19 05:37:00[39m",
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#4201
+                [34mmodel_id[39m: [35m1[39m,
+                [34mrole_id[39m: [35m1[39m,
+                [34mmodel_type[39m: "[32mApp\User[39m",
+              },
+            },
+          ],
+        },
+      },
+      [34;4mApp\User[39;24m {#4834
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: "[32mtest[39m",
+        [34memail[39m: "[32msefernandez@menarini.es[39m",
+        [34mpassword[39m: "[32m$2y$10$aqumnKy452FwTZ1eO02...DSusStlkPlIN8/ppVlh5FCCirIgDZVa[39m",
+        [34mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2022-11-02 10:31:58[39m",
+        [34mupdated_at[39m: "[32m2022-11-02 10:31:58[39m",
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4184
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#4827
+              [34mid[39m: [35m2[39m,
+              [34mname[39m: "[32mViewer[39m",
+              [34mguard_name[39m: "[32mweb[39m",
+              [34mcreated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mupdated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#4605
+                [34mmodel_id[39m: [35m2[39m,
+                [34mrole_id[39m: [35m2[39m,
+                [34mmodel_type[39m: "[32mApp\User[39m",
+              },
+            },
+          ],
+        },
+      },
+      [34;4mApp\User[39;24m {#4852
+        [34mid[39m: [35m3[39m,
+        [34mname[39m: "[32mNayra Santana[39m",
+        [34memail[39m: "[32mnsantana@menarini.es[39m",
+        [34mpassword[39m: "[32m$2y$10$Zcn5IJVqO/y5TEbFOsBChe2GKVcxnc5Dl2zmU652lWJcNg2xbAlZW[39m",
+        [34mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2022-11-03 08:07:48[39m",
+        [34mupdated_at[39m: "[32m2022-11-03 08:07:48[39m",
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4848
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#4869
+              [34mid[39m: [35m2[39m,
+              [34mname[39m: "[32mViewer[39m",
+              [34mguard_name[39m: "[32mweb[39m",
+              [34mcreated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mupdated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#4850
+                [34mmodel_id[39m: [35m3[39m,
+                [34mrole_id[39m: [35m2[39m,
+                [34mmodel_type[39m: "[32mApp\User[39m",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  }
+
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4815
+    [34mall[39m: [
+      [34;4mApp\User[39;24m {#4800
+        [34mid[39m: [35m1[39m,
+        [34mname[39m: "[32mAdmin[39m",
+        [34memail[39m: "[32madmin@admin.com[39m",
+        [34mpassword[39m: "[32m$2y$10$uhPJhZ5YIdYA9KtHyCbO8O7Qnn5PcGxUH6HuR53WliKyhcZ/EEo9q[39m",
+        [34mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2022-10-19 05:37:00[39m",
+        [34mupdated_at[39m: "[32m2022-10-19 05:37:00[39m",
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4818
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#4823
+              [34mid[39m: [35m1[39m,
+              [34mname[39m: "[32madministrator[39m",
+              [34mguard_name[39m: "[32mweb[39m",
+              [34mcreated_at[39m: "[32m2022-10-19 05:37:00[39m",
+              [34mupdated_at[39m: "[32m2022-10-19 05:37:00[39m",
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#4839
+                [34mmodel_id[39m: [35m1[39m,
+                [34mrole_id[39m: [35m1[39m,
+                [34mmodel_type[39m: "[32mApp\User[39m",
+              },
+            },
+          ],
+        },
+      },
+      [34;4mApp\User[39;24m {#4796
+        [34mid[39m: [35m2[39m,
+        [34mname[39m: "[32mtest[39m",
+        [34memail[39m: "[32msefernandez@menarini.es[39m",
+        [34mpassword[39m: "[32m$2y$10$aqumnKy452FwTZ1eO02...DSusStlkPlIN8/ppVlh5FCCirIgDZVa[39m",
+        [34mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2022-11-02 10:31:58[39m",
+        [34mupdated_at[39m: "[32m2022-11-02 10:31:58[39m",
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4798
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#4837
+              [34mid[39m: [35m2[39m,
+              [34mname[39m: "[32mViewer[39m",
+              [34mguard_name[39m: "[32mweb[39m",
+              [34mcreated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mupdated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#4809
+                [34mmodel_id[39m: [35m2[39m,
+                [34mrole_id[39m: [35m2[39m,
+                [34mmodel_type[39m: "[32mApp\User[39m",
+              },
+            },
+          ],
+        },
+      },
+      [34;4mApp\User[39;24m {#4807
+        [34mid[39m: [35m3[39m,
+        [34mname[39m: "[32mNayra Santana[39m",
+        [34memail[39m: "[32mnsantana@menarini.es[39m",
+        [34mpassword[39m: "[32m$2y$10$Zcn5IJVqO/y5TEbFOsBChe2GKVcxnc5Dl2zmU652lWJcNg2xbAlZW[39m",
+        [34mremember_token[39m: [36mnull[39m,
+        [34mcreated_at[39m: "[32m2022-11-03 08:07:48[39m",
+        [34mupdated_at[39m: "[32m2022-11-03 08:07:48[39m",
+        [34mroles[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#4817
+          [34mall[39m: [
+            [34;4mSpatie\Permission\Models\Role[39;24m {#4848
+              [34mid[39m: [35m2[39m,
+              [34mname[39m: "[32mViewer[39m",
+              [34mguard_name[39m: "[32mweb[39m",
+              [34mcreated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mupdated_at[39m: "[32m2022-11-02 10:31:24[39m",
+              [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\MorphPivot[39;24m {#4830
+                [34mmodel_id[39m: [35m3[39m,
+                [34mrole_id[39m: [35m2[39m,
+                [34mmodel_type[39m: "[32mApp\User[39m",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  }
+
+[90m= [39m[34;4mIlluminate\Http\JsonResponse[39;24m {#4203
+    +[1mheaders[22m: [34;4mSymfony\Component\HttpFoundation\ResponseHeaderBag[39;24m {#4206},
+    +[1moriginal[22m: [
+      "[34mdraw[39m" => [35m0[39m,
+      "[34mrecordsTotal[39m" => [35m1[39m,
+      "[34mrecordsFiltered[39m" => [35m1[39m,
+      "[34mdata[39m" => [
+        [
+          "[34mid[39m" => [35m1[39m,
+          "[34memp_code[39m" => "[32m3235[39m",
+          "[34mmotivo[39m" => [35m1[39m,
+          "[34mretorno_old[39m" => [35m1[39m,
+          "[34mform_out[39m" => [35m1[39m,
+          "[34mform_ok[39m" => [35m1[39m,
+          "[34mfecha_peticion[39m" => "[32m2023-02-01[39m",
+          "[34mfecha_entrega[39m" => "[32m2023-02-01[39m",
+          "[34mObservaciones[39m" => [36mnull[39m,
+          "[34mcod_emp[39m" => "[32m  &lt;select name=&quot;persona_cambios&quot; id=&quot;persona_cambios&quot; class=&quot;form-control select2-hidden-accessible&quot; data-width=&quot;160%&quot; data-parsley-required=&quot;true&quot; data-parsley-trigger=&quot;change&quot;&gt;&lt;/select&gt;[39m",
+        ],
+      ],
+      "[34minput[39m" => [],
+    ],
+    +[1mexception[22m: [36mnull[39m,
+  }
+

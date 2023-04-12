@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'site_title' => 'Inventario FF',
+    'site_title' => 'Telefonia LMSA',
 	'languages' => true,
     'language.detect' => true,
 	'available_languages' => [

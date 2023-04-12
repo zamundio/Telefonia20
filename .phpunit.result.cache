@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Unit\\AjaxTest::test_ajax_request":3,"Tests\\Feature\\ExampleTest::testBasicTest":4,"Tests\\Unit\\AjaxTest::testGetSelectPersonal":5},"times":{"Tests\\Unit\\AjaxTest::test_ajax_request":0.973,"Tests\\Feature\\ExampleTest::testBasicTest":0.066,"Tests\\Unit\\AjaxTest::testGetSelectPersonal":2.013}}

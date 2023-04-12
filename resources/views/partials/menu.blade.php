@@ -64,7 +64,14 @@
                       {{ trans('cruds.inventario.title') }}
                   </a>
               </li>
+   <li class="nav-item">
+       <a href="{{ route('cambios.index') }}" class="nav-link {{ request()->is('cambios') || request()->is('cambios/*') ? 'active' : '' }}">
+           <i class="fas fa-mobile-alt nav-icon">
 
+           </i>
+           {{ trans('cruds.inventario.title') }}
+       </a>
+   </li>
             <li class="nav-item">
                 <a href="{{ route('auth.change_password') }}" class="nav-link">
                     <i class="nav-icon fas fa-fw fa-key nav-icon">

@@ -97,7 +97,7 @@
 
 
 <script>
-    console.log('probando');
+    // console.log('probando');
     // $(":input").inputmask();
 
     $('#terminales_estado_form').parsley().on('field:error', function () {

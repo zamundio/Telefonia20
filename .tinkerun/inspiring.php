@@ -5,6 +5,9 @@ use App\User;
 use App\Estructura;
 use App\Inventario;
 use App\TerminalesUsers;
+use App\CambiosTerminales;
+use Yajra\DataTables\Facades\DataTables;
 
+$data = [];
 
-$data = Estructura::findOrFail(1939)->lineas()->select('id', \DB::raw('id as text'))->get();
+$data = CambiosTerminales::All();
