@@ -114,8 +114,7 @@ $(document).ready(function () {
     },
     pageLength: 15,
     buttons: [],
-    columnDefs: [
-      {
+    columnDefs: [{
         width: "1%",
         targets: [0],
       },
@@ -150,10 +149,11 @@ $(document).ready(function () {
         targets: [6],
       },
       {
-        className:"dt-center",
+        className: "dt-center",
         width: "1%",
         targets: [7],
         render: function (d) {
+            console.log(d);
           if (d == "SI") {
             return '<span class="badge badge-primary  center-block">SI</span>';
           } else {
@@ -162,27 +162,42 @@ $(document).ready(function () {
         },
 
       },
-         {
-              className: "dt-center",
-             width: "1%",
-             targets: [8],
-             render: function (d) {
-                 if (d == "SI") {
-                     return '<span class="badge badge-primary  center-block">SI</span>';
-                 } else {
-                     return '<span class="badge badge-danger  center-block">NO</span>';
-                 }
-             },
+      {
+        className: "dt-center",
+        width: "1%",
+        targets: [8],
+        render: function (d) {
+ console.log("Nummero: " + d);
 
-          },
-         {
-              "width": "1%",
-              "targets": [9]
-          },
+          if (d != null) {
+            return '<span class="badge badge-primary  center-block">SI</span>';
+          } else {
+            return '<span class="badge badge-danger  center-block">NO</span>';
+          }
+        },
+
+      },
+      {
+        className: "dt-center",
+        width: "1%",
+        targets: [9],
+        render: function (d) {
+         console.log("Movil: "+ d);
+          if (d == "SI") {
+            return '<span class="badge badge-primary  center-block">SI</span>';
+          } else {
+            return '<span class="badge badge-danger  center-block">NO</span>';
+          }
+        },
+
+      },
+      {
+        "width": "1%",
+        "targets": [10]
+      },
 
     ],
-    columns: [
-      {
+    columns: [{
         data: "EMP_CODE",
         name: "EMP_CODE",
       },
@@ -215,34 +230,39 @@ $(document).ready(function () {
         name: "LINEA",
       },
       {
-          data: "TERMINAL",
-          name: "TERMINAL",
+        data: "NUMERO",
+        name: "NUMERO",
       },
-       {
-          data: 'action',
-          name: 'action',
+      {
+        data: "TERMINAL",
+        name: "TERMINAL",
+      },
+
+      {
+        data: 'action',
+        name: 'action',
 
       },
     ],
   });
-$("#TablaNuevasAltas").on('submit', '.form-eliminar', function () {
-  event.preventDefault();
-  const form = $(this);
-  swal({
-    title: '¿ Está seguro que desea eliminar el registro ?',
-    text: "Esta acción no se puede deshacer!",
-    icon: 'warning',
-    buttons: {
-      cancel: "Cancelar",
-      confirm: "Aceptar"
-    },
-  }).then((value) => {
-    if (value) {
+  $("#TablaNuevasAltas").on('submit', '.form-eliminar', function () {
+    event.preventDefault();
+    const form = $(this);
+    swal({
+      title: '¿ Está seguro que desea eliminar el registro ?',
+      text: "Esta acción no se puede deshacer!",
+      icon: 'warning',
+      buttons: {
+        cancel: "Cancelar",
+        confirm: "Aceptar"
+      },
+    }).then((value) => {
+      if (value) {
 
-      ajaxRequest(form);
-    }
+        ajaxRequest(form);
+      }
+    });
   });
-});
   // $table.column(1).visible(false);
 });
 
@@ -340,6 +360,7 @@ $(function () {
     },
   });
 });
+
 function ajaxRequest(form) {
   $check = "";
   return $.ajax({
@@ -352,9 +373,9 @@ function ajaxRequest(form) {
         $('#count-emp-code').text(respuesta.cuenta);
         HelperNotificaciones.notificaciones('El registro fue eliminado correctamente', 'Telefonia', 'success');
 
-      /*   setTimeout(function () {
-          location.reload();
-        }, 1000); */
+        /*   setTimeout(function () {
+            location.reload();
+          }, 1000); */
 
       } else {
         ;

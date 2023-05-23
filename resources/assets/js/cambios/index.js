@@ -22,7 +22,7 @@ $(function () {
       weekStart: 1
   });
     var table = $("#cambiosterminales").DataTable({
-        drawCallback: function () {
+      /*   drawCallback: function () {
             $('#persona_estado_cambios').select2({
                         // Activamos la opcion "Tags" del plugin
                         width: '200px',
@@ -53,7 +53,7 @@ $(function () {
 
 
                         }
-        })},
+        })}, */
         language: {
             url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
         },
@@ -132,10 +132,9 @@ $(function () {
 
 
             {
-                data: "persona_cambios",
-                "render": function (data, type, row) {
-                    return ' <select name="persona_estado_cambios" id="persona_estado_cambios" class="form-control select2-hidden-accessible" data-width="160%" data-parsley-required="true" data-parsley-trigger="change"></select>';
-            }}, {
+                data: "emp_code",
+                  name: "emp_code"
+            }, {
                 data: "motivo",
                 name: "motivo"
             }, {

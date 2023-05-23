@@ -23,11 +23,7 @@ class CambiosTerminalesController extends Controller
 
         $data = CambiosTerminales::All();
         return Datatables::of($data)
-        ->addcolumn('persona_cambios', function () {
-            // return '  <select name="persona_cambios" id="persona_cambios" class="form-control select2-hidden-accessible" ></select>';
-            return ' <select name="persona_estado_cambios" id="persona_estado_cambios" class="form-control select2-hidden-accessible" data-width="160%" data-parsley-required="true" data-parsley-trigger="change"></select>';
-        })
-            ->rawColumns(['persona_cambios'])
+
             ->make(true);
     }
 }

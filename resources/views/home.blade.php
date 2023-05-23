@@ -74,6 +74,9 @@
                                                                 <th>
                                                                     {{ trans('global.telefonia.fields.Linea') }}
                                                                 </th>
+                                                                 <th>
+                                                                     {{ trans('global.telefonia.fields.Numero') }}
+                                                                 </th>
                                                                 <th>
                                                                     {{ trans('global.telefonia.fields.Terminal') }}
                                                                 </th>

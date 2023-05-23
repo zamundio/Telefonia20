@@ -207,6 +207,8 @@ $(document).ready(function () {
       width: "1%",
       targets: [7],
       render: function render(d) {
+        console.log(d);
+
         if (d == "SI") {
           return '<span class="badge badge-primary  center-block">SI</span>';
         } else {
@@ -218,6 +220,21 @@ $(document).ready(function () {
       width: "1%",
       targets: [8],
       render: function render(d) {
+        console.log("Nummero: " + d);
+
+        if (d != null) {
+          return '<span class="badge badge-primary  center-block">SI</span>';
+        } else {
+          return '<span class="badge badge-danger  center-block">NO</span>';
+        }
+      }
+    }, {
+      className: "dt-center",
+      width: "1%",
+      targets: [9],
+      render: function render(d) {
+        console.log("Movil: " + d);
+
         if (d == "SI") {
           return '<span class="badge badge-primary  center-block">SI</span>';
         } else {
@@ -226,7 +243,7 @@ $(document).ready(function () {
       }
     }, {
       "width": "1%",
-      "targets": [9]
+      "targets": [10]
     }],
     columns: [{
       data: "EMP_CODE",
@@ -252,6 +269,9 @@ $(document).ready(function () {
     }, {
       data: "LINEA",
       name: "LINEA"
+    }, {
+      data: "NUMERO",
+      name: "NUMERO"
     }, {
       data: "TERMINAL",
       name: "TERMINAL"

@@ -110,34 +110,34 @@ $(function () {
     weekStart: 1
   });
   var table = $("#cambiosterminales").DataTable({
-    drawCallback: function drawCallback() {
-      $('#persona_estado_cambios').select2({
-        // Activamos la opcion "Tags" del plugin
-        width: '200px',
-        ajax: {
-          dataType: 'json',
-          url: 'GetSelectPersonal',
-          delay: 250,
-          error: function error(xhr, textStatus, errorThrown) {
-            console.log('Error en la petición AJAX:', textStatus, errorThrown);
-          },
-          success: function success(data) {
-            console.log('La petición AJAX se completó correctamente'); // Código para actualizar otro elemento en la página
-          },
-          processResults: function processResults(data) {
-            return {
-              results: $.map(data, function (item) {
-                return {
-                  text: item.text,
-                  id: item.id
-                };
-              })
-            };
-          },
-          cache: true
-        }
-      });
-    },
+    /*   drawCallback: function () {
+          $('#persona_estado_cambios').select2({
+                      // Activamos la opcion "Tags" del plugin
+                      width: '200px',
+                      ajax: {
+                          dataType: 'json',
+                          url: '{{ url("GetSelectPersonal") }}',
+                          delay: 250,
+                          error: function (xhr, textStatus, errorThrown) {
+                              console.log('Error en la petición AJAX:', textStatus, errorThrown);
+                          },
+                          success: function (data) {
+                              console.log('La petición AJAX se completó correctamente');
+                              // Código para actualizar otro elemento en la página
+                          },
+                          processResults: function (data) {
+                               return {
+                                  results: $.map(data, function (item) {
+                                       return {
+                                          text: item.text,
+                                          id: item.id
+                                      }
+                                  })
+                              };
+                          },
+                          cache: true
+                        }
+      })}, */
     language: {
       url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
     },
@@ -204,10 +204,8 @@ $(function () {
     name: 'checkbox'
     }, */
     {
-      data: "persona_cambios",
-      "render": function render(data, type, row) {
-        return ' <select name="persona_estado_cambios" id="persona_estado_cambios" class="form-control select2-hidden-accessible" data-width="160%" data-parsley-required="true" data-parsley-trigger="change"></select>';
-      }
+      data: "emp_code",
+      name: "emp_code"
     }, {
       data: "motivo",
       name: "motivo"

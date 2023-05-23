@@ -66,6 +66,7 @@ return [
         'title'          => 'Telefonia',
         'title_singular' => 'Telefonia',
         'fields'         => [
+        'Numero'                   =>'Número',
             'EMP_CODE'                 => 'Codigo',
             'EMP_CODE_helper'          => '',
             'Obs'                 => 'Obs',

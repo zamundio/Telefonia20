@@ -65,7 +65,7 @@ class MaestrasController extends Controller
 
             $del = NuevasAltas::where('EMP_CODE', $id)->first();
 
-            $input = Arr::except($del->toArray(), ['LINEA', 'TERMINAL']);
+            $input = Arr::except($del->toArray(), ['LINEA', 'TERMINAL','NUMERO']);
             $odi = new Odi($input);
             $odi->save();
             $cuenta = NuevasAltas::count();
